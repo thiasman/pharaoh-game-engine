@@ -178,7 +178,7 @@ namespace PGE
         unsigned long elapsedTicks = curTick - mLastTick;
         mLastTick = curTick;
 
-        Update( elapsedTicks );
+        UpdateLogic( elapsedTicks );
 
         // Update the tick counter:
         mTickCounter += elapsedTicks;

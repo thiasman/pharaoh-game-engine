@@ -18,6 +18,8 @@
 #include <SDL.h>
 #endif
 
+#include "PgeTypes.h"
+
 namespace PGE
 {
     /** @class BaseEngine
@@ -92,7 +94,7 @@ namespace PGE
         /** Perform calculation/thinking
             @param  elapsedTime     Time in milliseconds since the last update
         */
-        virtual void Update( unsigned long elapsedTime )    { }
+        virtual void UpdateLogic( unsigned long elapsedTime )    { }
 
         /** Render the current display
             @param  surface         Surface onto which to render the display
