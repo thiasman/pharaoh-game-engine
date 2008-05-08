@@ -1,0 +1,304 @@
+# depslib dependency file v1.0
+1210251966 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\main.cpp
+	<cstdlib>
+	<stdlib.h>
+	<SDL/SDL.h>
+	<SDL.h>
+	"BaseEngine.h"
+	"version.h"
+	"dir.h"
+	"PgePoint2D.h"
+	"PgeMatrix2D.h"
+	"PgeMath.h"
+	<cmd/LogFileManager.h>
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_platform.h
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\begin_code.h
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\close_code.h
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_keysym.h
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1210172647 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseengine.h
+	<string>
+	<SDL/SDL.h>
+	<SDL.h>
+	"PgeTypes.h"
+
+1210169044 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseengine.cpp
+	"version.h"
+	"BaseEngine.h"
+	"PgeException.h"
+	<windows.h>
+
+1210260263 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
+
+1210167415 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeexception.h
+	<exception>
+	<string>
+
+1210179818 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetypes.h
+	<string>
+
+1210172439 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetypes.cpp
+	"PgeTypes.h"
+
+1210174889 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\point.cpp
+	"Point.h"
+
+1210174951 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\point.h
+	<ostream>
+	"PgeTypes.h"
+
+1210202006 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.cpp
+	"PgeMath.h"
+	<math.h>
+	<stdlib.h>
+
+1210201797 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.h
+	"PgeTypes.h"
+	<limits>
+	<math.h>
+
+1210186932 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgepoint.cpp
+	"PgePoint.h"
+	"PgeMath.h"
+
+1210186932 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgepoint.h
+	<ostream>
+	"PgeTypes.h"
+	"PgeMath.h"
+
+1210197658 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgepoint2d.cpp
+	"PgePoint2D.h"
+	"PgePoint3D.h"
+
+1210198694 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgepoint2d.h
+	<ostream>
+	"PgeTypes.h"
+	"PgeMath.h"
+
+1210198695 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgepoint3d.h
+	<ostream>
+	"PgeTypes.h"
+	"PgeMath.h"
+
+1210186933 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgepoint3d.cpp
+	"PgePoint3D.h"
+	"PgePoint2D.h"
+
+1210193962 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgematrix2d.cpp
+	"PgeMatrix2D.h"
+	"PgePoint2D.h"
+	"PgeMath.h"
+
+1210193988 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgematrix2d.h
+	"PgeTypes.h"
+	"PgeEnums.h"
+	<ostream>
+
+1210191293 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeenums.h
+	"PgeTypes.h"
+
+1210194395 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgematrix3d.cpp
+	"PgeMatrix3D.h"
+	"PgePoint3D.h"
+	"PgeMath.h"
+
+1210193988 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgematrix3d.h
+	"PgeTypes.h"
+	"PgeEnums.h"
+	<ostream>
+
+1210254008 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseentity.cpp
+	"BaseEntity.h"
+
+1210259617 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseentity.h
+	<SDL/SDL.h>
+	<SDL.h>
+	"BaseEntityInterface.h"
+	"PgeTypes.h"
+	"PgePoint2D.h"
+
+1210259660 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseentityinterface.h
+	"PgeTypes.h"
+	"tinyxml.h"
+
+1210259813 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesingleton.cpp
+	"PgeSingleton.h"
+
+1210254920 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesingleton.h
+
