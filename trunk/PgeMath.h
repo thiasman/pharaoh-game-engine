@@ -192,10 +192,10 @@ namespace PGE
         static Real ReflectSine( Real val, Real minVal, Real maxVal );
 
         /** Convert a base 10 integer value to a hexadecimal string */
-        static String Int2Hex( Int intVal );
+        static String Int2Hex( UInt32 intVal );
 
         /** Convert an hexadecimal string to base 10 integer */
-        static Int Hex2Int( String hexVal );
+        static UInt32 Hex2Int( String hexVal );
 
         /** Calculate the sawtooth sine of an angle:
             @param  angle       Angle in radians
