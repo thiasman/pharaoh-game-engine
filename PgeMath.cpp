@@ -9,6 +9,7 @@
 #include "PgeMath.h"
 #include <math.h>
 #include <stdlib.h>
+#include "cmd/StringUtil.h"
 
 namespace PGE
 {
@@ -451,7 +452,7 @@ namespace PGE
 
 
     //Int2Hex-------------------------------------------------------------------
-    String Math::Int2Hex( Int intVal )
+    String Math::Int2Hex( UInt32 intVal )
     {
         // Create a string containing the hex characters in order:
         String hexChars = "0123456789ABCDEF";
@@ -467,88 +468,88 @@ namespace PGE
     }
 
     //Hex2Int-------------------------------------------------------------------
-    Int Math::Hex2Int( String hexVal )
+    UInt32 Math::Hex2Int( String hexVal )
     {
         // Create a string containing the hex characters in order:
         String hexChars = "0123456789ABCDEF";
 
         // Convert the hex string to the corresponding integer:
         Int intVal = 0;
-//        StringUtil::toUpper( hexVal );
-//        String::const_iterator hexIter;
-//        for ( hexIter = hexVal.begin(); hexIter != hexVal.end(); hexIter++ )
-//        {
-//            Int charVal = String::npos;
-//            switch ( *hexIter )
-//            {
-//            case '0':
-//                charVal = 0;
-//                break;
-//
-//            case '1':
-//                charVal = 1;
-//                break;
-//
-//            case '2':
-//                charVal = 2;
-//                break;
-//
-//            case '3':
-//                charVal = 3;
-//                break;
-//
-//            case '4':
-//                charVal = 4;
-//                break;
-//
-//            case '5':
-//                charVal = 5;
-//                break;
-//
-//            case '6':
-//                charVal = 6;
-//                break;
-//
-//            case '7':
-//                charVal = 7;
-//                break;
-//
-//            case '8':
-//                charVal = 8;
-//                break;
-//
-//            case '9':
-//                charVal = 9;
-//                break;
-//
-//            case 'A':
-//                charVal = 10;
-//                break;
-//
-//            case 'B':
-//                charVal = 11;
-//                break;
-//
-//            case 'C':
-//                charVal = 12;
-//                break;
-//
-//            case 'D':
-//                charVal = 13;
-//                break;
-//
-//            case 'E':
-//                charVal = 14;
-//                break;
-//
-//            case 'F':
-//                charVal = 15;
-//                break;
-//            }
-//
-//            if ( charVal != String::npos )
-//                intVal = ( intVal << 4 ) + charVal;
-//        }
+        cmd::StringUtil::toUpper( hexVal );
+        String::const_iterator hexIter;
+        for ( hexIter = hexVal.begin(); hexIter != hexVal.end(); hexIter++ )
+        {
+            Int charVal = String::npos;
+            switch ( *hexIter )
+            {
+            case '0':
+                charVal = 0;
+                break;
+
+            case '1':
+                charVal = 1;
+                break;
+
+            case '2':
+                charVal = 2;
+                break;
+
+            case '3':
+                charVal = 3;
+                break;
+
+            case '4':
+                charVal = 4;
+                break;
+
+            case '5':
+                charVal = 5;
+                break;
+
+            case '6':
+                charVal = 6;
+                break;
+
+            case '7':
+                charVal = 7;
+                break;
+
+            case '8':
+                charVal = 8;
+                break;
+
+            case '9':
+                charVal = 9;
+                break;
+
+            case 'A':
+                charVal = 10;
+                break;
+
+            case 'B':
+                charVal = 11;
+                break;
+
+            case 'C':
+                charVal = 12;
+                break;
+
+            case 'D':
+                charVal = 13;
+                break;
+
+            case 'E':
+                charVal = 14;
+                break;
+
+            case 'F':
+                charVal = 15;
+                break;
+            }
+
+            if ( charVal != String::npos )
+                intVal = ( intVal << 4 ) + charVal;
+        }
 
         return intVal;
     }

@@ -17,7 +17,7 @@
 #include "PgeMatrix2D.h"
 #include "PgeMath.h"
 
-#include <cmd/LogFileManager.h>
+#include "cmd/LogFileManager.h"
 cmd::LogFileManager cmd::LogFileManager::mInstance;
 
 int main ( int argc, char** argv )
@@ -32,6 +32,11 @@ int main ( int argc, char** argv )
 
     std::string title = std::string( "Welcome to Pharaoh Game Engine - " ) + AutoVersion::FULLVERSION_STRING;
     engine.SetTitle( title );
+PGE::Int intVal = 48879;
+PGE::String hexVal = "deadbeef";
+PGE::Int h2iVal = PGE::Math::Hex2Int( hexVal );
+PGE::String i2hVal = PGE::Math::Int2Hex( intVal );
+lfm << "intVal = " << intVal << " in hex = " << i2hVal << ", hexVal = " << hexVal << " as integer = " << h2iVal << std::endl;
 
     engine.Run();
 

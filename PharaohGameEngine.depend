@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1210251966 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\main.cpp
+1210273196 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\main.cpp
 	<cstdlib>
 	<stdlib.h>
 	<SDL/SDL.h>
@@ -10,7 +10,7 @@
 	"PgePoint2D.h"
 	"PgeMatrix2D.h"
 	"PgeMath.h"
-	<cmd/LogFileManager.h>
+	"cmd/LogFileManager.h"
 
 1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl.h
 	"SDL_main.h"
@@ -204,7 +204,7 @@
 	"PgeException.h"
 	<windows.h>
 
-1210260263 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
+1210271586 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
 
 1210167415 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeexception.h
 	<exception>
@@ -223,12 +223,13 @@
 	<ostream>
 	"PgeTypes.h"
 
-1210202006 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.cpp
+1210273307 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.cpp
 	"PgeMath.h"
 	<math.h>
 	<stdlib.h>
+	"cmd/StringUtil.h"
 
-1210201797 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.h
+1210273316 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.h
 	"PgeTypes.h"
 	<limits>
 	<math.h>
@@ -302,7 +303,7 @@
 
 1210254920 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesingleton.h
 
-1210260263 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.cpp
+1210267054 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.cpp
 	"PgeTextureManager.h"
 
 1210260136 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.h
@@ -312,4 +313,27 @@
 	"PgeSharedPtr.h"
 
 1210256037 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesharedptr.h
+
+1210266309 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\cmd\stringutil.h
+	<string>
+	<sstream>
+	<vector>
+	<algorithm>
+	<tchar.h>
+	<direct.h>
+
+1210177513 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\cmd\logfilemanager.h
+	"LogFile.h"
+	<map>
+	<sstream>
+
+1210177279 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\cmd\logfile.h
+	<string>
+	<sstream>
+	<iostream>
+	<iomanip>
+	<fstream>
+	<stack>
+	<time.h>
+	"StringUtil.h"
 
