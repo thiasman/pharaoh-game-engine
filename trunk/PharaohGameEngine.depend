@@ -302,3 +302,14 @@
 
 1210254920 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesingleton.h
 
+1210260263 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.cpp
+	"PgeTextureManager.h"
+
+1210260136 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.h
+	<map>
+	"PgeTypes.h"
+	"PgeSingleton.h"
+	"PgeSharedPtr.h"
+
+1210256037 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesharedptr.h
+
