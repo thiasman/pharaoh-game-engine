@@ -1,10 +1,10 @@
 
 /*! $Id$
- *  @file   BaseEntity.cpp
+ *  @file   PgeBaseEntity.cpp
  *  @author Chad M. Draper
  *  @date   May 8, 2008
  *
  */
 
-#include "BaseEntity.h"
+#include "PgeBaseEntity.h"
 

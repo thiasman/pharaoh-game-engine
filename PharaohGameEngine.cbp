@@ -40,13 +40,15 @@
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="dxguid" />
+			<Add library="opengl32" />
+			<Add library="glu32" />
 			<Add directory="$(#sdl.lib)" />
 		</Linker>
-		<Unit filename="BaseEngine.cpp" />
-		<Unit filename="BaseEngine.h" />
-		<Unit filename="BaseEntity.cpp" />
-		<Unit filename="BaseEntity.h" />
-		<Unit filename="BaseEntityInterface.h" />
+		<Unit filename="PgeBaseEngine.cpp" />
+		<Unit filename="PgeBaseEngine.h" />
+		<Unit filename="PgeBaseEntity.cpp" />
+		<Unit filename="PgeBaseEntity.h" />
+		<Unit filename="PgeBaseEntityInterface.h" />
 		<Unit filename="PgeEnums.h" />
 		<Unit filename="PgeException.h" />
 		<Unit filename="PgeMath.cpp" />
@@ -64,6 +66,8 @@
 		<Unit filename="PgeSingleton.h" />
 		<Unit filename="PgeTextureManager.cpp" />
 		<Unit filename="PgeTextureManager.h" />
+		<Unit filename="PgeTileEngine.cpp" />
+		<Unit filename="PgeTileEngine.h" />
 		<Unit filename="PgeTypes.cpp" />
 		<Unit filename="PgeTypes.h" />
 		<Unit filename="cb.bmp" />

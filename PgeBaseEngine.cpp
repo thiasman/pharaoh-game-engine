@@ -1,13 +1,13 @@
 
 /*! $Id$
- *  @file   BaseEngine.cpp
+ *  @file   PgeBaseEngine.cpp
  *  @author Chad M. Draper
  *  @date   May 1, 2008
  *
  */
 
 #include "version.h"
-#include "BaseEngine.h"
+#include "PgeBaseEngine.h"
 #include "PgeException.h"
 
 #include <windows.h>
@@ -39,6 +39,13 @@ namespace PGE
     {
         mWidth  = w;
         mHeight = h;
+
+        CreateSurface();
+    }
+
+    // CreateSurface------------------------------------------------------------
+    void BaseEngine::CreateSurface()
+    {
         mSurface = SDL_SetVideoMode( mWidth, mHeight, 0, SDL_SWSURFACE );
     }
 
@@ -81,6 +88,7 @@ namespace PGE
 
             if ( mIsMinimized )
             {
+                // If the window is minimized, the game is paused.
                 WaitMessage();
             }
             else

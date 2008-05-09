@@ -1,15 +1,5 @@
-#ifdef __cplusplus
-    #include <cstdlib>
-#else
-    #include <stdlib.h>
-#endif
-#ifdef __APPLE__
-#include <SDL/SDL.h>
-#else
-#include <SDL.h>
-#endif
 
-#include "BaseEngine.h"
+#include "PgeTileEngine.h"
 #include "version.h"
 #include "dir.h"
 
@@ -26,7 +16,7 @@ int main ( int argc, char** argv )
     lfm.CreateLog( "Pharaoh.log", true, cmd::LogFile::Everything );
     cmd::LogFileSection sect( lfm.GetDefaultLog(), "main(...)" );
 
-    PGE::BaseEngine engine;
+    PGE::TileEngine engine;
     engine.SetTitle( "Loading..." );
     engine.Init();
 
