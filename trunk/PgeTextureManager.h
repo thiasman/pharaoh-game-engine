@@ -42,10 +42,10 @@ namespace PGE
         /** Load the image into memory.  If the image is already loaded, it does
             nothing.
         */
-        void Load();
+        bool Load();
 
         /** Unload the image from memory */
-        void Unload();
+        bool Unload();
 
     }; // class TextureItem
 
@@ -83,16 +83,16 @@ namespace PGE
         static TextureManager* GetSingletonPtr();
 
         /** Add an image to the manager.  Optionally, load it into memory. */
-        void AddImage( const String& imageFileName );
+        bool AddImage( const String& imageFileName );
 
         /** Load an image.  If the image is not already in the manager, it is
             first added.  If the image exists and is already loaded, it is not
             loaded again.
         */
-        void LoadImage( const String& imageFileName );
+        bool LoadImage( const String& imageFileName );
 
         /** Get a pointer to the texture item */
-        TextureItem* GetTextureItemPtr() const;
+        TextureItem* GetTextureItemPtr( const String& textureName );
     };
 
 } // namespace PGE;

@@ -1,10 +1,6 @@
 # depslib dependency file v1.0
-1210273196 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\main.cpp
-	<cstdlib>
-	<stdlib.h>
-	<SDL/SDL.h>
-	<SDL.h>
-	"BaseEngine.h"
+1210372230 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\main.cpp
+	"PgeTileEngine.h"
 	"version.h"
 	"dir.h"
 	"PgePoint2D.h"
@@ -192,19 +188,20 @@
 	"begin_code.h"
 	"close_code.h"
 
-1210172647 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseengine.h
+1210345527 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseengine.h
 	<string>
 	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
 	<SDL.h>
+	<SDL_opengl.h>
 	"PgeTypes.h"
 
-1210169044 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseengine.cpp
+1210345527 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseengine.cpp
 	"version.h"
 	"BaseEngine.h"
 	"PgeException.h"
-	<windows.h>
 
-1210271586 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
+1210372023 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
 
 1210167415 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeexception.h
 	<exception>
@@ -294,7 +291,7 @@
 	"PgeTypes.h"
 	"PgePoint2D.h"
 
-1210259660 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseentityinterface.h
+1210341255 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\baseentityinterface.h
 	"PgeTypes.h"
 	"tinyxml.h"
 
@@ -303,10 +300,10 @@
 
 1210254920 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesingleton.h
 
-1210267054 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.cpp
+1210344190 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.cpp
 	"PgeTextureManager.h"
 
-1210260136 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.h
+1210344162 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetexturemanager.h
 	<map>
 	"PgeTypes.h"
 	"PgeSingleton.h"
@@ -336,4 +333,52 @@
 	<stack>
 	<time.h>
 	"StringUtil.h"
+
+1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl_opengl.h
+	"SDL_config.h"
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<gl.h>
+	<glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<windows.h>
+	<stddef.h>
+
+1210372481 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseengine.cpp
+	"version.h"
+	"PgeBaseEngine.h"
+	"PgeException.h"
+	<windows.h>
+
+1210372065 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseengine.h
+	<string>
+	<SDL/SDL.h>
+	<SDL.h>
+	"PgeTypes.h"
+
+1210362905 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseentity.cpp
+	"PgeBaseEntity.h"
+
+1210362900 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseentity.h
+	<SDL/SDL.h>
+	<SDL.h>
+	"PgeBaseEntityInterface.h"
+	"PgeTypes.h"
+	"PgePoint2D.h"
+
+1210362950 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseentityinterface.h
+	"PgeTypes.h"
+	"tinyxml.h"
+
+1210372388 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetileengine.cpp
+	"PgeTileEngine.h"
+	<SDL/SDL.h>
+	<SDL/SDL_opengl.h>
+	<SDL.h>
+	<SDL_opengl.h>
+
+1210371771 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetileengine.h
+	"PgeBaseEngine.h"
 

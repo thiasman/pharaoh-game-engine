@@ -1,14 +1,14 @@
 
 /*! $Id$
- *  @file   BaseEngine.h
+ *  @file   PgeBaseEngine.h
  *  @author Chad M. Draper
  *  @date   May 1, 2008
  *  @brief  Defines the base class for the tile-based game engine,
  *
  */
 
-#ifndef BASEENGINE_H_INCLUDED
-#define BASEENGINE_H_INCLUDED
+#ifndef PGEBASEENGINE_H_INCLUDED
+#define PGEBASEENGINE_H_INCLUDED
 
 #include <string>
 
@@ -29,7 +29,7 @@ namespace PGE
     */
     class BaseEngine
     {
-    private:
+    protected:
         unsigned long   mLastTick;      /**< Tick value when the last frame was rendered */
         unsigned long   mTickCounter;   /**< Counts ticks for calculating the FPS */
         unsigned long   mFrameCounter;  /**< Frame counter for calculating the FPS */
@@ -56,6 +56,9 @@ namespace PGE
 
         /** Handle user input */
         void HandleInput();
+
+        /** Create the surface */
+        virtual void CreateSurface();
 
     public:
         /** Default Constructor */
@@ -163,4 +166,4 @@ namespace PGE
 
 } // namespace PGE
 
-#endif // BASEENGINE_H_INCLUDED
+#endif // PGEBASEENGINE_H_INCLUDED

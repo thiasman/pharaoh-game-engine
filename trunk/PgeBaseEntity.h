@@ -1,14 +1,14 @@
 
 /*! $Id$
- *  @file   BaseEntity.h
+ *  @file   PgeBaseEntity.h
  *  @author Chad M. Draper
  *  @date   May 7, 2008
  *  @brief  Defines the BaseEntity class
  *
  */
 
-#ifndef BASEENTITY_H_INCLUDED
-#define BASEENTITY_H_INCLUDED
+#ifndef PGEBASEENTITY_H_INCLUDED
+#define PGEBASEENTITY_H_INCLUDED
 
 #ifdef __APPLE__
 #include <SDL/SDL.h>
@@ -16,7 +16,7 @@
 #include <SDL.h>
 #endif
 
-#include "BaseEntityInterface.h"
+#include "PgeBaseEntityInterface.h"
 #include "PgeTypes.h"
 #include "PgePoint2D.h"
 
@@ -91,4 +91,4 @@ namespace PGE
 
 } // namespace PGE
 
-#endif // BASEENTITY_H_INCLUDED
+#endif // PGEBASEENTITY_H_INCLUDED
