@@ -201,14 +201,15 @@
 	"BaseEngine.h"
 	"PgeException.h"
 
-1210771074 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
+1210789995 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
 
 1210167415 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeexception.h
 	<exception>
 	<string>
 
-1210179818 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetypes.h
+1210782898 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetypes.h
 	<string>
+	"PgePlatform.h"
 
 1210172439 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetypes.cpp
 	"PgeTypes.h"
@@ -226,7 +227,7 @@
 	<stdlib.h>
 	"cmd/StringUtil.h"
 
-1210273316 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.h
+1210782912 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgemath.h
 	"PgeTypes.h"
 	<limits>
 	<math.h>
@@ -309,7 +310,8 @@
 	"PgeSingleton.h"
 	"PgeSharedPtr.h"
 
-1210256037 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesharedptr.h
+1210778389 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgesharedptr.h
+	<assert.h>
 
 1210266309 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\cmd\stringutil.h
 	<string>
@@ -372,13 +374,58 @@
 	"PgeTypes.h"
 	"tinyxml.h"
 
-1210372388 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetileengine.cpp
+1210777534 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetileengine.cpp
 	"PgeTileEngine.h"
 	<SDL/SDL.h>
 	<SDL/SDL_opengl.h>
 	<SDL.h>
 	<SDL_opengl.h>
 
-1210770955 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetileengine.h
-	"PgeBaseEngine.h"
+1210777519 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetileengine.h
+	"PgeBaseGameEngine.h"
+
+1210777753 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasegameengine.h
+
+1210777631 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasegameengine.cpp
+	"PgeBaseGameEngine.h"
+
+1210791583 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.cpp
+	"version.h"
+	"PgeBaseWindowSystem.h"
+	"PgeException.h"
+	<windows.h>
+
+1210791584 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.h
+	<string>
+	"PgeTypes.h"
+	"PgeException.h"
+	"PgeTimer.h"
+
+1210790954 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeplatform.h
+	<windows.h>
+	"config.h"
+
+1210785525 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetimer.h
+	"PgeTypes.h"
+	<mmsystem.h>
+	<sys/time.h>
+
+1210779365 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgegamemanager.cpp
+	"PgeGameManager.h"
+
+1210778899 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgegamemanager.h
+	"PgeSharedPtr.h"
+	"PgeBaseGameEngine.h"
+	"PgeBaseWindowSystem.h"
+
+1210785546 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetimer.cpp
+	"PgeTimer.h"
+
+1210791656 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\sdl\pgesdlwindowsystem.cpp
+	"PgeSDLWindowSystem.h"
+
+1210791746 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\sdl\pgesdlwindowsystem.h
+	<SDL/SDL.h>
+	<SDL.h>
+	"../PgeBaseWindowSystem.h"
 

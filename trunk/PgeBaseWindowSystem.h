@@ -1,48 +1,42 @@
 
 /*! $Id$
- *  @file   PgeBaseEngine.h
+ *  @file   PgeBaseWindowSystem.h
  *  @author Chad M. Draper
  *  @date   May 1, 2008
- *  @brief  Defines the base class for the tile-based game engine,
+ *  @brief  Defines the base class implementation's windowing system.
  *
  */
 
-#ifndef PGEBASEENGINE_H_INCLUDED
-#define PGEBASEENGINE_H_INCLUDED
+#ifndef PGEBASEWINDOWSYSTEM_H_INCLUDED
+#define PGEBASEWINDOWSYSTEM_H_INCLUDED
 
 #include <string>
 
-#ifdef __APPLE__
-#include <SDL/SDL.h>
-#else
-#include <SDL.h>
-#endif
-
 #include "PgeTypes.h"
+#include "PgeException.h"
+#include "PgeTimer.h"
 
 namespace PGE
 {
-    /** @class BaseEngine
-        Base class for the engine.  This doesn't know or care about how the
-        engine is to be implemented, but provides the interface that can be
-        customized to the game's needs.
+    /** @class BaseWindowSystem
+        Base class for the windowing system.  This should be overridden to
+        accommodate the display system (ie. SDL, wxWidgets, Win32, X, etc.)
     */
-    class BaseEngine
+    class BaseWindowSystem
     {
     protected:
         unsigned long   mLastTick;      /**< Tick value when the last frame was rendered */
         unsigned long   mTickCounter;   /**< Counts ticks for calculating the FPS */
+        Timer           mTimer;
         unsigned long   mFrameCounter;  /**< Frame counter for calculating the FPS */
         unsigned long   mCurrentFPS;    /**< Last calculated frame rate */
 
         unsigned long   mWidth;         /**< Width of the window */
         unsigned long   mHeight;        /**< Height of the window */
-        std::string     mTitle;         /**< Title of the window */
+        String          mTitle;         /**< Title of the window */
         bool            mIsMinimized;   /**< Indicates if the window is minimized (game should pause) */
         bool            mIsPaused;      /**< Indicates if the gameplay should pause */
         bool            mQuit;          /**< Indicates if the application should quit */
-
-        SDL_Surface*    mSurface;       /**< Rendering surface */
 
     protected:
         /** Update any logic (i.e. AI processing) */
@@ -55,28 +49,28 @@ namespace PGE
         void SetSize( const unsigned long& w, const unsigned long& h );
 
         /** Handle user input */
-        void HandleInput();
+        virtual void HandleInput()          = 0;
 
         /** Create the surface */
-        virtual void CreateSurface();
+        virtual void CreateSurface()        = 0;
 
     public:
         /** Default Constructor */
-        BaseEngine();
+        BaseWindowSystem();
 
         /** Destructor */
-        virtual ~BaseEngine();
+        virtual ~BaseWindowSystem();
 
         /** Initialize the engine */
-        void Init();
+        virtual void Init()                 = 0;
 
         /** Start the game loop */
         void Run();
 
         /** Set the window title */
-        void SetTitle( const std::string& title );
+        virtual void SetTitle( const String& title );
         /** Get the window title */
-        const std::string& GetTitle() const;
+        const String& GetTitle() const;
 
         /** Get the display surface */
         /*SDL_Surface* GetSurface() const;*/
@@ -85,8 +79,9 @@ namespace PGE
         unsigned long GetFPS() const;
 
         /** Get a string containing the version information */
-        std::string GetVersion() const;
+        String GetVersion() const;
 
+    protected:
         ////////////////////////////////////////////////////////////////////////
         // Virtual methods:
         ////////////////////////////////////////////////////////////////////////
@@ -97,7 +92,17 @@ namespace PGE
         /** Perform calculation/thinking
             @param  elapsedTime     Time in milliseconds since the last update
         */
-        virtual void UpdateLogic( unsigned long elapsedTime )    { }
+        virtual void UpdateLogic( Real32 elapsedTime )    { }
+
+        /** Some rendering surfaces require the surface be locked before
+            rendering.
+        */
+        virtual void LockSurface()                          { }
+
+        /** If a surface was locked prior to rendering, it will need to be
+            unlocked after rendering.
+        */
+        virtual void UnlockSurface()                        { }
 
         /** Render the current display
             @param  surface         Surface onto which to render the display
@@ -162,8 +167,8 @@ namespace PGE
                                 const int& relX,
                                 const int& relY )           { }
 
-    }; // class BaseEngine
+    }; // class BaseWindowSystem
 
 } // namespace PGE
 
-#endif // PGEBASEENGINE_H_INCLUDED
+#endif // PGEBASEWINDOWSYSTEM_H_INCLUDED

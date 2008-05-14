@@ -1,21 +1,21 @@
 
 /*! $Id$
- *  @file   PgeBaseRenderEngine.cpp
+ *  @file   PgeBaseGameEngine.cpp
  *  @author Chad M. Draper
  *  @date   May 14, 2008
  *
  */
 
-#include "PgeBaseRenderEngine.h"
+#include "PgeBaseGameEngine.h"
 
 namespace PGE
 {
-    BaseRenderEngine::BaseRenderEngine()
+    BaseGameEngine::BaseGameEngine()
     {
         //ctor
     }
 
-    BaseRenderEngine::~BaseRenderEngine()
+    BaseGameEngine::~BaseGameEngine()
     {
         //dtor
     }
