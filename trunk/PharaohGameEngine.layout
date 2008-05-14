@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="PgeBaseEngine.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="1641" topLine="57" />
-	</File>
-	<File name="PgeBaseEngine.h" open="1" top="0" tabpos="12">
-		<Cursor position="654" topLine="24" />
-	</File>
-	<File name="PgeBaseEntity.cpp" open="1" top="0" tabpos="9">
+	<File name="PgeBaseEntity.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="25" topLine="0" />
 	</File>
-	<File name="PgeBaseEntity.h" open="1" top="0" tabpos="10">
+	<File name="PgeBaseEntity.h" open="0" top="0" tabpos="10">
 		<Cursor position="3279" topLine="64" />
 	</File>
-	<File name="PgeBaseEntityInterface.h" open="1" top="0" tabpos="11">
+	<File name="PgeBaseEntityInterface.h" open="0" top="0" tabpos="11">
 		<Cursor position="1913" topLine="26" />
 	</File>
-	<File name="PgeException.h" open="1" top="0" tabpos="2">
+	<File name="PgeBaseGameEngine.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="244" topLine="0" />
+	</File>
+	<File name="PgeBaseGameEngine.h" open="1" top="0" tabpos="7">
+		<Cursor position="33" topLine="0" />
+	</File>
+	<File name="PgeBaseWindowSystem.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="6756" topLine="206" />
+	</File>
+	<File name="PgeBaseWindowSystem.h" open="1" top="0" tabpos="8">
+		<Cursor position="2326" topLine="68" />
+	</File>
+	<File name="PgeException.h" open="0" top="0" tabpos="2">
 		<Cursor position="643" topLine="20" />
 	</File>
-	<File name="PgeMath.cpp" open="1" top="0" tabpos="5">
+	<File name="PgeMath.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="12269" topLine="400" />
 	</File>
-	<File name="PgeMath.h" open="1" top="0" tabpos="4">
-		<Cursor position="2502" topLine="54" />
+	<File name="PgeMath.h" open="0" top="0" tabpos="4">
+		<Cursor position="191" topLine="4" />
 	</File>
 	<File name="PgeMatrix2D.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="5488" topLine="163" />
@@ -34,11 +40,17 @@
 	<File name="PgeMatrix3D.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="7934" topLine="189" />
 	</File>
-	<File name="PgePoint2D.h" open="1" top="0" tabpos="6">
+	<File name="PgePlatform.h" open="1" top="0" tabpos="14">
+		<Cursor position="2458" topLine="72" />
+	</File>
+	<File name="PgePoint2D.h" open="0" top="0" tabpos="6">
 		<Cursor position="90" topLine="0" />
 	</File>
 	<File name="PgePoint3D.h" open="0" top="0" tabpos="10">
 		<Cursor position="17762" topLine="463" />
+	</File>
+	<File name="PgeSharedPtr.h" open="0" top="0" tabpos="0">
+		<Cursor position="259" topLine="0" />
 	</File>
 	<File name="PgeSingleton.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="192" topLine="0" />
@@ -46,23 +58,29 @@
 	<File name="PgeSingleton.h" open="0" top="0" tabpos="0">
 		<Cursor position="736" topLine="19" />
 	</File>
-	<File name="PgeTextureManager.cpp" open="1" top="0" tabpos="8">
+	<File name="PgeTextureManager.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="3286" topLine="82" />
 	</File>
-	<File name="PgeTextureManager.h" open="1" top="0" tabpos="7">
+	<File name="PgeTextureManager.h" open="0" top="0" tabpos="7">
 		<Cursor position="3354" topLine="70" />
 	</File>
-	<File name="PgeTileEngine.cpp" open="1" top="1" tabpos="15">
-		<Cursor position="625" topLine="28" />
+	<File name="PgeTileEngine.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="397" topLine="4" />
 	</File>
-	<File name="PgeTileEngine.h" open="1" top="0" tabpos="14">
-		<Cursor position="805" topLine="15" />
+	<File name="PgeTileEngine.h" open="1" top="0" tabpos="2">
+		<Cursor position="209" topLine="9" />
 	</File>
-	<File name="PgeTypes.h" open="1" top="0" tabpos="3">
-		<Cursor position="660" topLine="4" />
+	<File name="PgeTypes.h" open="1" top="0" tabpos="15">
+		<Cursor position="577" topLine="11" />
+	</File>
+	<File name="SDL\PgeSDLWindowSystem.cpp" open="1" top="1" tabpos="11">
+		<Cursor position="4544" topLine="101" />
+	</File>
+	<File name="SDL\PgeSDLWindowSystem.h" open="1" top="0" tabpos="10">
+		<Cursor position="945" topLine="25" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="493" topLine="3" />
+		<Cursor position="583" topLine="6" />
 	</File>
 	<File name="version.h" open="0" top="0" tabpos="0">
 		<Cursor position="58" topLine="0" />
