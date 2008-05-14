@@ -10,7 +10,7 @@
 #ifndef PGETILEENGINE_H
 #define PGETILEENGINE_H
 
-#include "PgeBaseEngine.h"
+#include "PgeBaseRenderEngine.h"
 
 namespace PGE
 {
@@ -18,24 +18,24 @@ namespace PGE
         This class will load a configuration for a tile game level, and handle
         all processing for that level.
     */
-    class TileEngine : public BaseEngine
+    class TileEngine : public BaseRenderEngine
     {
     public:
         TileEngine();
         virtual ~TileEngine();
 
-        /** Handle additional initialization for a user engine */
-        virtual void AdditionalInit();
-
-        /** Render the current display
-            @param  surface         Surface onto which to render the display
-        */
-        virtual void Render( SDL_Surface* surface );
-
-    protected:
-
-        /** Create the surface */
-        virtual void CreateSurface();
+//        /** Handle additional initialization for a user engine */
+//        virtual void AdditionalInit();
+//
+//        /** Render the current display
+//            @param  surface         Surface onto which to render the display
+//        */
+//        virtual void Render(  );
+//
+//    protected:
+//
+//        /** Create the surface */
+//        virtual void CreateSurface();
 
     private:
     }; // class TileEngine

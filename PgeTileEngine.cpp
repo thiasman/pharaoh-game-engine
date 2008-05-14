@@ -28,6 +28,7 @@ namespace PGE
         //dtor
     }
 
+/*
     // CreateSurface------------------------------------------------------------
     void TileEngine::CreateSurface()
     {
@@ -64,7 +65,7 @@ namespace PGE
     }
 
     //Render--------------------------------------------------------------------
-    void TileEngine::Render( SDL_Surface* surface )
+    void TileEngine::Render(  )
     {
         glBegin( GL_QUADS );
 
@@ -84,5 +85,6 @@ namespace PGE
 
         SDL_GL_SwapBuffers();
     }
+*/
 
 } // namespace PGE

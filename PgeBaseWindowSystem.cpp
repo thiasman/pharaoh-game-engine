@@ -216,7 +216,7 @@ namespace PGE
         }
 
         // Render the scene:
-        Render( GetSurface() );
+        Render(  );
 
         // Unlock the surface:
         if ( SDL_MUSTLOCK( mSurface ) )
