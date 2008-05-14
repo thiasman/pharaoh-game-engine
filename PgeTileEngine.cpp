@@ -19,6 +19,7 @@
 namespace PGE
 {
     TileEngine::TileEngine()
+        : BaseGameEngine()
     {
         //ctor
     }

@@ -12,16 +12,23 @@
 
 #include "PgeSharedPtr.h"
 #include "PgeBaseGameEngine.h"
+#include "PgeBaseWindowSystem.h"
 
 namespace PGE
 {
     class GameManager
     {
-        public:
-            GameManager();
-            virtual ~GameManager();
-        protected:
-        private:
+    private:
+        typedef SharedPtr< BaseGameEngine >     GameEnginePtr;
+        typedef SharedPtr< BaseWindowSystem >   WindowSystemPtr;
+
+        GameEnginePtr       mCurGameEngine;
+        WindowSystemPtr     mWindowSystem;
+
+    public:
+        GameManager( BaseWindowSystem* windowSys );
+        virtual ~GameManager();
+    protected:
 
     }; // class GameManager
 

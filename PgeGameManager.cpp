@@ -10,7 +10,8 @@
 
 namespace PGE
 {
-    GameManager::GameManager()
+    GameManager::GameManager( BaseWindowSystem* windowSys )
+        :  mWindowSystem( windowSys )
     {
         //ctor
     }

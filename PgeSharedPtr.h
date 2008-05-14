@@ -10,6 +10,8 @@
 #ifndef PGESHAREDPTR_H_INCLUDED
 #define PGESHAREDPTR_H_INCLUDED
 
+#include <assert.h>
+
 namespace PGE
 {
     /** @class SharedPtr

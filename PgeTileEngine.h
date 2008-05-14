@@ -10,7 +10,7 @@
 #ifndef PGETILEENGINE_H
 #define PGETILEENGINE_H
 
-#include "PgeBaseRenderEngine.h"
+#include "PgeBaseGameEngine.h"
 
 namespace PGE
 {
@@ -18,7 +18,7 @@ namespace PGE
         This class will load a configuration for a tile game level, and handle
         all processing for that level.
     */
-    class TileEngine : public BaseRenderEngine
+    class TileEngine : public BaseGameEngine
     {
     public:
         TileEngine();
