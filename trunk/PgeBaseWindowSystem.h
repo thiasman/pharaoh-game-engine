@@ -79,7 +79,7 @@ namespace PGE
         const std::string& GetTitle() const;
 
         /** Get the display surface */
-        SDL_Surface* GetSurface() const;
+        /*SDL_Surface* GetSurface() const;*/
 
         /** Get the frame rate */
         unsigned long GetFPS() const;
@@ -102,7 +102,7 @@ namespace PGE
         /** Render the current display
             @param  surface         Surface onto which to render the display
         */
-        virtual void Render( SDL_Surface* surface )         { }
+        virtual void Render(  )                             { }
 
         /** Shut down the engine and free allocated memory */
         virtual void Shutdown()                             { }
