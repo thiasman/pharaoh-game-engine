@@ -10,8 +10,7 @@
 
 namespace PGE
 {
-    GameManager::GameManager( BaseWindowSystem* windowSys )
-        :  mWindowSystem( windowSys )
+    GameManager::GameManager()
     {
         //ctor
     }
@@ -19,6 +18,24 @@ namespace PGE
     GameManager::~GameManager()
     {
         //dtor
+    }
+
+    //Init----------------------------------------------------------------------
+    void GameManager::Init()
+    {
+        mTileEngine.Init();
+    }
+
+    //PrepareFrame--------------------------------------------------------------
+    void GameManager::PrepareFrame()
+    {
+        mTileEngine.PrepareFrame();
+    }
+
+    //RenderFrame---------------------------------------------------------------
+    void GameManager::RenderFrame()
+    {
+        mTileEngine.RenderFrame();
     }
 
 } // namespace PGE

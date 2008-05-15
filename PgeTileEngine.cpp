@@ -8,13 +8,8 @@
 
 #include "PgeTileEngine.h"
 
-#ifdef __APPLE__
-#include <SDL/SDL.h>
-#include <SDL/SDL_opengl.h>
-#else
-#include <SDL.h>
-#include <SDL_opengl.h>
-#endif
+#include <gl/gl.h>
+#include <gl/glu.h>
 
 namespace PGE
 {
@@ -27,6 +22,58 @@ namespace PGE
     TileEngine::~TileEngine()
     {
         //dtor
+    }
+
+    //AdditionalInit------------------------------------------------------------
+    void TileEngine::AdditionalInit()
+    {
+        glEnable( GL_TEXTURE_2D );
+
+        // Set the background color:
+        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+
+        // Set the size of the viewport:
+        //glViewport( 0, 0, 1, 1 );
+
+        // Clear the display:
+        glClear( GL_COLOR_BUFFER_BIT );
+
+        // Reset the projection matrix, and set it for orthographic display:
+        glMatrixMode( GL_PROJECTION );
+        glLoadIdentity();
+        //glOrtho( 0.0f, static_cast<float>( mWidth ), static_cast<float>( mHeight ), 0.0f, -1.0f, 1.0f );
+        glOrtho( -1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 1.0f );
+
+        // Reset the modelview matrix:
+        glMatrixMode( GL_MODELVIEW );
+        glLoadIdentity();
+    }
+
+    //DoPrepareFrame------------------------------------------------------------
+    void TileEngine::DoPrepareFrame( Real32 elapsedMS )
+    {
+        glClear( GL_COLOR_BUFFER_BIT );
+        glRotatef( elapsedMS * 360.0f / 2000.0f, 0.0f, 0.0f, 1.0f );
+    }
+
+    //DoRenderFrame-------------------------------------------------------------
+    void TileEngine::DoRenderFrame()
+    {
+        glBegin( GL_QUADS );
+
+            glColor3f( 1.0f, 0.0f, 0.0f );
+            glVertex2f( -0.5f, -0.5f );
+
+            glColor3f( 0.0f, 1.0f, 0.0f );
+            glVertex2f( 0.5f, -0.5f );
+
+            glColor3f( 0.0f, 0.0f, 1.0f );
+            glVertex2f( 0.5f, 0.5f );
+
+            glColor3f( 1.0f, 1.0f, 1.0f );
+            glVertex2f( -0.5f, 0.5f );
+
+        glEnd();
     }
 
 /*

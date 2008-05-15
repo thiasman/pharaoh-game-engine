@@ -14,7 +14,7 @@
 
 #include "PgeTypes.h"
 #include "PgeException.h"
-#include "PgeTimer.h"
+#include "PgeGameManager.h"
 
 namespace PGE
 {
@@ -25,11 +25,6 @@ namespace PGE
     class BaseWindowSystem
     {
     protected:
-        unsigned long   mLastTick;      /**< Tick value when the last frame was rendered */
-        unsigned long   mTickCounter;   /**< Counts ticks for calculating the FPS */
-        Timer           mTimer;
-        unsigned long   mFrameCounter;  /**< Frame counter for calculating the FPS */
-        unsigned long   mCurrentFPS;    /**< Last calculated frame rate */
 
         unsigned long   mWidth;         /**< Width of the window */
         unsigned long   mHeight;        /**< Height of the window */
@@ -38,12 +33,14 @@ namespace PGE
         bool            mIsPaused;      /**< Indicates if the gameplay should pause */
         bool            mQuit;          /**< Indicates if the application should quit */
 
+        GameManager     mGameManager;   /**< Manages the game states */
+
     protected:
         /** Update any logic (i.e. AI processing) */
-        void DoLogic();
+        //void Logic();
 
         /** Update the display */
-        void DoRender();
+        //void Render();
 
         /** Set the window size */
         void SetSize( const unsigned long& w, const unsigned long& h );
@@ -62,7 +59,7 @@ namespace PGE
         virtual ~BaseWindowSystem();
 
         /** Initialize the engine */
-        virtual void Init()                 = 0;
+        virtual void Init();
 
         /** Start the game loop */
         void Run();
@@ -92,7 +89,7 @@ namespace PGE
         /** Perform calculation/thinking
             @param  elapsedTime     Time in milliseconds since the last update
         */
-        virtual void UpdateLogic( Real32 elapsedTime )    { }
+        //virtual void UpdateLogic( Real32 elapsedTime )    { }
 
         /** Some rendering surfaces require the surface be locked before
             rendering.
@@ -105,9 +102,8 @@ namespace PGE
         virtual void UnlockSurface()                        { }
 
         /** Render the current display
-            @param  surface         Surface onto which to render the display
         */
-        virtual void Render(  )                             { }
+        //virtual void DoRender(  )                             { }
 
         /** Shut down the engine and free allocated memory */
         virtual void Shutdown()                             { }

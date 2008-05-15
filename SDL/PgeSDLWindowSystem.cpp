@@ -7,6 +7,7 @@
  */
 
 #include "PgeSDLWindowSystem.h"
+#include "../PgeException.h"
 
 namespace PGE
 {
@@ -22,8 +23,33 @@ namespace PGE
         SDL_Quit();
     }
 
-    //Init----------------------------------------------------------------------
-    void SDLWindowSystem::Init()
+//    //Init----------------------------------------------------------------------
+//    void SDLWindowSystem::Init()
+//    {
+//        // Register SDL_Quit to be called at exit
+//        atexit( SDL_Quit );
+//
+//        // Initialize the video
+//        if ( SDL_Init( SDL_INIT_VIDEO ) )
+//        {
+//            String msg = std::string( "Unable to initialize SDL: " ) + SDL_GetError();
+//            throw Exception( msg );
+//        }
+//
+//        // Create a window with the specified height and width:
+//        SetSize( mWidth, mHeight );
+//        if ( !mSurface )
+//        {
+//            String msg = std::string( "Unable to setup video: " ) + SDL_GetError();
+//            throw Exception( msg );
+//        }
+//
+//        // Perform any additional initialization required by the sub-classed engine
+//        AdditionalInit();
+//    }
+
+    //AdditionalInit------------------------------------------------------------
+    void SDLWindowSystem::AdditionalInit()
     {
         // Register SDL_Quit to be called at exit
         atexit( SDL_Quit );
@@ -42,9 +68,6 @@ namespace PGE
             String msg = std::string( "Unable to setup video: " ) + SDL_GetError();
             throw Exception( msg );
         }
-
-        // Perform any additional initialization required by the sub-classed engine
-        AdditionalInit();
     }
 
     //HandleInput---------------------------------------------------------------
@@ -123,7 +146,10 @@ namespace PGE
     // CreateSurface------------------------------------------------------------
     void SDLWindowSystem::CreateSurface()
     {
-        mSurface = SDL_SetVideoMode( mWidth, mHeight, 0, SDL_SWSURFACE );
+        // OpenGL double buffering:
+        SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+
+        mSurface = SDL_SetVideoMode( mWidth, mHeight, 0, SDL_HWSURFACE | SDL_OPENGL );
     }
 
     //SetTitle------------------------------------------------------------------
@@ -158,6 +184,7 @@ namespace PGE
         }
 
         // Update the screen:
+        SDL_GL_SwapBuffers();
         SDL_Flip( mSurface );
     }
 

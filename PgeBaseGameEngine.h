@@ -12,6 +12,10 @@
 #ifndef PGEBASERENDERENGINE_H
 #define PGEBASERENDERENGINE_H
 
+#include "PgeTypes.h"
+#include "PgeTimer.h"
+#include "PgePoint2D.h"
+#include "PgePoint3D.h"
 
 namespace PGE
 {
@@ -21,11 +25,56 @@ namespace PGE
     */
     class BaseGameEngine
     {
+    private:
+        unsigned long   mLastTick;      /**< Tick value when the last frame was rendered */
+        unsigned long   mTickCounter;   /**< Counts ticks for calculating the FPS */
+        Timer           mTimer;
+        unsigned long   mFrameCounter;  /**< Frame counter for calculating the FPS */
+        unsigned long   mCurrentFPS;    /**< Last calculated frame rate */
+
+        Point2D         mDisplaySize;   /**< Size of the display area */
+
     public:
         BaseGameEngine();
         virtual ~BaseGameEngine();
+
+        /** Get the frame rate */
+        unsigned long GetFPS() const;
+
+        /** Initialize the engine */
+        void Init();
+
+        /** Pause the game engine */
+        virtual void Pause();
+
+        /** Unpause the game */
+        virtual void Unpause();
+
+        /** Prepare the frame for rendering
+            @brief
+                Any AI or motion needs to be updated for the frame.
+        */
+        void PrepareFrame();
+
+        /** Render the frame */
+        void RenderFrame();
+
     protected:
-    private:
+        ////////////////////////////////////////////////////////////////////////
+        // Virtual methods:
+        ////////////////////////////////////////////////////////////////////////
+
+        /** Handle additional initialization for a user engine */
+        virtual void AdditionalInit()                       { }
+
+        /** Shut down the engine and free allocated memory */
+        virtual void Shutdown()                             { }
+
+        /** Handle the actual work of preparing the frame */
+        virtual void DoPrepareFrame( Real32 elapsedMS )     { }
+
+        /** Handle the actual work of rendering the frame */
+        virtual void DoRenderFrame()                        { }
 
     }; // class BaseGameEngine
 

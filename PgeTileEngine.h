@@ -24,6 +24,15 @@ namespace PGE
         TileEngine();
         virtual ~TileEngine();
 
+        /** Handle additional initialization for a user engine */
+        virtual void AdditionalInit();
+
+        /** Handle the actual work of preparing the frame */
+        virtual void DoPrepareFrame( Real32 elapsedMS );
+
+        /** Handle the actual work of rendering the frame */
+        virtual void DoRenderFrame();
+
 //        /** Handle additional initialization for a user engine */
 //        virtual void AdditionalInit();
 //
