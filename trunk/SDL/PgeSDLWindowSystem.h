@@ -32,12 +32,16 @@ namespace PGE
         virtual ~SDLWindowSystem();
 
         /** Initialize the engine */
-        void Init();
+        //void Init();
 
         /** Set the window title */
         virtual void SetTitle( const String& title );
 
     protected:
+
+        /** Handle additional initialization for a user engine */
+        virtual void AdditionalInit();
+
         /** Handle user input */
         virtual void HandleInput();
 

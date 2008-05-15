@@ -16,11 +16,7 @@ namespace PGE
 {
     //Constructor---------------------------------------------------------------
     BaseWindowSystem::BaseWindowSystem()
-        : mLastTick( 0 ),
-          mTickCounter( 0 ),
-          mFrameCounter( 0 ),
-          mCurrentFPS( 0 ),
-          mWidth( 800 ),
+        : mWidth( 800 ),
           mHeight( 600 ),
           mTitle( "" ),
           mIsMinimized( false ),
@@ -74,11 +70,18 @@ namespace PGE
 //        AdditionalInit();
 //    }
 
+    //Init----------------------------------------------------------------------
+    void BaseWindowSystem::Init()
+    {
+        AdditionalInit();
+        mGameManager.Init();
+    }
+
     //Run-----------------------------------------------------------------------
     void BaseWindowSystem::Run()
     {
         // Get the start time:
-        mLastTick   = Timer::GetTicks();
+        //mLastTick   = Timer::GetTicks();
         mQuit       = false;
 
         while ( !mQuit )
@@ -94,10 +97,18 @@ namespace PGE
             else
             {
                 // Update the logic:
-                DoLogic();
+                //DoLogic();
+                mGameManager.PrepareFrame();
+
+                // Lock the surface before rendering:
+                LockSurface();
 
                 // Update the display:
-                DoRender();
+                //DoRender();
+                mGameManager.RenderFrame();
+
+                // Unlock the surface before rendering:
+                UnlockSurface();
             }
         }
 
@@ -178,42 +189,42 @@ namespace PGE
 //        }
 //    }
 
-    //DoLogic-------------------------------------------------------------------
-    void BaseWindowSystem::DoLogic()
-    {
-        // Get the elapsed time:
-        unsigned long curTick = Timer::GetTicks();
-        unsigned long elapsedTicks = curTick - mLastTick;
-        mLastTick = curTick;
-
-        UpdateLogic( mTimer.GetElapsedTime() );
-
-        // Update the tick counter:
-        mTickCounter += elapsedTicks;
-    }
-
-    //DoRender------------------------------------------------------------------
-    void BaseWindowSystem::DoRender()
-    {
-        // Update the frame counter:
-        ++mFrameCounter;
-
-        if ( mTickCounter > 1000 )
-        {
-            mCurrentFPS = mFrameCounter;
-            mFrameCounter = 0;
-            mTickCounter = 0;
-        }
-
-        // Lock the surface:
-        LockSurface();
-
-        // Render the scene:
-        Render(  );
-
-        // Unlock the surface:
-        UnlockSurface();
-    }
+//    //DoLogic-------------------------------------------------------------------
+//    void BaseWindowSystem::DoLogic()
+//    {
+//        // Get the elapsed time:
+//        unsigned long curTick = Timer::GetTicks();
+//        unsigned long elapsedTicks = curTick - mLastTick;
+//        mLastTick = curTick;
+//
+//        UpdateLogic( mTimer.GetElapsedTime() );
+//
+//        // Update the tick counter:
+//        mTickCounter += elapsedTicks;
+//    }
+//
+//    //DoRender------------------------------------------------------------------
+//    void BaseWindowSystem::DoRender()
+//    {
+//        // Update the frame counter:
+//        ++mFrameCounter;
+//
+//        if ( mTickCounter > 1000 )
+//        {
+//            mCurrentFPS = mFrameCounter;
+//            mFrameCounter = 0;
+//            mTickCounter = 0;
+//        }
+//
+//        // Lock the surface:
+//        LockSurface();
+//
+//        // Render the scene:
+//        Render(  );
+//
+//        // Unlock the surface:
+//        UnlockSurface();
+//    }
 
     //SetTitle------------------------------------------------------------------
     void BaseWindowSystem::SetTitle( const String& title )
@@ -237,13 +248,14 @@ namespace PGE
     //GetFPS--------------------------------------------------------------------
     unsigned long BaseWindowSystem::GetFPS() const
     {
-        return mCurrentFPS;
+        return 0;
+        //return mCurrentFPS;
     }
 
     //GetVersion----------------------------------------------------------------
     std::string BaseWindowSystem::GetVersion() const
     {
-        std::string version = "";
+        std::string version = AutoVersion::FULLVERSION_STRING;
 
         return version;
     }

@@ -1,5 +1,4 @@
 
-#include "PgeGameManager.h"
 #include "SDL/PgeSDLWindowSystem.h"
 //#include "PgeTileEngine.h"
 #include "version.h"
@@ -17,8 +16,6 @@ int main ( int argc, char** argv )
     cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
     lfm.CreateLog( "Pharaoh.log", true, cmd::LogFile::Everything );
     cmd::LogFileSection sect( lfm.GetDefaultLog(), "main(...)" );
-
-    //PGE::GameManager gameMgr;
 
     PGE::SDLWindowSystem engine;
     //PGE::TileEngine engine;
