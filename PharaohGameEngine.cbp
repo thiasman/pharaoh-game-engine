@@ -47,6 +47,8 @@
 		<Unit filename="PgeBaseEntity.cpp" />
 		<Unit filename="PgeBaseEntity.h" />
 		<Unit filename="PgeBaseEntityInterface.h" />
+		<Unit filename="PgeBaseEventListener.cpp" />
+		<Unit filename="PgeBaseEventListener.h" />
 		<Unit filename="PgeBaseGameEngine.cpp" />
 		<Unit filename="PgeBaseGameEngine.h" />
 		<Unit filename="PgeBaseWindowSystem.cpp" />
