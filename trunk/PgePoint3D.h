@@ -26,7 +26,7 @@ namespace PGE
         Template for a point/vector in 3D space.
     */
     template < typename T >
-    class Point3DTempl
+    class _PgeExport Point3DTempl
     {
     public:
         T           x, y, z;   /**< Coordinates of the point */
@@ -450,7 +450,7 @@ namespace PGE
     template <typename T> const Point3DTempl<T> Point3DTempl<T>::UNIT_Z( static_cast<T>( 0 ), static_cast<T>( 0 ), static_cast<T>( 1 ) );
 
     /** Point/Vector in 3D space, using integer values for the coordinates */
-    class Point3D : public Point3DTempl< Int >
+    class _PgeExport Point3D : public Point3DTempl< Int >
     {
     public:
         /** Constructor */
@@ -470,7 +470,7 @@ namespace PGE
     };
 
     /** Point/Vector in 3D space, using floating-point values for the coordinates */
-    class Point3Df : public Point3DTempl< Real >
+    class _PgeExport Point3Df : public Point3DTempl< Real >
     {
     public:
         /** Constructor */

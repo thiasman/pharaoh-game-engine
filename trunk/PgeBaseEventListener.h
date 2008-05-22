@@ -10,8 +10,9 @@
 #ifndef PGEBASELISTENER_H
 #define PGEBASELISTENER_H
 
-#include "PgeSharedPtr.h"
+#include "PgePlatform.h"
 #include "PgeTypes.h"
+#include "PgeSharedPtr.h"
 #include <vector>
 #include <map>
 
@@ -23,7 +24,7 @@ namespace PGE
         location of the click, and a key event would give the ID of the key that
         triggered the event.
     */
-    class BaseEvent
+    class _PgeExport BaseEvent
     {
     private:
         String      mName;          /**< Name of the event.  Used to distinguish the event type. */
@@ -43,7 +44,7 @@ namespace PGE
         to all handlers.  If a specific handler does not care about the event,
         it is ignored.
     */
-    class BaseEventHandler
+    class _PgeExport BaseEventHandler
     {
     protected:
         typedef void (*EventHandlerFunc)( const BaseEvent* event );
@@ -52,7 +53,8 @@ namespace PGE
 
     public:
         /** Default constructor */
-        BaseEventHandler() { }
+        BaseEventHandler()              { }
+        virtual ~BaseEventHandler()     { }
 
         /** Receive notification from a listener that an event has taken place.
             It is up to the handler to decide whether anything should be done
@@ -66,7 +68,7 @@ namespace PGE
         This class provides the base interface for all listeners.  It should
         be sub-classed as necessary.
     */
-    class BaseListener
+    class _PgeExport BaseListener
     {
     private:
         typedef SharedPtr< BaseEventHandler > HandlerPtr;
@@ -76,6 +78,7 @@ namespace PGE
     public:
         /** Default constructor */
         BaseListener();
+        virtual ~BaseListener()         { }
 
         /** Announce to the listener that an event has occurred.  This event
             will then be sent along to all potential handlers.

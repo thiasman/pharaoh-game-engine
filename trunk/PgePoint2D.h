@@ -26,7 +26,7 @@ namespace PGE
         Template for a point/vector in 2D space.
     */
     template < typename T >
-    class Point2DTempl
+    class _PgeExport Point2DTempl
     {
     public:
         T           x, y;   /**< Coordinates of the point */
@@ -420,7 +420,7 @@ namespace PGE
     template <typename T> const Point2DTempl<T> Point2DTempl<T>::UNIT_Y( static_cast<T>( 0 ), static_cast<T>( 1 ) );
 
     /** Point/Vector in 2D space, using integer values for the coordinates */
-    class Point2D : public Point2DTempl< Int >
+    class _PgeExport Point2D : public Point2DTempl< Int >
     {
     public:
         /** Constructor */
@@ -448,7 +448,7 @@ namespace PGE
     };
 
     /** Point/Vector in 2D space, using floating-point values for the coordinates */
-    class Point2Df : public Point2DTempl< Real >
+    class _PgeExport Point2Df : public Point2DTempl< Real >
     {
     public:
         /** Constructor */

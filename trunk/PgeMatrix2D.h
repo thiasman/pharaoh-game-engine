@@ -22,7 +22,7 @@ namespace PGE
     /** @class Matrix2D
         A matrix class for working with 2D points.
     */
-    class Matrix2D
+    class _PgeExport Matrix2D
     {
     protected:
         Real m[ 3 ][ 3 ];

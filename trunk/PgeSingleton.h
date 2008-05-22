@@ -10,6 +10,7 @@
 #ifndef PGESINGLETON_H
 #define PGESINGLETON_H
 
+#include "PgePlatform.h"
 
 namespace PGE
 {
@@ -21,7 +22,7 @@ namespace PGE
         http://www.raba.com/~jcstaff/oodev/presents/objcreat/singlet.h</a>.
     */
     template < typename T >
-    class Singleton
+    class _PgeExport Singleton
     {
     protected:
         static T* mInstance;

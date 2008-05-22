@@ -23,7 +23,7 @@ namespace PGE
     /** @class Matrix3D
         A matrix class for working with 3D points.
     */
-    class Matrix3D
+    class _PgeExport Matrix3D
     {
     protected:
         Real m[ 4 ][ 4 ];

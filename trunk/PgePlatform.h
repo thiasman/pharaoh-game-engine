@@ -10,6 +10,11 @@
 #ifndef PGEPLATFORM_H_INCLUDED
 #define PGEPLATFORM_H_INCLUDED
 
+#include <stddef.h>
+#include <memory.h>
+#include <stdlib.h>
+#include <stdarg.h>
+
 namespace PGE
 {
     #define PGE_PLATFORM_WIN32  1
@@ -159,6 +164,7 @@ namespace PGE
     #if ( PGE_PLATFORM == PGE_PLATFORM_APPLE )
     #    include "config.h"
     #endif
+
 
 } // namespace PGE
 

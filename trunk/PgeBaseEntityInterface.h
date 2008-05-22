@@ -23,7 +23,7 @@ namespace PGE
         BaseEntityInterface basically just defines the interface for loading and
         manipulating the tiles.
     */
-    class BaseEntityInterface
+    class _PgeExport BaseEntityInterface
     {
     public:
         /** Perform any logic for the entity.  This could be advanced AI, in the
