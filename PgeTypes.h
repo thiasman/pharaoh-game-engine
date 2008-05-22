@@ -11,8 +11,8 @@
 #ifndef PGETYPES_H_INCLUDED
 #define PGETYPES_H_INCLUDED
 
-#include <string>
 #include "PgePlatform.h"
+#include <string>
 
 namespace PGE
 {

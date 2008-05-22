@@ -12,6 +12,7 @@
 #ifndef PGEBASERENDERENGINE_H
 #define PGEBASERENDERENGINE_H
 
+#include "PgePlatform.h"
 #include "PgeTypes.h"
 #include "PgeTimer.h"
 #include "PgePoint2D.h"
@@ -23,7 +24,7 @@ namespace PGE
         Provides the base for the rendering engine.  This should be sub-classed
         in order to customize what the engine can do.
     */
-    class BaseGameEngine
+    class _PgeExport BaseGameEngine
     {
     private:
         unsigned long   mLastTick;      /**< Tick value when the last frame was rendered */

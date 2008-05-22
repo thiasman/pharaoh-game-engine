@@ -22,7 +22,7 @@ namespace PGE
         Base class for the windowing system.  This should be overridden to
         accommodate the display system (ie. SDL, wxWidgets, Win32, X, etc.)
     */
-    class BaseWindowSystem
+    class _PgeExport BaseWindowSystem
     {
     protected:
 

@@ -10,6 +10,7 @@
 #ifndef PGESHAREDPTR_H_INCLUDED
 #define PGESHAREDPTR_H_INCLUDED
 
+#include "PgePlatform.h"
 #include <assert.h>
 
 namespace PGE
@@ -22,7 +23,7 @@ namespace PGE
         when to delete a pointer.
     */
     template < typename T >
-    class SharedPtr
+    class _PgeExport SharedPtr
     {
     protected:
         T*              pData;

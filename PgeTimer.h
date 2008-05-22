@@ -21,7 +21,7 @@
 
 namespace PGE
 {
-    class Timer
+    class _PgeExport Timer
     {
     private:
         Real32  mPreviousTime;      /**< Time when the timer was last updated */

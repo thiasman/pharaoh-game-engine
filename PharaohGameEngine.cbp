@@ -44,6 +44,8 @@
 			<Add library="glu32" />
 			<Add directory="$(#sdl.lib)" />
 		</Linker>
+		<Unit filename="PgeBaseApplication.cpp" />
+		<Unit filename="PgeBaseApplication.h" />
 		<Unit filename="PgeBaseEntity.cpp" />
 		<Unit filename="PgeBaseEntity.h" />
 		<Unit filename="PgeBaseEntityInterface.h" />
@@ -64,6 +66,8 @@
 		<Unit filename="PgeMatrix3D.cpp" />
 		<Unit filename="PgeMatrix3D.h" />
 		<Unit filename="PgePlatform.h" />
+		<Unit filename="PgePlatformFactory.cpp" />
+		<Unit filename="PgePlatformFactory.h" />
 		<Unit filename="PgePoint2D.cpp" />
 		<Unit filename="PgePoint2D.h" />
 		<Unit filename="PgePoint3D.cpp" />
@@ -79,6 +83,8 @@
 		<Unit filename="PgeTimer.h" />
 		<Unit filename="PgeTypes.cpp" />
 		<Unit filename="PgeTypes.h" />
+		<Unit filename="SDL\PgeSDLPlatformFactory.cpp" />
+		<Unit filename="SDL\PgeSDLPlatformFactory.h" />
 		<Unit filename="SDL\PgeSDLWindowSystem.cpp" />
 		<Unit filename="SDL\PgeSDLWindowSystem.h" />
 		<Unit filename="cb.bmp" />

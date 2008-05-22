@@ -25,7 +25,7 @@ namespace PGE
     /** @class BaseEntity
         All characters and tiles in the game will be derived from BaseEntity.
     */
-    class BaseEntity : public BaseEntityInterface
+    class _PgeExport BaseEntity : public BaseEntityInterface
     {
     private:
         Point2D         mPosition;          /**< Position of the entity */

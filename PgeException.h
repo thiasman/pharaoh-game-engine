@@ -19,7 +19,7 @@ namespace PGE
         An exception thrown upon errors in Pharaoh Game Engine.  This contains
         a message pertaining to the error that can be logged.
     */
-    class Exception : public std::exception
+    class _PgeExport Exception : public std::exception
     {
     private:
         std::string mMessage;           /**< String descibing the exception */

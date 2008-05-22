@@ -18,7 +18,7 @@ namespace PGE
         This class will load a configuration for a tile game level, and handle
         all processing for that level.
     */
-    class TileEngine : public BaseGameEngine
+    class _PgeExport TileEngine : public BaseGameEngine
     {
     public:
         TileEngine();

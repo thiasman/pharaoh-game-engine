@@ -15,7 +15,7 @@
 
 namespace PGE
 {
-    class Math
+    class _PgeExport Math
     {
     public:
         static const Real       pi;

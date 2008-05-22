@@ -10,6 +10,7 @@
 #ifndef PGEGAMEMANAGER_H
 #define PGEGAMEMANAGER_H
 
+#include "PgePlatform.h"
 #include "PgeSharedPtr.h"
 #include "PgeBaseGameEngine.h"
 #include "PgeTileEngine.h"
@@ -21,7 +22,7 @@ namespace PGE
         system and the game.  The manager will handle loading the states, and
         providing interactivity with the user.
     */
-    class GameManager
+    class _PgeExport GameManager
     {
     private:
         typedef SharedPtr< BaseGameEngine >     GameEnginePtr;

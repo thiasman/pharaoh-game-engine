@@ -23,7 +23,7 @@ namespace PGE
         information, etc.)  The class will take care of loading and unloading
         the image.
     */
-    class TextureItem
+    class _PgeExport TextureItem
     {
     private:
         bool    mIsLoaded;              /**< Indicates if the image exists in memory */
@@ -58,7 +58,7 @@ namespace PGE
         be taken so that images are not constantly loaded and unloaded, but at
         the same time, they shouldn't unnecessarily occupy memory.
     */
-    class TextureManager : public Singleton< TextureManager >
+    class _PgeExport TextureManager : public Singleton< TextureManager >
     {
     public:
         typedef SharedPtr< TextureItem >            TextureItemPtr;
