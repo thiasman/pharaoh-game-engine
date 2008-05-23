@@ -29,10 +29,10 @@
 		<Cursor position="2471" topLine="18" />
 	</File>
 	<File name="PgeBaseWindowSystem.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="2875" topLine="50" />
+		<Cursor position="2689" topLine="85" />
 	</File>
-	<File name="PgeBaseWindowSystem.h" open="1" top="1" tabpos="6">
-		<Cursor position="6274" topLine="70" />
+	<File name="PgeBaseWindowSystem.h" open="1" top="0" tabpos="6">
+		<Cursor position="6274" topLine="92" />
 	</File>
 	<File name="PgeEnums.h" open="1" top="0" tabpos="16">
 		<Cursor position="0" topLine="0" />
@@ -109,11 +109,11 @@
 	<File name="SDL\PgeSDLPlatformFactory.h" open="1" top="0" tabpos="19">
 		<Cursor position="257" topLine="8" />
 	</File>
-	<File name="SDL\PgeSDLWindowSystem.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="151" topLine="88" />
+	<File name="SDL\PgeSDLWindowSystem.cpp" open="1" top="1" tabpos="9">
+		<Cursor position="151" topLine="161" />
 	</File>
 	<File name="SDL\PgeSDLWindowSystem.h" open="1" top="0" tabpos="8">
-		<Cursor position="691" topLine="13" />
+		<Cursor position="691" topLine="32" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="144" topLine="0" />
