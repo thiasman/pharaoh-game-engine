@@ -24,6 +24,7 @@ namespace PGE
         is advisable to use a shared pointer for the new object, which will take
         care of cleanup.
 
+        @par
         All of the methods here are pure virtual, so they must be implemented in
         the derived class.  However, not all instances will need every object to
         be created (for instance, a layout tool might not need audio or network
