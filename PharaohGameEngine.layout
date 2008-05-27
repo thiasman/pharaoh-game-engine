@@ -67,8 +67,8 @@
 	<File name="PgePlatform.h" open="1" top="0" tabpos="10">
 		<Cursor position="313" topLine="0" />
 	</File>
-	<File name="PgePlatformFactory.h" open="1" top="0" tabpos="21">
-		<Cursor position="244" topLine="3" />
+	<File name="PgePlatformFactory.h" open="1" top="1" tabpos="21">
+		<Cursor position="748" topLine="2" />
 	</File>
 	<File name="PgePoint2D.h" open="0" top="0" tabpos="26">
 		<Cursor position="541" topLine="20" />
@@ -109,7 +109,7 @@
 	<File name="SDL\PgeSDLPlatformFactory.h" open="1" top="0" tabpos="19">
 		<Cursor position="257" topLine="8" />
 	</File>
-	<File name="SDL\PgeSDLWindowSystem.cpp" open="1" top="1" tabpos="9">
+	<File name="SDL\PgeSDLWindowSystem.cpp" open="1" top="0" tabpos="9">
 		<Cursor position="151" topLine="161" />
 	</File>
 	<File name="SDL\PgeSDLWindowSystem.h" open="1" top="0" tabpos="8">
