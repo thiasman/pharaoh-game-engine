@@ -91,6 +91,7 @@ namespace PGE
     // Settings for Windows systems
     #if PGE_PLATFORM == PGE_PLATFORM_WIN32
 
+        //#define WIN32_EXTRA_LEAN
         #include <windows.h>
 
         // If we're not including this from a client build, specify that the stuff

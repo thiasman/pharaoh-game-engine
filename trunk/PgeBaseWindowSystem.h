@@ -78,6 +78,20 @@ namespace PGE
         /** Get a string containing the version information */
         String GetVersion() const;
 
+        /** Shut down the engine and free allocated memory */
+        virtual void Shutdown()                             { mQuit = true; }
+
+        /** Render the next frame */
+        virtual void RenderFrame();
+
+        /** Determine if the window is closed.  This will let us cancel the
+            program if the user clicked the 'x' on the title bar.
+        */
+        virtual bool IsClosed() const                       { return mQuit; }
+
+        /** Get a custom attribute that has been set for the window */
+        virtual void GetCustomAttribute( const String& name, void* data );
+
     protected:
         ////////////////////////////////////////////////////////////////////////
         // Virtual methods:
@@ -104,9 +118,6 @@ namespace PGE
         /** Render the current display
         */
         //virtual void DoRender(  )                             { }
-
-        /** Shut down the engine and free allocated memory */
-        virtual void Shutdown()                             { }
 
         /** Make the window active */
         virtual void MakeActive()                           { }

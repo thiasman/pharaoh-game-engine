@@ -13,7 +13,7 @@
 #ifdef __APPLE__
 #include <SDL/SDL.h>
 #else
-#include <SDL.h>
+#include <SDL/SDL.h>
 #endif
 
 #include "../PgeBaseWindowSystem.h"
@@ -37,6 +37,9 @@ namespace PGE
         /** Set the window title */
         virtual void SetTitle( const String& title );
 
+        /** Get a custom attribute that has been set for the window */
+        virtual void GetCustomAttribute( const String& name, void* data );
+
     protected:
 
         /** Handle additional initialization for a user engine */
@@ -58,6 +61,8 @@ namespace PGE
         */
         virtual void UnlockSurface();
 
+        /** Get the window handle */
+        int _getWindowHandle() const;
     };
 
 } // namespace PGE

@@ -6,8 +6,12 @@
  *
  */
 
-#include "PgeSDLWindowSystem.h"
+#include <SDL/SDL_syswm.h>
+
+#include "../PgePlatform.h"
 #include "../PgeException.h"
+#include "PgeSDLWindowSystem.h"
+
 
 namespace PGE
 {
@@ -74,10 +78,12 @@ namespace PGE
     void SDLWindowSystem::HandleInput()
     {
         SDL_Event event;
+
         while ( SDL_PollEvent( &event ) )
         {
             switch ( event.type )
             {
+/*
             case SDL_KEYDOWN:
                 {
                     // If the escape key was pressed, terminate the application.
@@ -95,11 +101,9 @@ namespace PGE
             case SDL_KEYUP:
                 KeyUp( event.key.keysym.sym );
                 break;
+*/
 
-            case SDL_QUIT:
-                mQuit = true;
-                break;
-
+/*
             case SDL_MOUSEMOTION:
                 MouseMove( event.button.button,
                             event.motion.x,
@@ -123,6 +127,11 @@ namespace PGE
                             event.motion.xrel,
                             event.motion.yrel );
                 break;
+*/
+
+            case SDL_QUIT:
+                mQuit = true;
+                break;
 
             case SDL_ACTIVEEVENT:
                 if ( event.active.state & SDL_APPACTIVE )
@@ -141,6 +150,7 @@ namespace PGE
                 break;
             }
         }
+
     }
 
     // CreateSurface------------------------------------------------------------
@@ -185,7 +195,28 @@ namespace PGE
 
         // Update the screen:
         SDL_GL_SwapBuffers();
-        SDL_Flip( mSurface );
+        //SDL_Flip( mSurface );
+    }
+
+    //GetCustomAttribute--------------------------------------------------------
+    void SDLWindowSystem::GetCustomAttribute( const String& name, void* data )
+    {
+        if ( name == "WINDOW" )
+        {
+            int* handle = (int*)( data );
+            *handle = _getWindowHandle();
+            return;
+        }
+    }
+
+    //_getWindowHandle----------------------------------------------------------
+    int SDLWindowSystem::_getWindowHandle() const
+    {
+        SDL_SysWMinfo sysInfo;
+        SDL_VERSION( &sysInfo.version );
+        if ( !SDL_GetWMInfo( &sysInfo ) )
+            return 0;
+        return int( sysInfo.window );
     }
 
 } // namespace PGE
