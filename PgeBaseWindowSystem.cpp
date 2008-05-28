@@ -10,8 +10,6 @@
 #include "PgeBaseWindowSystem.h"
 #include "PgeException.h"
 
-#include <windows.h>
-
 namespace PGE
 {
     //Constructor---------------------------------------------------------------
@@ -20,7 +18,8 @@ namespace PGE
           mHeight( 600 ),
           mTitle( "" ),
           mIsMinimized( false ),
-          mIsPaused( false )
+          mIsPaused( false ),
+          mQuit( true )
     {
     }
 
@@ -84,36 +83,63 @@ namespace PGE
         //mLastTick   = Timer::GetTicks();
         mQuit       = false;
 
-        while ( !mQuit )
+//        while ( !mQuit )
+//        {
+//            // Handle user input
+//            HandleInput();
+//
+////            if ( mIsMinimized )
+////            {
+////                // If the window is minimized, the game is paused.
+////                WaitMessage();
+////            }
+////            else
+////            {
+////                RenderFrame();
+////            }
+//RenderFrame();
+//        }
+//
+//        // Cleanup and terminate:
+//        Shutdown();
+    }
+
+    void BaseWindowSystem::RenderFrame()
+    {
+        // Handle window-specific input.  This includes things like closing the
+        // window, moving the window, etc.  Actual user-input for controlling
+        // the app should be handled separately in the input system.
+        HandleInput();
+
+        if ( mIsMinimized )
         {
-            // Handle user input
-            HandleInput();
-
-            if ( mIsMinimized )
-            {
-                // If the window is minimized, the game is paused.
-                WaitMessage();
-            }
-            else
-            {
-                // Update the logic:
-                //DoLogic();
-                mGameManager.PrepareFrame();
-
-                // Lock the surface before rendering:
-                LockSurface();
-
-                // Update the display:
-                //DoRender();
-                mGameManager.RenderFrame();
-
-                // Unlock the surface before rendering:
-                UnlockSurface();
-            }
+            // If the window is minimized, the game is paused.
+            WaitMessage();
         }
+        else
+        {
+            // Update the logic:
+            //DoLogic();
+            mGameManager.PrepareFrame();
 
-        // Cleanup and terminate:
-        Shutdown();
+            // Lock the surface before rendering:
+            LockSurface();
+
+            // Update the display:
+            //DoRender();
+            mGameManager.RenderFrame();
+
+            // Unlock the surface before rendering:
+            UnlockSurface();
+        }
+    }
+
+    void BaseWindowSystem::GetCustomAttribute( const String& name, void* data )
+    {
+        // The base class should be called only if the attribute wasn't assigned
+        // in a sub-class...
+        String msg = "BaseWindowSystem::GetCustomAttribute: Attribute " + name + " not found.";
+        throw PGE::Exception( msg );
     }
 
 //    //HandleInput---------------------------------------------------------------

@@ -35,24 +35,42 @@ namespace PGE
 
     void BaseApplication::Run()
     {
-        assert( !mPlatformFactory.IsNull() );
-
         cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
         lfm.CreateLog( "Pharaoh.log", true, cmd::LogFile::Everything );
         cmd::LogFileSection sect( lfm.GetDefaultLog(), "main(...)" );
 
-        SharedPtr< BaseWindowSystem > engine( mPlatformFactory->CreateWindowSystem() );
-        assert( !engine.IsNull() );
-        //PGE::TileEngine engine;
-        engine->SetTitle( "Loading..." );
-        engine->Init();
+        try
+        {
+            assert( !mPlatformFactory.IsNull() );
 
-        std::string title = std::string( "Welcome to Pharaoh Game Engine - " ) + AutoVersion::FULLVERSION_STRING;
-        engine->SetTitle( title );
+            SharedPtr< BaseWindowSystem > window( mPlatformFactory->CreateWindowSystem() );
+            assert( !window.IsNull() );
 
-        engine->Run();
+            size_t winHnd = 0;
+            window->GetCustomAttribute( "WINDOW", &winHnd );
 
-        engine->SetTitle( "Goodbye." );
+            //PGE::TileEngine engine;
+            window->SetTitle( "Loading..." );
+            window->Init();
+
+            std::string title = std::string( "Welcome to Pharaoh Game Engine - " ) + AutoVersion::FULLVERSION_STRING;
+            window->SetTitle( title );
+
+            window->Run();
+
+            while ( !window->IsClosed() )
+            {
+                window->RenderFrame();
+            }
+            window->Shutdown();
+
+            window->SetTitle( "Goodbye." );
+
+        }
+        catch ( std::exception& e )
+        {
+            lfm << e.what() << std::endl;
+        }
     }
 
 } // namespace PGE

@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="PgeBaseApplication.cpp" open="1" top="0" tabpos="23">
-		<Cursor position="0" topLine="28" />
+		<Cursor position="1169" topLine="31" />
 	</File>
 	<File name="PgeBaseApplication.h" open="1" top="0" tabpos="22">
-		<Cursor position="990" topLine="12" />
+		<Cursor position="990" topLine="18" />
 	</File>
 	<File name="PgeBaseEntity.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="25" topLine="0" />
@@ -20,28 +20,28 @@
 		<Cursor position="506" topLine="0" />
 	</File>
 	<File name="PgeBaseEventListener.h" open="1" top="0" tabpos="14">
-		<Cursor position="2243" topLine="56" />
+		<Cursor position="2243" topLine="59" />
 	</File>
 	<File name="PgeBaseGameEngine.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="1220" topLine="38" />
+		<Cursor position="1220" topLine="51" />
 	</File>
 	<File name="PgeBaseGameEngine.h" open="1" top="0" tabpos="5">
 		<Cursor position="2471" topLine="18" />
 	</File>
 	<File name="PgeBaseWindowSystem.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="2689" topLine="85" />
+		<Cursor position="196" topLine="0" />
 	</File>
 	<File name="PgeBaseWindowSystem.h" open="1" top="0" tabpos="6">
-		<Cursor position="6274" topLine="92" />
+		<Cursor position="2975" topLine="64" />
 	</File>
 	<File name="PgeEnums.h" open="1" top="0" tabpos="16">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="PgeException.h" open="0" top="0" tabpos="22">
+	<File name="PgeException.h" open="1" top="0" tabpos="24">
 		<Cursor position="505" topLine="6" />
 	</File>
 	<File name="PgeGameManager.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="245" topLine="11" />
+		<Cursor position="245" topLine="0" />
 	</File>
 	<File name="PgeGameManager.h" open="1" top="0" tabpos="12">
 		<Cursor position="607" topLine="21" />
@@ -65,10 +65,10 @@
 		<Cursor position="4239" topLine="84" />
 	</File>
 	<File name="PgePlatform.h" open="1" top="0" tabpos="10">
-		<Cursor position="313" topLine="0" />
+		<Cursor position="2554" topLine="78" />
 	</File>
-	<File name="PgePlatformFactory.h" open="1" top="1" tabpos="21">
-		<Cursor position="748" topLine="2" />
+	<File name="PgePlatformFactory.h" open="1" top="0" tabpos="21">
+		<Cursor position="748" topLine="16" />
 	</File>
 	<File name="PgePoint2D.h" open="0" top="0" tabpos="26">
 		<Cursor position="541" topLine="20" />
@@ -92,7 +92,7 @@
 		<Cursor position="630" topLine="24" />
 	</File>
 	<File name="PgeTileEngine.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1936" topLine="8" />
+		<Cursor position="1936" topLine="16" />
 	</File>
 	<File name="PgeTileEngine.h" open="1" top="0" tabpos="2">
 		<Cursor position="1213" topLine="21" />
@@ -109,11 +109,11 @@
 	<File name="SDL\PgeSDLPlatformFactory.h" open="1" top="0" tabpos="19">
 		<Cursor position="257" topLine="8" />
 	</File>
-	<File name="SDL\PgeSDLWindowSystem.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="151" topLine="161" />
+	<File name="SDL\PgeSDLWindowSystem.cpp" open="1" top="1" tabpos="9">
+		<Cursor position="6046" topLine="192" />
 	</File>
 	<File name="SDL\PgeSDLWindowSystem.h" open="1" top="0" tabpos="8">
-		<Cursor position="691" topLine="32" />
+		<Cursor position="1583" topLine="40" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="144" topLine="0" />
