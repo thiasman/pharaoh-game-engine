@@ -15,8 +15,6 @@
 
 #include "PgeTypes.h"
 #include "PgeException.h"
-#include "PgeGameManager.h"
-//#include "PgeBaseWindowListener.h"
 
 namespace PGE
 {
