@@ -12,6 +12,7 @@
 #include "PgeBaseApplication.h"
 #include "PgePlatformFactory.h"
 #include "PgeBaseWindowSystem.h"
+#include "PgeBaseWindowListener.h"
 
 #include "PgePoint2D.h"
 #include "PgeMatrix2D.h"
@@ -43,34 +44,88 @@ namespace PGE
         {
             assert( !mPlatformFactory.IsNull() );
 
-            SharedPtr< BaseWindowSystem > window( mPlatformFactory->CreateWindowSystem() );
-            assert( !window.IsNull() );
+            mWindow.SetNull();
+            mWindow = SharedPtr< BaseWindowSystem >( mPlatformFactory->CreateWindowSystem() );
+            assert( !mWindow.IsNull() );
 
+            // Add the window listener:
+            mWindow->AddWindowListener( this );
+            mWindow->Init();
+            mGameManager.Init();
+
+            // Get the window ID
             size_t winHnd = 0;
-            window->GetCustomAttribute( "WINDOW", &winHnd );
+            mWindow->GetCustomAttribute( "WINDOW", &winHnd );
+            lfm << "Window handle = " << winHnd << std::endl;
 
             //PGE::TileEngine engine;
-            window->SetTitle( "Loading..." );
-            window->Init();
+            mWindow->SetTitle( "Loading..." );
 
             std::string title = std::string( "Welcome to Pharaoh Game Engine - " ) + AutoVersion::FULLVERSION_STRING;
-            window->SetTitle( title );
+            mWindow->SetTitle( title );
 
-            window->Run();
+            mWindow->Run();
 
-            while ( !window->IsClosed() )
+            while ( !mWindow->IsClosed() )
             {
-                window->RenderFrame();
-            }
-            window->Shutdown();
+                // Run the window message pump:
+                mWindow->MessagePump();
 
-            window->SetTitle( "Goodbye." );
+                // Update the logic:
+                //DoLogic();
+                mGameManager.PrepareFrame();
+
+                // Lock the surface before rendering:
+                mWindow->LockSurface();
+
+                // Update the display:
+                //DoRender();
+                mGameManager.RenderFrame();
+
+                // Unlock the surface before rendering:
+                mWindow->UnlockSurface();
+
+                //mWindow->RenderFrame();
+            }
+            mWindow->Shutdown();
+
+            mWindow->SetTitle( "Goodbye." );
 
         }
         catch ( std::exception& e )
         {
             lfm << e.what() << std::endl;
         }
+    }
+
+    //WindowSizeChanged---------------------------------------------------------
+    void BaseApplication::WindowSizeChanged( BaseWindowSystem* win )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowSizeChanged(...)" );
+
+        // Get the window metrics:
+        int x, y, z, width, height;
+        win->GetMetrics( x, y, z, width, height );
+
+        lfm << "Window position = ( " << x << ", " << y << ", " << z << " ), size = ( " << width << ", " << height << " )\n";
+    }
+
+    //WindowClosed--------------------------------------------------------------
+    void BaseApplication::WindowClosed( BaseWindowSystem* win )
+    {
+    }
+
+    //WindowFocusChanged--------------------------------------------------------
+    void BaseApplication::WindowFocusChanged( BaseWindowSystem* win )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowFocusChanged(...)" );
+
+        if ( mWindow->IsActive() )
+            lfm << "Window activated\n";
+        else
+            lfm << "Window deactivated\n";
     }
 
 } // namespace PGE

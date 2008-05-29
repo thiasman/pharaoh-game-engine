@@ -7,8 +7,9 @@
  */
 
 #include "version.h"
-#include "PgeBaseWindowSystem.h"
 #include "PgeException.h"
+#include "PgeBaseWindowSystem.h"
+#include "PgeBaseWindowListener.h"
 
 namespace PGE
 {
@@ -69,11 +70,16 @@ namespace PGE
 //        AdditionalInit();
 //    }
 
+    //AddWindowListener---------------------------------------------------------
+    void BaseWindowSystem::AddWindowListener( BaseWindowListener* listener )
+    {
+        mWindowListeners.push_back( listener );
+    }
+
     //Init----------------------------------------------------------------------
     void BaseWindowSystem::Init()
     {
         AdditionalInit();
-        mGameManager.Init();
     }
 
     //Run-----------------------------------------------------------------------
@@ -104,6 +110,13 @@ namespace PGE
 //        Shutdown();
     }
 
+    //Shutdown------------------------------------------------------------------
+    void BaseWindowSystem::Shutdown()
+    {
+        mWindowListeners.clear();
+        mQuit = true;
+    }
+
     void BaseWindowSystem::RenderFrame()
     {
         // Handle window-specific input.  This includes things like closing the
@@ -118,19 +131,6 @@ namespace PGE
         }
         else
         {
-            // Update the logic:
-            //DoLogic();
-            mGameManager.PrepareFrame();
-
-            // Lock the surface before rendering:
-            LockSurface();
-
-            // Update the display:
-            //DoRender();
-            mGameManager.RenderFrame();
-
-            // Unlock the surface before rendering:
-            UnlockSurface();
         }
     }
 

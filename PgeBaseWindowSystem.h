@@ -11,13 +11,17 @@
 #define PGEBASEWINDOWSYSTEM_H_INCLUDED
 
 #include <string>
+#include <vector>
 
 #include "PgeTypes.h"
 #include "PgeException.h"
 #include "PgeGameManager.h"
+//#include "PgeBaseWindowListener.h"
 
 namespace PGE
 {
+    class BaseWindowListener;
+
     /** @class BaseWindowSystem
         Base class for the windowing system.  This should be overridden to
         accommodate the display system (ie. SDL, wxWidgets, Win32, X, etc.)
@@ -30,10 +34,14 @@ namespace PGE
         unsigned long   mHeight;        /**< Height of the window */
         String          mTitle;         /**< Title of the window */
         bool            mIsMinimized;   /**< Indicates if the window is minimized (game should pause) */
+        bool            mIsActive;      /**< Indicates if the window is active */
         bool            mIsPaused;      /**< Indicates if the gameplay should pause */
         bool            mQuit;          /**< Indicates if the application should quit */
 
-        GameManager     mGameManager;   /**< Manages the game states */
+        /** In theory, a window can have many listeners.  Keep a list of
+            attached listeners, then iterate through them for events.
+        */
+        std::vector< BaseWindowListener* >  mWindowListeners;
 
     protected:
         /** Update any logic (i.e. AI processing) */
@@ -58,7 +66,10 @@ namespace PGE
         /** Destructor */
         virtual ~BaseWindowSystem();
 
-        /** Initialize the engine */
+        /** Add a window listener */
+        void AddWindowListener( BaseWindowListener* listener );
+
+        /** Initialize the window */
         virtual void Init();
 
         /** Start the game loop */
@@ -79,7 +90,7 @@ namespace PGE
         String GetVersion() const;
 
         /** Shut down the engine and free allocated memory */
-        virtual void Shutdown()                             { mQuit = true; }
+        virtual void Shutdown();
 
         /** Render the next frame */
         virtual void RenderFrame();
@@ -91,6 +102,36 @@ namespace PGE
 
         /** Get a custom attribute that has been set for the window */
         virtual void GetCustomAttribute( const String& name, void* data );
+
+        /** Get the dimensions, placement, and z-order of the window
+            @param  x               X-coordinate of the window
+            @param  y               Y-coordinate of the window
+            @param  z               z-order of the window
+            @param  width           Width of the window
+            @param  height          Height of the window
+        */
+        virtual void GetMetrics( int& x, int& y, int& z, int& width, int& height ) const    { }
+
+        /** Check whether the window is active */
+        virtual bool IsActive() const                       { return mIsActive; }
+
+        /** Check whether the window is minimized */
+        virtual bool IsMinimized() const                    { return mIsMinimized; }
+
+        /** Some rendering surfaces require the surface be locked before
+            rendering.
+        */
+        virtual void LockSurface()                          { }
+
+        /** If a surface was locked prior to rendering, it will need to be
+            unlocked after rendering.
+        */
+        virtual void UnlockSurface()                        { }
+
+        /** Pump messages through the window queue.  It is necessary to call
+            this each frame so that the messages get processed.
+        */
+        virtual void MessagePump()                          { }
 
     protected:
         ////////////////////////////////////////////////////////////////////////
@@ -105,25 +146,15 @@ namespace PGE
         */
         //virtual void UpdateLogic( Real32 elapsedTime )    { }
 
-        /** Some rendering surfaces require the surface be locked before
-            rendering.
-        */
-        virtual void LockSurface()                          { }
-
-        /** If a surface was locked prior to rendering, it will need to be
-            unlocked after rendering.
-        */
-        virtual void UnlockSurface()                        { }
-
         /** Render the current display
         */
         //virtual void DoRender(  )                             { }
 
         /** Make the window active */
-        virtual void MakeActive()                           { }
+        virtual void MakeActive()                           { mIsActive = true; }
 
         /** Make the window inactive */
-        virtual void MakeInactive()                         { }
+        virtual void MakeInactive()                         { mIsActive = false; }
 
         /** Handle a keyboard key being released
             @param  key             Key which was released
