@@ -196,7 +196,7 @@
 	"BaseEngine.h"
 	"PgeException.h"
 
-1212095860 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
+1212097415 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
 
 1212087061 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeexception.h
 	<exception>
@@ -396,12 +396,11 @@
 	"PgeBaseWindowSystem.h"
 	"PgeBaseWindowListener.h"
 
-1212097038 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.h
+1212097415 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.h
 	<string>
 	<vector>
 	"PgeTypes.h"
 	"PgeException.h"
-	"PgeGameManager.h"
 
 1212008937 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeplatform.h
 	<stddef.h>

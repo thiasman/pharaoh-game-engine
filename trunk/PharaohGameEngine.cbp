@@ -53,6 +53,7 @@
 		<Unit filename="PgeBaseEventListener.h" />
 		<Unit filename="PgeBaseGameEngine.cpp" />
 		<Unit filename="PgeBaseGameEngine.h" />
+		<Unit filename="PgeBaseWindowListener.h" />
 		<Unit filename="PgeBaseWindowSystem.cpp" />
 		<Unit filename="PgeBaseWindowSystem.h" />
 		<Unit filename="PgeEnums.h" />

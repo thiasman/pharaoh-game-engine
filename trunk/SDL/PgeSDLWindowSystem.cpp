@@ -10,8 +10,8 @@
 
 #include "../PgePlatform.h"
 #include "../PgeException.h"
-#include "PgeSDLWindowSystem.h"
 #include "../PgeBaseWindowListener.h"
+#include "PgeSDLWindowSystem.h"
 
 #include "cmd/LogFileManager.h"
 
