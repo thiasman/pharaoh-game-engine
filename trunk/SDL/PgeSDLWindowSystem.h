@@ -29,37 +29,51 @@ namespace PGE
         /** Constructor */
         SDLWindowSystem();
         /** Destructor */
-        virtual ~SDLWindowSystem();
+        ~SDLWindowSystem();
 
         /** Initialize the engine */
         //void Init();
 
         /** Set the window title */
-        virtual void SetTitle( const String& title );
+        void SetTitle( const String& title );
 
         /** Get a custom attribute that has been set for the window */
-        virtual void GetCustomAttribute( const String& name, void* data );
+        void GetCustomAttribute( const String& name, void* data );
 
-    protected:
-
-        /** Handle additional initialization for a user engine */
-        virtual void AdditionalInit();
-
-        /** Handle user input */
-        virtual void HandleInput();
-
-        /** Create the surface */
-        virtual void CreateSurface();
+        /** Get the dimensions, placement, and z-order of the window
+            @param  x               X-coordinate of the window
+            @param  y               Y-coordinate of the window
+            @param  z               z-order of the window
+            @param  width           Width of the window
+            @param  height          Height of the window
+        */
+        void GetMetrics( int& x, int& y, int& z, int& width, int& height ) const;
 
         /** Some rendering surfaces require the surface be locked before
             rendering.
         */
-        virtual void LockSurface();
+        void LockSurface();
 
         /** If a surface was locked prior to rendering, it will need to be
             unlocked after rendering.
         */
-        virtual void UnlockSurface();
+        void UnlockSurface();
+
+        /** Pump messages through the window queue.  It is necessary to call
+            this each frame so that the messages get processed.
+        */
+        virtual void MessagePump();
+
+    protected:
+
+        /** Handle additional initialization for a user engine */
+        void AdditionalInit();
+
+        /** Handle user input */
+        void HandleInput();
+
+        /** Create the surface */
+        void CreateSurface();
 
         /** Get the window handle */
         int _getWindowHandle() const;

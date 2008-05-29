@@ -196,11 +196,12 @@
 	"BaseEngine.h"
 	"PgeException.h"
 
-1211481253 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
+1212095860 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\version.h
 
-1211481014 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeexception.h
+1212087061 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgeexception.h
 	<exception>
 	<string>
+	"PgePlatform.h"
 
 1211473785 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetypes.h
 	"PgePlatform.h"
@@ -389,13 +390,15 @@
 1210869998 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasegameengine.cpp
 	"PgeBaseGameEngine.h"
 
-1212008695 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.cpp
+1212097038 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.cpp
 	"version.h"
-	"PgeBaseWindowSystem.h"
 	"PgeException.h"
+	"PgeBaseWindowSystem.h"
+	"PgeBaseWindowListener.h"
 
-1212002834 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.h
+1212097038 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowsystem.h
 	<string>
+	<vector>
 	"PgeTypes.h"
 	"PgeException.h"
 	"PgeGameManager.h"
@@ -425,11 +428,15 @@
 1210785546 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgetimer.cpp
 	"PgeTimer.h"
 
-1211993432 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\sdl\pgesdlwindowsystem.cpp
-	"PgeSDLWindowSystem.h"
+1212094875 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\sdl\pgesdlwindowsystem.cpp
+	<SDL/SDL_syswm.h>
+	"../PgePlatform.h"
 	"../PgeException.h"
+	"PgeSDLWindowSystem.h"
+	"../PgeBaseWindowListener.h"
+	"cmd/LogFileManager.h"
 
-1212012993 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\sdl\pgesdlwindowsystem.h
+1212097139 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\sdl\pgesdlwindowsystem.h
 	<SDL/SDL.h>
 	<SDL/SDL.h>
 	"../PgeBaseWindowSystem.h"
@@ -457,20 +464,23 @@
 1211480879 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\sdl\pgesdlplatformfactory.h
 	"../PgePlatformFactory.h"
 
-1212002834 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseapplication.cpp
+1212097117 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseapplication.cpp
 	"PgePlatform.h"
 	"version.h"
 	"PgeTypes.h"
 	"PgeBaseApplication.h"
 	"PgePlatformFactory.h"
 	"PgeBaseWindowSystem.h"
+	"PgeBaseWindowListener.h"
 	"PgePoint2D.h"
 	"PgeMatrix2D.h"
 	"PgeMath.h"
 	"cmd/LogFileManager.h"
 
-1211472613 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseapplication.h
+1212097118 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebaseapplication.h
 	"PgeSharedPtr.h"
+	"PgeBaseWindowListener.h"
+	"PgeGameManager.h"
 
 1211464425 source:c:\sdks\pharaohgameengine\pgebaseapplication.cpp
 	"PgePlatform.h"
@@ -878,4 +888,6 @@
 1211464425 source:c:\sdks\pharaohgameengine\main.cpp
 	"PgeBaseApplication.h"
 	"SDL/PgeSDLPlatformFactory.h"
+
+1212077856 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowlistener.h
 

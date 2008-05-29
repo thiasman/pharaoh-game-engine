@@ -11,7 +11,9 @@
 #include "../PgePlatform.h"
 #include "../PgeException.h"
 #include "PgeSDLWindowSystem.h"
+#include "../PgeBaseWindowListener.h"
 
+#include "cmd/LogFileManager.h"
 
 namespace PGE
 {
@@ -72,85 +74,22 @@ namespace PGE
             String msg = std::string( "Unable to setup video: " ) + SDL_GetError();
             throw Exception( msg );
         }
+
+        // SDL does not trigger an activation event when the window is first
+        // created, so do it ourselves:
+        MakeActive();
+        std::vector< BaseWindowListener* >::iterator iter = mWindowListeners.begin();
+        while ( iter != mWindowListeners.end() )
+        {
+            (*iter)->WindowFocusChanged( this );
+            iter++;
+        }
+
     }
 
     //HandleInput---------------------------------------------------------------
     void SDLWindowSystem::HandleInput()
     {
-        SDL_Event event;
-
-        while ( SDL_PollEvent( &event ) )
-        {
-            switch ( event.type )
-            {
-/*
-            case SDL_KEYDOWN:
-                {
-                    // If the escape key was pressed, terminate the application.
-                    // All other key processing gets passed to the derived class.
-                    if ( event.key.keysym.sym == SDLK_ESCAPE )
-                    {
-                        mQuit = true;
-                        break;
-                    }
-
-                    KeyDown( event.key.keysym.sym );
-                }
-                break;
-
-            case SDL_KEYUP:
-                KeyUp( event.key.keysym.sym );
-                break;
-*/
-
-/*
-            case SDL_MOUSEMOTION:
-                MouseMove( event.button.button,
-                            event.motion.x,
-                            event.motion.y,
-                            event.motion.xrel,
-                            event.motion.yrel );
-                break;
-
-            case SDL_MOUSEBUTTONUP:
-                MouseButtonUp( event.button.button,
-                            event.motion.x,
-                            event.motion.y,
-                            event.motion.xrel,
-                            event.motion.yrel );
-                break;
-
-            case SDL_MOUSEBUTTONDOWN:
-                MouseButtonDown( event.button.button,
-                            event.motion.x,
-                            event.motion.y,
-                            event.motion.xrel,
-                            event.motion.yrel );
-                break;
-*/
-
-            case SDL_QUIT:
-                mQuit = true;
-                break;
-
-            case SDL_ACTIVEEVENT:
-                if ( event.active.state & SDL_APPACTIVE )
-                {
-                    if ( event.active.gain )
-                    {
-                        mIsMinimized = false;
-                        MakeActive();
-                    }
-                    else
-                    {
-                        mIsMinimized = true;
-                        MakeInactive();
-                    }
-                }
-                break;
-            }
-        }
-
     }
 
     // CreateSurface------------------------------------------------------------
@@ -217,6 +156,153 @@ namespace PGE
         if ( !SDL_GetWMInfo( &sysInfo ) )
             return 0;
         return int( sysInfo.window );
+    }
+
+    void SDLWindowSystem::GetMetrics( int& x, int& y, int& z, int& width, int& height ) const
+    {
+#if PGE_PLATFORM == PGE_PLATFORM_WIN32
+        // Get the window handle
+        SDL_SysWMinfo sysInfo;
+        SDL_VERSION( &sysInfo.version );
+        if ( SDL_GetWMInfo( &sysInfo ) )
+        {
+            HWND hWnd = sysInfo.window;
+            RECT rc;
+            GetWindowRect( hWnd, &rc );
+            x = rc.left;
+            y = rc.top;
+            width = rc.right - rc.left;
+            height = rc.bottom - rc.top;
+
+            // Iterate over the windows to find the z-order:
+            z = 0;
+            HWND curHwnd = GetTopWindow( NULL );
+            while ( curHwnd != NULL && curHwnd != sysInfo.window )
+            {
+                ++z;
+                curHwnd = GetNextWindow( curHwnd, GW_HWNDNEXT );
+            }
+        }
+#else
+        // For non-windows systems, zero out the position and depth, and use the
+        // dimensions of the surface.
+        if ( mSurface )
+        {
+            x = 0;
+            y = 0;
+            z = 0;
+            width = mSurface.w;
+            height = mSurface.h;
+        }
+#endif
+    }
+
+    //MessagePump---------------------------------------------------------------
+    void SDLWindowSystem::MessagePump()
+    {
+        SDL_Event event;
+
+        while ( SDL_PollEvent( &event ) )
+        {
+            switch ( event.type )
+            {
+/*
+            case SDL_KEYDOWN:
+                {
+                    // If the escape key was pressed, terminate the application.
+                    // All other key processing gets passed to the derived class.
+                    if ( event.key.keysym.sym == SDLK_ESCAPE )
+                    {
+                        mQuit = true;
+                        break;
+                    }
+
+                    KeyDown( event.key.keysym.sym );
+                }
+                break;
+
+            case SDL_KEYUP:
+                KeyUp( event.key.keysym.sym );
+                break;
+*/
+
+/*
+            case SDL_MOUSEMOTION:
+                MouseMove( event.button.button,
+                            event.motion.x,
+                            event.motion.y,
+                            event.motion.xrel,
+                            event.motion.yrel );
+                break;
+
+            case SDL_MOUSEBUTTONUP:
+                MouseButtonUp( event.button.button,
+                            event.motion.x,
+                            event.motion.y,
+                            event.motion.xrel,
+                            event.motion.yrel );
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                MouseButtonDown( event.button.button,
+                            event.motion.x,
+                            event.motion.y,
+                            event.motion.xrel,
+                            event.motion.yrel );
+                break;
+*/
+
+            case SDL_QUIT:
+                {
+                    mQuit = true;
+                    std::vector< BaseWindowListener* >::iterator iter = mWindowListeners.begin();
+                    while ( iter != mWindowListeners.end() )
+                    {
+                        (*iter)->WindowClosed( this );
+                        iter++;
+                    }
+                }
+                break;
+
+            case SDL_VIDEORESIZE:
+                {
+                    std::vector< BaseWindowListener* >::iterator iter = mWindowListeners.begin();
+                    while ( iter != mWindowListeners.end() )
+                    {
+                        (*iter)->WindowSizeChanged( this );
+                        iter++;
+                    }
+                }
+                break;
+
+            case SDL_ACTIVEEVENT:
+                {
+                    if ( event.active.state & SDL_APPACTIVE || event.active.state & SDL_APPINPUTFOCUS )
+                    {
+                        if ( event.active.gain )
+                        {
+                            if ( event.active.state & SDL_APPACTIVE )
+                                mIsMinimized = false;
+                            MakeActive();
+                        }
+                        else
+                        {
+                            if ( event.active.state & SDL_APPACTIVE )
+                                mIsMinimized = true;
+                            MakeInactive();
+                        }
+
+                        std::vector< BaseWindowListener* >::iterator iter = mWindowListeners.begin();
+                        while ( iter != mWindowListeners.end() )
+                        {
+                            (*iter)->WindowFocusChanged( this );
+                            iter++;
+                        }
+                    }
+                }
+                break;
+            }
+        }
     }
 
 } // namespace PGE

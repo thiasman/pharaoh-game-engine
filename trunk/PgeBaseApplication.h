@@ -11,10 +11,13 @@
 #define PGEBASEAPPLICATION_H
 
 #include "PgeSharedPtr.h"
+#include "PgeBaseWindowListener.h"
+#include "PgeGameManager.h"
 
 namespace PGE
 {
     class PlatformFactory;
+    class BaseWindowSystem;
 
     /** @class BaseApplication
         The application is where the game really gets started.  The main
@@ -25,7 +28,7 @@ namespace PGE
         many cases, will be fine as it is, provided all configuration files use
         the default naming scheme.
     */
-    class _PgeExport BaseApplication
+    class _PgeExport BaseApplication : public BaseWindowListener
     {
     public:
         BaseApplication( PlatformFactory* factory );
@@ -37,8 +40,29 @@ namespace PGE
         */
         virtual void Run();
 
+        /** Window has changed size */
+        virtual void WindowSizeChanged( BaseWindowSystem* win );
+
+        /** Window has been closed */
+        virtual void WindowClosed( BaseWindowSystem* win );
+
+        /** Window has gained or lost focus
+            @remarks
+                Minimizing the window should also cause a loss of focus.  It is
+                up to the client how to deal with this.  That is, if a game
+                should be paused whenever the window loses focus, only when
+                minimized, or never (as far as window events are concerned.)
+                Likewise, restoring a minimized window should cause it to regain
+                focus.
+        */
+        virtual void WindowFocusChanged( BaseWindowSystem* win );
+
     protected:
         SharedPtr< PlatformFactory >    mPlatformFactory;
+        SharedPtr< BaseWindowSystem >   mWindow;
+        //SharedPtr< BaseWindowListener > mWindowListener;
+
+        GameManager     mGameManager;   /**< Manages the game states */
 
     private:
     };

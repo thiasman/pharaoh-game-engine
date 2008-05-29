@@ -13,6 +13,8 @@
 #include <exception>
 #include <string>
 
+#include "PgePlatform.h"
+
 namespace PGE
 {
     /** @class Exception
