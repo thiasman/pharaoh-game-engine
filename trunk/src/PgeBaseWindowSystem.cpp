@@ -82,34 +82,6 @@ namespace PGE
         AdditionalInit();
     }
 
-    //Run-----------------------------------------------------------------------
-    void BaseWindowSystem::Run()
-    {
-        // Get the start time:
-        //mLastTick   = Timer::GetTicks();
-        mQuit       = false;
-
-//        while ( !mQuit )
-//        {
-//            // Handle user input
-//            HandleInput();
-//
-////            if ( mIsMinimized )
-////            {
-////                // If the window is minimized, the game is paused.
-////                WaitMessage();
-////            }
-////            else
-////            {
-////                RenderFrame();
-////            }
-//RenderFrame();
-//        }
-//
-//        // Cleanup and terminate:
-//        Shutdown();
-    }
-
     //Shutdown------------------------------------------------------------------
     void BaseWindowSystem::Shutdown()
     {

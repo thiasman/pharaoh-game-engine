@@ -19,7 +19,6 @@
 #include "PgeMath.h"
 
 #include "cmd/LogFileManager.h"
-cmd::LogFileManager cmd::LogFileManager::mInstance;
 
 namespace PGE
 {
@@ -34,12 +33,21 @@ namespace PGE
         //dtor
     }
 
-    void BaseApplication::Run()
+    //Init----------------------------------------------------------------------
+    void BaseApplication::Init()
+    {
+        // Create the window:
+        _createWindow();
+
+        // Perform additional initialization:
+        AdditionalInit();
+    }
+
+    //_createWindow-------------------------------------------------------------
+    void BaseApplication::_createWindow()
     {
         cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        lfm.CreateLog( "Pharaoh.log", true, cmd::LogFile::Everything );
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "main(...)" );
-
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::_createWindow(...)" );
         try
         {
             assert( !mPlatformFactory.IsNull() );
@@ -51,12 +59,28 @@ namespace PGE
             // Add the window listener:
             mWindow->AddWindowListener( this );
             mWindow->Init();
+        }
+        catch ( std::exception& e )
+        {
+            lfm << e.what() << std::endl;
+        }
+    }
+
+    void BaseApplication::Run()
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::Run(...)" );
+
+/*
+        try
+        {
+            assert( !mWindow.IsNull() );
+
             mGameManager.Init();
 
             // Get the window ID
             size_t winHnd = 0;
             mWindow->GetCustomAttribute( "WINDOW", &winHnd );
-            lfm << "Window handle = " << winHnd << std::endl;
 
             //PGE::TileEngine engine;
             mWindow->SetTitle( "Loading..." );
@@ -96,6 +120,7 @@ namespace PGE
         {
             lfm << e.what() << std::endl;
         }
+*/
     }
 
     //WindowSizeChanged---------------------------------------------------------
@@ -122,7 +147,7 @@ namespace PGE
         cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
         cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowFocusChanged(...)" );
 
-        if ( mWindow->IsActive() )
+        if ( win->IsActive() )
             lfm << "Window activated\n";
         else
             lfm << "Window deactivated\n";

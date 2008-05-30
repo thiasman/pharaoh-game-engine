@@ -70,9 +70,6 @@ namespace PGE
         /** Initialize the window */
         virtual void Init();
 
-        /** Start the game loop */
-        void Run();
-
         /** Set the window title */
         virtual void SetTitle( const String& title );
         /** Get the window title */

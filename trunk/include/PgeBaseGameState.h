@@ -51,8 +51,30 @@ namespace PGE
 
     protected:
     private:
-    };
 
+    }; // class BaseGameState
+
+    /** @class GameStateFactory
+        @remarks
+            Game states will be application-dependent, and therefore, unknown
+            until run-time.  The game state factory will take care of creating
+            a state for the game state manager, by allowing the state to be
+            created from a name string.  A game configuration file could define
+            the state with a type, such as PAUSE, which will be passed through
+            to this factory to create a new pause state.
+    */
+    class GameStateFactory
+    {
+    public:
+        /** Constructory */
+        GameStateFactory()              { }
+        /** Destructor */
+        virtual ~GameStateFactory()     { }
+
+        /** Create a new game state given the state's type */
+        virtual BaseGameState* CreateState( const String& type ) = 0;
+
+    }; // class GameStateFactory
 } // namespace PGE
 
 #endif // PGEBASEGAMESTATE_H

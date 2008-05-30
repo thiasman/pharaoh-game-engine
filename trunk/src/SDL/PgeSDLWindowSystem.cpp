@@ -8,10 +8,10 @@
 
 #include <SDL/SDL_syswm.h>
 
-#include "../PgePlatform.h"
-#include "../PgeException.h"
-#include "../PgeBaseWindowListener.h"
-#include "PgeSDLWindowSystem.h"
+#include "PgePlatform.h"
+#include "PgeException.h"
+#include "PgeBaseWindowListener.h"
+#include "SDL/PgeSDLWindowSystem.h"
 
 #include "cmd/LogFileManager.h"
 
