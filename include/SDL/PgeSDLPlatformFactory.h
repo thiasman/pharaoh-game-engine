@@ -10,7 +10,7 @@
 #ifndef PGESDLPLATFORMFACTORY_H
 #define PGESDLPLATFORMFACTORY_H
 
-#include "../PgePlatformFactory.h"
+#include "PgePlatformFactory.h"
 
 namespace PGE
 {

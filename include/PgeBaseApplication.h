@@ -13,6 +13,7 @@
 #include "PgeSharedPtr.h"
 #include "PgeBaseWindowListener.h"
 #include "PgeGameManager.h"
+#include "PgeTimer.h"
 
 #include <OISMouse.h>
 #include <OISKeyboard.h>
@@ -38,6 +39,11 @@ namespace PGE
     public:
         BaseApplication( PlatformFactory* factory );
         virtual ~BaseApplication();
+
+        /** Initialize the application.  This is where the window will be
+            created.
+        */
+        void Init();
 
         /** Start the application.  This will enter a loop that will run until
             the user closes the application.  Each iteration of the loop will
@@ -68,8 +74,16 @@ namespace PGE
         //SharedPtr< BaseWindowListener > mWindowListener;
 
         GameManager     mGameManager;   /**< Manages the game states */
+        Timer           mTimer;         /**< Timer used by the application.  Individual states may use additional timers. */
+
+        /** Perform additional initialization for the application-specific
+            case.
+        */
+        virtual void AdditionalInit()   { }
 
     private:
+        /** Create the window */
+        void _createWindow();
     };
 
 } // namespace PGE

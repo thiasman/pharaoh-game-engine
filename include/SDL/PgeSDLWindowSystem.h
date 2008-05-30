@@ -16,7 +16,7 @@
 #include <SDL/SDL.h>
 #endif
 
-#include "../PgeBaseWindowSystem.h"
+#include "PgeBaseWindowSystem.h"
 
 namespace PGE
 {

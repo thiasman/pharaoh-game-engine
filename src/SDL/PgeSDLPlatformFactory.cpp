@@ -6,8 +6,8 @@
  *
  */
 
-#include "PgeSDLPlatformFactory.h"
-#include "PgeSDLWindowSystem.h"
+#include "SDL/PgeSDLPlatformFactory.h"
+#include "SDL/PgeSDLWindowSystem.h"
 
 namespace PGE
 {
