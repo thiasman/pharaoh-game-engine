@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1211480778 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\main.cpp
-	"PgeBaseApplication.h"
-	"SDL/PgeSDLPlatformFactory.h"
+1212174863 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\main.cpp
+	"include/PgeBaseApplication.h"
+	"include/SDL/PgeSDLPlatformFactory.h"
 
 1199055973 d:\sdks\sdl\1.2.13\include\sdl\sdl.h
 	"SDL_main.h"
