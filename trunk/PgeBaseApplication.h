@@ -14,6 +14,11 @@
 #include "PgeBaseWindowListener.h"
 #include "PgeGameManager.h"
 
+#include <OISMouse.h>
+#include <OISKeyboard.h>
+#include <OISJoyStick.h>
+#include <OISInputManager.h>
+
 namespace PGE
 {
     class PlatformFactory;

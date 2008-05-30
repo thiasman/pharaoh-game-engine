@@ -6,13 +6,13 @@
  *
  */
 
-#include "PgePlatform.h"
-#include "version.h"
-#include "PgeTypes.h"
-#include "PgeBaseApplication.h"
-#include "PgePlatformFactory.h"
-#include "PgeBaseWindowSystem.h"
-#include "PgeBaseWindowListener.h"
+#include "../include/PgePlatform.h"
+#include "../version.h"
+#include "../include/PgeTypes.h"
+#include "../include/PgeBaseApplication.h"
+#include "../include/PgePlatformFactory.h"
+#include "../include/PgeBaseWindowSystem.h"
+#include "../include/PgeBaseWindowListener.h"
 
 #include "PgePoint2D.h"
 #include "PgeMatrix2D.h"

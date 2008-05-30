@@ -1,7 +1,7 @@
 
 //#include "PgePlatform.h"
-#include "PgeBaseApplication.h"
-#include "SDL/PgeSDLPlatformFactory.h"
+#include "include/PgeBaseApplication.h"
+#include "include/SDL/PgeSDLPlatformFactory.h"
 
 int main ( int argc, char** argv )
 {
