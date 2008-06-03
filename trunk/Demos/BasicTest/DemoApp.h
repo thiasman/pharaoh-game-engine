@@ -54,20 +54,20 @@ public:
 
         while ( !mStateManager->IsClosing() )
         {
+            // Capture input:
+            Capture();
+
             // Run the window message pump:
             mWindow->MessagePump();
 
             // Update the logic:
             mStateManager->Update( mTimer.GetElapsedTime() );
-            //mGameManager.PrepareFrame();
 
             // Lock the surface before rendering:
-            lfm << "Lock surface...\n";
-            mWindow->LockSurface();
+
 
             // Update the display:
             mStateManager->Render();
-            //mGameManager.RenderFrame();
 
             // Unlock the surface before rendering:
             mWindow->UnlockSurface();
