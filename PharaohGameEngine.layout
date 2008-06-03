@@ -13,14 +13,17 @@
 	<File name="Demos\BasicTest\DemoGameStateFactory.h" open="1" top="0" tabpos="16">
 		<Cursor position="531" topLine="0" />
 	</File>
-	<File name="include\PgeBaseApplication.h" open="1" top="1" tabpos="5">
-		<Cursor position="2712" topLine="60" />
+	<File name="include\PgeBaseApplication.h" open="1" top="0" tabpos="5">
+		<Cursor position="330" topLine="4" />
 	</File>
 	<File name="include\PgeBaseGameEngine.h" open="1" top="0" tabpos="21">
 		<Cursor position="0" topLine="24" />
 	</File>
 	<File name="include\PgeBaseGameState.h" open="1" top="0" tabpos="8">
 		<Cursor position="1430" topLine="23" />
+	</File>
+	<File name="include\PgeBaseWindowListener.h" open="1" top="1" tabpos="23">
+		<Cursor position="716" topLine="22" />
 	</File>
 	<File name="include\PgeBaseWindowSystem.h" open="1" top="0" tabpos="17">
 		<Cursor position="2228" topLine="71" />
@@ -38,7 +41,7 @@
 		<Cursor position="231" topLine="0" />
 	</File>
 	<File name="include\SDL\PgeSDLWindowSystem.h" open="1" top="0" tabpos="4">
-		<Cursor position="308" topLine="3" />
+		<Cursor position="330" topLine="0" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="13">
 		<Cursor position="559" topLine="0" />

@@ -12,13 +12,8 @@
 
 #include "PgeSharedPtr.h"
 #include "PgeBaseWindowListener.h"
-#include "PgeGameManager.h"
+#include "PgeBaseInputListener.h"
 #include "PgeTimer.h"
-
-#include <OISMouse.h>
-#include <OISKeyboard.h>
-#include <OISJoyStick.h>
-#include <OISInputManager.h>
 
 namespace PGE
 {
@@ -34,7 +29,7 @@ namespace PGE
         many cases, will be fine as it is, provided all configuration files use
         the default naming scheme.
     */
-    class _PgeExport BaseApplication : public BaseWindowListener
+    class _PgeExport BaseApplication : public BaseWindowListener, public BaseInputListener
     {
     public:
         BaseApplication( PlatformFactory* factory );
@@ -50,6 +45,10 @@ namespace PGE
             update logic, listen for events, and update the display.
         */
         virtual void Run();
+
+        ////////////////////////////////////////////////////////////////////////
+        // Inherited from BaseWindowListener
+        ////////////////////////////////////////////////////////////////////////
 
         /** Window has changed size */
         virtual void WindowSizeChanged( BaseWindowSystem* win );
@@ -68,13 +67,20 @@ namespace PGE
         */
         virtual void WindowFocusChanged( BaseWindowSystem* win );
 
+        ////////////////////////////////////////////////////////////////////////
+        // Inherited from BaseInputListener
+        ////////////////////////////////////////////////////////////////////////
+
+        virtual bool keyPressed( const OIS::KeyEvent& e );
+        virtual bool keyReleased( const OIS::KeyEvent& e );
+
     protected:
         SharedPtr< PlatformFactory >    mPlatformFactory;
         SharedPtr< BaseWindowSystem >   mWindow;
         //SharedPtr< BaseWindowListener > mWindowListener;
 
-        GameManager     mGameManager;   /**< Manages the game states */
         Timer           mTimer;         /**< Timer used by the application.  Individual states may use additional timers. */
+        size_t          mWindowHandle;  /**< Id of the window associated with this app. */
 
         /** Perform additional initialization for the application-specific
             case.

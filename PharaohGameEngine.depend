@@ -890,9 +890,11 @@
 	"PgeSDLWindowSystem.h"
 	"../PgeException.h"
 
-1211464425 source:c:\sdks\pharaohgameengine\main.cpp
-	"PgeBaseApplication.h"
-	"SDL/PgeSDLPlatformFactory.h"
+1212160083 source:c:\sdks\pharaohgameengine\main.cpp
+	"include/PgeBaseApplication.h"
+	"include/SDL/PgeSDLPlatformFactory.h"
+	"Demos/BasicTest/DemoApp.h"
+	"cmd/LogFileManager.h"
 
 1212077856 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowlistener.h
 
@@ -1179,4 +1181,298 @@
 	"PgeTypes.h"
 	"PgeBaseGameState.h"
 	"DemoGameState.h"
+
+1212160083 source:c:\sdks\pharaohgameengine\demos\basictest\demogamestate.cpp
+	"DemoGameState.h"
+	<gl/gl.h>
+	<gl/glu.h>
+
+1212160083 c:\sdks\pharaohgameengine\demos\basictest\demogamestate.h
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeBaseGameState.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgeplatform.h
+	<stddef.h>
+	<memory.h>
+	<stdlib.h>
+	<stdarg.h>
+	<windows.h>
+	"config.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgetypes.h
+	"PgePlatform.h"
+	<string>
+
+1212160072 c:\sdks\pharaohgameengine\include\pgebasegamestate.h
+	"PgePlatform.h"
+	"PgeTypes.h"
+
+1212387817 c:\sdks\pharaohgameengine\include\pgebaseapplication.h
+	"PgeSharedPtr.h"
+	"PgeBaseWindowListener.h"
+	"PgeBaseInputListener.h"
+	"PgeTimer.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgesharedptr.h
+	"PgePlatform.h"
+	<assert.h>
+
+1212160072 c:\sdks\pharaohgameengine\include\pgebasewindowlistener.h
+
+1212160072 c:\sdks\pharaohgameengine\include\pgegamemanager.h
+	"PgePlatform.h"
+	"PgeSharedPtr.h"
+	"PgeBaseGameEngine.h"
+	"PgeTileEngine.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgebasegameengine.h
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeTimer.h"
+	"PgePoint2D.h"
+	"PgePoint3D.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgetimer.h
+	"PgeTypes.h"
+	<mmsystem.h>
+	<sys/time.h>
+
+1212160072 c:\sdks\pharaohgameengine\include\pgepoint2d.h
+	<ostream>
+	"PgeTypes.h"
+	"PgeMath.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgemath.h
+	"PgeTypes.h"
+	<limits>
+	<math.h>
+
+1212160072 c:\sdks\pharaohgameengine\include\pgepoint3d.h
+	<ostream>
+	"PgeTypes.h"
+	"PgeMath.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgetileengine.h
+	"PgeBaseGameEngine.h"
+
+1212160050 c:\sdks\pharaohgameengine\include\sdl\pgesdlplatformfactory.h
+	"PgePlatformFactory.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgeplatformfactory.h
+	"PgePlatform.h"
+
+1212415805 c:\sdks\pharaohgameengine\demos\basictest\demoapp.h
+	"PgeBaseApplication.h"
+	"PgeSharedPtr.h"
+	"PgeGameStateManager.h"
+	"PgePlatformFactory.h"
+	"PgeBaseWindowSystem.h"
+	"version.h"
+	"DemoGameState.h"
+	"DemoGameStateFactory.h"
+	"cmd/LogFileManager.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgegamestatemanager.h
+	<vector>
+	"PgeTypes.h"
+	"PgeSharedPtr.h"
+	"PgeException.h"
+	"PgeBaseGameState.h"
+	"PgeBaseWindowListener.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgeexception.h
+	<exception>
+	<string>
+	"PgePlatform.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgebasewindowsystem.h
+	<string>
+	<vector>
+	"PgeTypes.h"
+	"PgeException.h"
+
+1212421323 c:\sdks\pharaohgameengine\include\version.h
+
+1212160083 c:\sdks\pharaohgameengine\demos\basictest\demogamestatefactory.h
+	"PgeTypes.h"
+	"PgeBaseGameState.h"
+	"DemoGameState.h"
+
+1212160067 c:\sdks\pharaohgameengine\include\cmd\logfilemanager.h
+	"LogFile.h"
+	<map>
+	<sstream>
+
+1212160067 c:\sdks\pharaohgameengine\include\cmd\logfile.h
+	<string>
+	<sstream>
+	<iostream>
+	<iomanip>
+	<fstream>
+	<stack>
+	<time.h>
+	"StringUtil.h"
+
+1212160067 c:\sdks\pharaohgameengine\include\cmd\stringutil.h
+	<string>
+	<sstream>
+	<vector>
+	<algorithm>
+	<tchar.h>
+	<direct.h>
+
+1212420629 source:c:\sdks\pharaohgameengine\src\pgebaseapplication.cpp
+	"PgePlatform.h"
+	"version.h"
+	"PgeTypes.h"
+	"PgeBaseApplication.h"
+	"PgePlatformFactory.h"
+	"PgeBaseWindowSystem.h"
+	"PgeBaseWindowListener.h"
+	"PgePoint2D.h"
+	"PgeMatrix2D.h"
+	"PgeMath.h"
+	"cmd/StringUtil.h"
+	"cmd/LogFileManager.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgematrix2d.h
+	"PgeTypes.h"
+	"PgeEnums.h"
+	<ostream>
+
+1212160072 c:\sdks\pharaohgameengine\include\pgeenums.h
+	"PgeTypes.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgebaseentity.cpp
+	"PgeBaseEntity.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgebaseentity.h
+	<SDL/SDL.h>
+	<SDL.h>
+	"PgeBaseEntityInterface.h"
+	"PgeTypes.h"
+	"PgePoint2D.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgebaseentityinterface.h
+	"PgeTypes.h"
+	"tinyxml.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgebaseeventlistener.cpp
+	"PgeBaseEventListener.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgebaseeventlistener.h
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeSharedPtr.h"
+	<vector>
+	<map>
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgebasegameengine.cpp
+	"PgeBaseGameEngine.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgebasegamestate.cpp
+	"PgeBaseGameState.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgebasewindowsystem.cpp
+	"version.h"
+	"PgeException.h"
+	"PgeBaseWindowSystem.h"
+	"PgeBaseWindowListener.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgegamemanager.cpp
+	"PgeGameManager.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgegamestatemanager.cpp
+	"PgeGameStateManager.h"
+	"PgeBaseWindowSystem.h"
+	"cmd/LogFileManager.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgemath.cpp
+	"PgeMath.h"
+	<math.h>
+	<stdlib.h>
+	"cmd/StringUtil.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgematrix2d.cpp
+	"PgeMatrix2D.h"
+	"PgePoint2D.h"
+	"PgeMath.h"
+
+1212160080 source:c:\sdks\pharaohgameengine\src\pgematrix3d.cpp
+	"PgeMatrix3D.h"
+	"PgePoint3D.h"
+	"PgeMath.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgematrix3d.h
+	"PgeTypes.h"
+	"PgeEnums.h"
+	<ostream>
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgeplatformfactory.cpp
+	"PgePlatformFactory.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgepoint2d.cpp
+	"PgePoint2D.h"
+	"PgePoint3D.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgepoint3d.cpp
+	"PgePoint3D.h"
+	"PgePoint2D.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgesingleton.cpp
+	"PgeSingleton.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgesingleton.h
+	"PgePlatform.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgetexturemanager.cpp
+	"PgeTextureManager.h"
+
+1212160072 c:\sdks\pharaohgameengine\include\pgetexturemanager.h
+	<map>
+	"PgeTypes.h"
+	"PgeSingleton.h"
+	"PgeSharedPtr.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgetileengine.cpp
+	"PgeTileEngine.h"
+	<gl/gl.h>
+	<gl/glu.h>
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgetimer.cpp
+	"PgeTimer.h"
+
+1212160079 source:c:\sdks\pharaohgameengine\src\pgetypes.cpp
+	"PgeTypes.h"
+
+1212160074 source:c:\sdks\pharaohgameengine\src\sdl\pgesdlplatformfactory.cpp
+	"SDL/PgeSDLPlatformFactory.h"
+	"SDL/PgeSDLWindowSystem.h"
+
+1212160050 c:\sdks\pharaohgameengine\include\sdl\pgesdlwindowsystem.h
+	<SDL/SDL.h>
+	<SDL/SDL.h>
+	"PgeBaseWindowSystem.h"
+
+1212160074 source:c:\sdks\pharaohgameengine\src\sdl\pgesdlwindowsystem.cpp
+	<SDL/SDL_syswm.h>
+	"PgePlatform.h"
+	"PgeException.h"
+	"PgeBaseWindowListener.h"
+	"SDL/PgeSDLWindowSystem.h"
+	"cmd/LogFileManager.h"
+
+1212419508 c:\sdks\pharaohgameengine\include\pgebaseinputlistener.h
+	<vector>
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeSharedPtr.h"
+	<OISMouse.h>
+	<OISKeyboard.h>
+	<OISJoyStick.h>
+	<OISInputManager.h>
+
+1212420106 source:c:\sdks\pharaohgameengine\src\pgebaseinputlistener.cpp
+	"PgeBaseInputListener.h"
 
