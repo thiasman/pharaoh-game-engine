@@ -1,0 +1,9 @@
+
+PharaohGameEngine makes use of the following libraries.  When compiling, the
+libraries need to be in the compiler and linker's path.  If linking dynamically
+to a library, make sure the DLL is accessible by the application.
+
+* SDL (http://www.libsdl.org)
+* OpenGL (http://www.opengl.org)
+* TinyXML (http://www.grinninglizard.com/tinyxml)
+* OIS - Object Oriented Input System (http://sourceforge.net/projects/wgois)
