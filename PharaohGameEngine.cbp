@@ -57,6 +57,7 @@
 		<Unit filename="Demos\BasicTest\DemoGameState.cpp" />
 		<Unit filename="Demos\BasicTest\DemoGameState.h" />
 		<Unit filename="Demos\BasicTest\DemoGameStateFactory.h" />
+		<Unit filename="Dependencies.txt" />
 		<Unit filename="include\PgeBaseApplication.h" />
 		<Unit filename="include\PgeBaseEntity.h" />
 		<Unit filename="include\PgeBaseEntityInterface.h" />
