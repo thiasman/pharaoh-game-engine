@@ -20,7 +20,7 @@
 
 namespace PGE
 {
-    class SDLWindowSystem : public BaseWindowSystem
+    class _PgeExport SDLWindowSystem : public BaseWindowSystem
     {
     private:
         SDL_Surface*    mSurface;       /**< Rendering surface */

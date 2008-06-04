@@ -60,7 +60,6 @@
 		<Unit filename="include\PgeBaseApplication.h" />
 		<Unit filename="include\PgeBaseEntity.h" />
 		<Unit filename="include\PgeBaseEntityInterface.h" />
-		<Unit filename="include\PgeBaseEventListener.h" />
 		<Unit filename="include\PgeBaseGameState.h" />
 		<Unit filename="include\PgeBaseInputListener.h" />
 		<Unit filename="include\PgeBaseWindowListener.h" />
@@ -90,7 +89,6 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src\PgeBaseApplication.cpp" />
 		<Unit filename="src\PgeBaseEntity.cpp" />
-		<Unit filename="src\PgeBaseEventListener.cpp" />
 		<Unit filename="src\PgeBaseGameState.cpp" />
 		<Unit filename="src\PgeBaseInputListener.cpp" />
 		<Unit filename="src\PgeBaseWindowSystem.cpp" />

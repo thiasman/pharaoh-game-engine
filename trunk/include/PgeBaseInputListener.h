@@ -56,7 +56,7 @@ namespace PGE
             input so that a project may use it's own system, but for now, OIS
             will suffice.
     */
-    class BaseInputListener
+    class _PgeExport BaseInputListener
     {
     public:
         /** Destructor */

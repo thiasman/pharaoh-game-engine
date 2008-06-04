@@ -43,7 +43,7 @@ namespace PGE
             parameter.)  This allows the client to query whatever information
             it needs from that window.
     */
-    class BaseWindowListener
+    class _PgeExport BaseWindowListener
     {
     public:
         virtual ~BaseWindowListener()   { }

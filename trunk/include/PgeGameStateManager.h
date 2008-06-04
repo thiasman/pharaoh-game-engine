@@ -44,7 +44,7 @@ namespace PGE
             if the state manager is desired to have input handling, simply
             subclass the manager, and implement the methods.
     */
-    class GameStateManager : public BaseWindowListener, public BaseInputListener
+    class _PgeExport GameStateManager : public BaseWindowListener, public BaseInputListener
     {
     public:
         /** Constructor */
