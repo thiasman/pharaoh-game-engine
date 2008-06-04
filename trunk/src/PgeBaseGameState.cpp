@@ -7,10 +7,12 @@
  */
 
 #include "PgeBaseGameState.h"
+#include "PgeMath.h"
 
 namespace PGE
 {
     BaseGameState::BaseGameState()
+        : mID( RandomString::GetRandomString( 10 ) )
     {
         //ctor
     }

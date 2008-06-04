@@ -13,6 +13,7 @@
 #include "PgeSharedPtr.h"
 #include "PgeBaseWindowListener.h"
 #include "PgeBaseInputListener.h"
+#include "PgeInputManager.h"
 #include "PgeTimer.h"
 
 namespace PGE
@@ -28,6 +29,11 @@ namespace PGE
         class may be sub-classed as desired (such as for non-game uses,) but in
         many cases, will be fine as it is, provided all configuration files use
         the default naming scheme.
+
+        @remarks
+            The class is derived from BaseInputListener, but no input event
+            methods are handled.  In order to process input events, the class
+            should be subclassed, and the events should be handled there.
     */
     class _PgeExport BaseApplication : public BaseWindowListener, public BaseInputListener
     {
@@ -66,13 +72,6 @@ namespace PGE
                 focus.
         */
         virtual void WindowFocusChanged( BaseWindowSystem* win );
-
-        ////////////////////////////////////////////////////////////////////////
-        // Inherited from BaseInputListener
-        ////////////////////////////////////////////////////////////////////////
-
-        virtual bool keyPressed( const OIS::KeyEvent& e );
-        virtual bool keyReleased( const OIS::KeyEvent& e );
 
     protected:
         SharedPtr< PlatformFactory >    mPlatformFactory;

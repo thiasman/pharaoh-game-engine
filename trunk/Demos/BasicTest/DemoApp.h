@@ -42,8 +42,6 @@ public:
         cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
         cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoApp::Run(...)" );
 
-        assert( !mStateManager.IsNull() );
-
         mWindow->SetTitle( "Loading..." );
 
         std::string title = std::string( "Welcome to Pharaoh Game Engine - " ) + AutoVersion::FULLVERSION_STRING;
@@ -52,10 +50,11 @@ public:
         // Start the start manager:
         mStateManager->StartGame( "demo" );
 
+        InputManager* inputMgr = InputManager::getSingletonPtr();
         while ( !mStateManager->IsClosing() )
         {
             // Capture input:
-            Capture();
+            inputMgr->Capture();
 
             // Run the window message pump:
             mWindow->MessagePump();
@@ -85,10 +84,13 @@ protected:
     {
         try
         {
-            assert( !mWindow.IsNull() );
-
             // Add the state manager as a listener to the window
+            assert( !mWindow.IsNull() );
             mWindow->AddWindowListener( mStateManager.Get() );
+
+            // Add the state manager as an input listener
+            assert( !mStateManager.IsNull() );
+            InputManager::getSingletonPtr()->AddInputListener( mStateManager.Get(), "State Manager" );
         }
         catch ( std::exception& e )
         {

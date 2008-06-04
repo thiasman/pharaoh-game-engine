@@ -630,4 +630,50 @@ namespace PGE
         *y = centerY + dist * Math::Sin( ang );
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    // RandomString
+    ////////////////////////////////////////////////////////////////////////////
+
+    const String RandomString::DefaultChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    //RandomString--------------------------------------------------------------
+    RandomString::RandomString()
+        : CustomChars( DefaultChars )
+    {
+    }
+    //RandomString--------------------------------------------------------------
+    RandomString::RandomString( const String& legalChars )
+        : CustomChars( legalChars )
+    {
+    }
+
+    //SetLegalChars-------------------------------------------------------------
+    void RandomString::SetLegalChars( const String& legalChars )
+    {
+        CustomChars = legalChars;
+    }
+
+    //GetCustomString-----------------------------------------------------------
+    String RandomString::GetCustomString( size_t length ) const
+    {
+        String result = "";
+        if ( CustomChars.length() < 1 )
+            return RandomString::GetRandomString( length );
+        for ( size_t i = 0; i < length; i++ )
+        {
+            result += CustomChars[ Math::IRangeRandom( 0, CustomChars.length() ) ];
+        }
+        return result;
+    }
+
+    //GetRandomString-----------------------------------------------------------
+    String RandomString::GetRandomString( size_t length )
+    {
+        String result = "";
+        for ( size_t i = 0; i < length; i++ )
+        {
+            result += DefaultChars[ Math::IRangeRandom( 0, DefaultChars.length() ) ];
+        }
+        return result;
+    }
 }

@@ -12,14 +12,23 @@
 
 #include "PgePlatform.h"
 #include "PgeTypes.h"
+#include "PgeBaseInputListener.h"
+#include "PgeInputManager.h"
 
 namespace PGE
 {
     /** @class BaseGameState
         Every state in the game will derive from BaseGameState.  This is used
         for rendering the currently active portion of the game.
+
+        @remarks
+            The game state is derived from BaseInputListener, but no methods are
+            implemented in the base class.  If it is desired to have the states
+            handle input, implement the input event handlers in the derived
+            class.  The base state manager automatically attaches the states as
+            input listeners, so no further work is necessary.
     */
-    class BaseGameState
+    class BaseGameState : public BaseInputListener
     {
     public:
         BaseGameState();
@@ -49,9 +58,17 @@ namespace PGE
         /** Render the current frame. */
         virtual void Render() = 0;
 
-    protected:
-    private:
+        /** Set the state's ID string */
+        void SetID( const String& id )          { mID = id; }
+        /** Get the state's ID string */
+        String GetID() const                    { return mID; }
 
+    protected:
+
+    private:
+        String      mID;        /** ID of the game state.  This is <B>NOT</B>
+                                    guaranteed to be unique!
+                                */
     }; // class BaseGameState
 
     /** @class GameStateFactory

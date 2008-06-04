@@ -14,6 +14,8 @@
 #include "PgeTypes.h"
 #include "PgeBaseGameState.h"
 
+#include "cmd/LogFileManager.h"
+
 class DemoGameState : public PGE::BaseGameState
 {
 public:
@@ -43,7 +45,25 @@ public:
 
     /** Render the current frame. */
     virtual void Render();
+
+    //keyPressed----------------------------------------------------------------
+    bool KeyPressed( const OIS::KeyEvent& e )
+    {
+        return true;
+    }
+
+    //keyReleased---------------------------------------------------------------
+    bool KeyReleased( const OIS::KeyEvent& e )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
+        lfm << "Key: " << e.key << ", " << ((OIS::Keyboard*)(e.device))->getAsString(e.key) << ", Character = " << (char)e.text << std::endl;
+
+        return true;
+    }
+
 protected:
+
 private:
 };
 

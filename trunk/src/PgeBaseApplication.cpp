@@ -51,7 +51,10 @@ namespace PGE
         pl.insert( std::make_pair( String( "w32_mouse" ), String( "DISCL_FOREGROUND" ) ) );
         pl.insert( std::make_pair( String( "w32_mouse" ), String( "DISCL_NONEXCLUSIVE" ) ) );
 #endif
-        BaseInputListener::Init( pl );
+
+        // Initialize the input manager:
+        InputManager* inputMgr = InputManager::getSingletonPtr();
+        inputMgr->Init( pl );
 
         // Perform additional initialization:
         AdditionalInit();
@@ -165,22 +168,6 @@ namespace PGE
             lfm << "Window activated\n";
         else
             lfm << "Window deactivated\n";
-    }
-
-    //keyPressed----------------------------------------------------------------
-    bool BaseApplication::keyPressed( const OIS::KeyEvent& e )
-    {
-        return true;
-    }
-
-    //keyReleased---------------------------------------------------------------
-    bool BaseApplication::keyReleased( const OIS::KeyEvent& e )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::keyReleased(...)" );
-        lfm << "Key: " << e.key << ", " << ((OIS::Keyboard*)(e.device))->getAsString(e.key) << ", Character = " << (char)e.text << std::endl;
-
-        return true;
     }
 
 } // namespace PGE
