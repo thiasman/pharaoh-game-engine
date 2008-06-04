@@ -217,6 +217,54 @@ namespace PGE
 
     }; // class Math
 
+    /** @class RandomString
+        Generates a random string of characters.
+
+        @remarks
+            By default, legal characters in the random string are alphanumeric,
+            upper and lowercase.  If a custom set of characters are desired,
+            use the <code>SetLegalChars</code> method to set the string of
+            characters to select from.  Then, use the <code>GetCustomString</code>
+            to get a random string using the custom characters.
+
+        @note
+            Only the default characters will be returned when using the static
+            method <code>GetRandomString</code>.  To get a string using custom
+            characters, the class must be instantiated.
+    */
+    class RandomString
+    {
+    private:
+        static const String DefaultChars;
+        String CustomChars;
+
+    public:
+        /** Constructor
+            @remarks
+                The class is instantiated, and the custom characters is set to
+                the default characters.  Use <code>SetLegalChars</code> to set
+                a custom set of characters.
+        */
+        RandomString();
+        /** Initialization constructor
+            @param  legalChars          String of characters to use for a custom random string
+        */
+        RandomString( const String& legalChars );
+
+        /** Set the custom set of characters */
+        void SetLegalChars( const String& legalChars );
+
+        /** Get a random string of characters using the custom characters
+            @param  length              Length of the returned string
+        */
+        String GetCustomString( size_t length ) const;
+
+        /** Get a random string of characters using the default characters
+            @param  length              Length of the returned string
+        */
+        static String GetRandomString( size_t length );
+    };
+
 } // namespace PGE
 
 #endif // PGEMATH_H

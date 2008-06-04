@@ -17,10 +17,13 @@
 #include "PgeException.h"
 #include "PgeBaseGameState.h"
 #include "PgeBaseWindowListener.h"
+#include "PgeBaseInputListener.h"
+#include "PgeInputManager.h"
+
+#include "cmd/LogFileManager.h"
 
 namespace PGE
 {
-    class BaseWindowListener;
 
     /** @class GameStateManager
         A game is made up of one or more states.  For instance, the introduction
@@ -32,8 +35,16 @@ namespace PGE
         @remarks
             The game state manager is window listener, and can be added to the
             render window so that it will shut down when the window is closed.
+
+        @remarks
+            The game state manager is also derived from BaseInputListener, but
+            none of the input event methods are implemented.  This is mostly to
+            help with passing input along to the states, but attaching the
+            states (also derived from BaseInputListener) as listeners.  However,
+            if the state manager is desired to have input handling, simply
+            subclass the manager, and implement the methods.
     */
-    class GameStateManager : public BaseWindowListener
+    class GameStateManager : public BaseWindowListener, public BaseInputListener
     {
     public:
         /** Constructor */
@@ -91,6 +102,14 @@ namespace PGE
                 focus.
         */
         virtual void WindowFocusChanged( BaseWindowSystem* win );
+
+        /** === From BaseInputListener === */
+
+        /** Keyboard key was pressed */
+        virtual bool KeyPressed( const OIS::KeyEvent& e );
+
+        /** Keyboard key was released */
+        virtual bool KeyReleased( const OIS::KeyEvent& e );
 
     protected:
         typedef SharedPtr< BaseGameState >    StatePtr;

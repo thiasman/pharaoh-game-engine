@@ -30,6 +30,7 @@ namespace PGE
     {
         // Create the new state
         BaseGameState* newState = mStateFactory->CreateState( stateType );
+        newState->SetID( stateType );
 
         // Start the game
         StartGame( newState );
@@ -40,6 +41,9 @@ namespace PGE
     {
         // Resources need to be setup, input and audio needs to be initialized, etc.
 
+        // Attach the state as an input listener
+        InputManager::getSingletonPtr()->AddInputListener( state, state->GetID() );
+
         // Switch to the first state:
         ChangeState( state );
     }
@@ -49,6 +53,7 @@ namespace PGE
     {
         // Create the new state
         BaseGameState* newState = mStateFactory->CreateState( stateType );
+        newState->SetID( stateType );
 
         // Change states
         ChangeState( newState );
@@ -60,9 +65,16 @@ namespace PGE
         // Shutdown and remove the active state
         if ( !mStates.empty() )
         {
+            // Remove the state as an input listener
+            InputManager::getSingletonPtr()->RemoveInputListener( mStates.back()->GetID() );
+
+            // Shutdown the state
             mStates.back()->Destroy();
             mStates.pop_back();
         }
+
+        // Attach the state as an input listener
+        InputManager::getSingletonPtr()->AddInputListener( state, state->GetID() );
 
         // Add the new state to the stack
         mStates.push_back( StatePtr( state ) );
@@ -76,6 +88,7 @@ namespace PGE
     {
         // Create the new state
         BaseGameState* newState = mStateFactory->CreateState( stateType );
+        newState->SetID( stateType );
 
         // Push the new state
         PushState( newState );
@@ -93,6 +106,9 @@ namespace PGE
             mStates.back()->Pause();
         }
 
+        // Attach the state as an input listener
+        InputManager::getSingletonPtr()->AddInputListener( state, state->GetID() );
+
         // Add the new state to the stack
         mStates.push_back( StatePtr( state ) );
 
@@ -108,6 +124,10 @@ namespace PGE
         // Shutdown and remove the active state
         if ( !mStates.empty() )
         {
+            // Remove the state as an input listener
+            InputManager::getSingletonPtr()->RemoveInputListener( mStates.back()->GetID() );
+
+            // Shutdown the state
             mStates.back()->Destroy();
             mStates.pop_back();
         }
@@ -160,6 +180,22 @@ namespace PGE
     {
         if ( !mStates.empty() )
             mStates.back()->Render();
+    }
+
+    //keyPressed----------------------------------------------------------------
+    bool GameStateManager::KeyPressed( const OIS::KeyEvent& e )
+    {
+        return true;
+    }
+
+    //keyReleased---------------------------------------------------------------
+    bool GameStateManager::KeyReleased( const OIS::KeyEvent& e )
+    {
+        // If the escape key was pressed, quit the application:
+        if ( e.key == OIS::KC_ESCAPE )
+            mIsClosed = true;
+
+        return true;
     }
 
 } // namespace PGE

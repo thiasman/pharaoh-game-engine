@@ -68,6 +68,7 @@
 		<Unit filename="include\PgeEnums.h" />
 		<Unit filename="include\PgeException.h" />
 		<Unit filename="include\PgeGameStateManager.h" />
+		<Unit filename="include\PgeInputManager.h" />
 		<Unit filename="include\PgeMath.h" />
 		<Unit filename="include\PgeMatrix2D.h" />
 		<Unit filename="include\PgeMatrix3D.h" />
@@ -94,6 +95,7 @@
 		<Unit filename="src\PgeBaseInputListener.cpp" />
 		<Unit filename="src\PgeBaseWindowSystem.cpp" />
 		<Unit filename="src\PgeGameStateManager.cpp" />
+		<Unit filename="src\PgeInputManager.cpp" />
 		<Unit filename="src\PgeMath.cpp" />
 		<Unit filename="src\PgeMatrix2D.cpp" />
 		<Unit filename="src\PgeMatrix3D.cpp" />

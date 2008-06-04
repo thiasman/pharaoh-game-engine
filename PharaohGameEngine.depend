@@ -898,15 +898,12 @@
 
 1212077856 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\pgebasewindowlistener.h
 
-1212186549 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebaseapplication.h
+1212602876 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebaseapplication.h
 	"PgeSharedPtr.h"
 	"PgeBaseWindowListener.h"
-	"PgeGameManager.h"
+	"PgeBaseInputListener.h"
+	"PgeInputManager.h"
 	"PgeTimer.h"
-	<OISMouse.h>
-	<OISKeyboard.h>
-	<OISJoyStick.h>
-	<OISInputManager.h>
 
 1212175342 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgesharedptr.h
 	"PgePlatform.h"
@@ -949,7 +946,7 @@
 	"PgeTypes.h"
 	"PgeMath.h"
 
-1212175335 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgemath.h
+1212589634 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgemath.h
 	"PgeTypes.h"
 	<limits>
 	<math.h>
@@ -968,7 +965,7 @@
 1212175339 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgeplatformfactory.h
 	"PgePlatform.h"
 
-1212184796 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgebaseapplication.cpp
+1212603149 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgebaseapplication.cpp
 	"PgePlatform.h"
 	"version.h"
 	"PgeTypes.h"
@@ -979,9 +976,10 @@
 	"PgePoint2D.h"
 	"PgeMatrix2D.h"
 	"PgeMath.h"
+	"cmd/StringUtil.h"
 	"cmd/LogFileManager.h"
 
-1212184622 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\version.h
+1212603216 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\version.h
 
 1212185550 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebasewindowsystem.h
 	<string>
@@ -1052,12 +1050,15 @@
 1212175517 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgebasegameengine.cpp
 	"PgeBaseGameEngine.h"
 
-1212175518 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgebasegamestate.cpp
+1212590533 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgebasegamestate.cpp
 	"PgeBaseGameState.h"
+	"PgeMath.h"
 
-1212182337 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebasegamestate.h
+1212601925 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebasegamestate.h
 	"PgePlatform.h"
 	"PgeTypes.h"
+	"PgeBaseInputListener.h"
+	"PgeInputManager.h"
 
 1212185551 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgebasewindowsystem.cpp
 	"version.h"
@@ -1068,7 +1069,7 @@
 1212175520 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgegamemanager.cpp
 	"PgeGameManager.h"
 
-1212175521 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgemath.cpp
+1212589923 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgemath.cpp
 	"PgeMath.h"
 	<math.h>
 	<stdlib.h>
@@ -1148,25 +1149,29 @@
 	<gl/gl.h>
 	<gl/glu.h>
 
-1212184567 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\demos\basictest\demogamestate.h
+1212602687 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\demos\basictest\demogamestate.h
 	"PgePlatform.h"
 	"PgeTypes.h"
 	"PgeBaseGameState.h"
+	"cmd/LogFileManager.h"
 
-1212184796 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgegamestatemanager.cpp
+1212603149 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgegamestatemanager.cpp
 	"PgeGameStateManager.h"
 	"PgeBaseWindowSystem.h"
 	"cmd/LogFileManager.h"
 
-1212186363 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgegamestatemanager.h
+1212603149 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgegamestatemanager.h
 	<vector>
 	"PgeTypes.h"
 	"PgeSharedPtr.h"
 	"PgeException.h"
 	"PgeBaseGameState.h"
 	"PgeBaseWindowListener.h"
+	"PgeBaseInputListener.h"
+	"PgeInputManager.h"
+	"cmd/LogFileManager.h"
 
-1212186528 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\demos\basictest\demoapp.h
+1212602195 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\demos\basictest\demoapp.h
 	"PgeBaseApplication.h"
 	"PgeSharedPtr.h"
 	"PgeGameStateManager.h"
@@ -1474,5 +1479,32 @@
 	<OISInputManager.h>
 
 1212420106 source:c:\sdks\pharaohgameengine\src\pgebaseinputlistener.cpp
+	"PgeBaseInputListener.h"
+
+1212602567 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebaseinputlistener.h
+	<vector>
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeSharedPtr.h"
+	<OISMouse.h>
+	<OISKeyboard.h>
+	<OISJoyStick.h>
+	<OISInputManager.h>
+
+1212601926 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgebaseinputlistener.cpp
+	"PgeBaseInputListener.h"
+
+1212601925 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgeinputmanager.h
+	<map>
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeSharedPtr.h"
+	<OISMouse.h>
+	<OISKeyboard.h>
+	<OISJoyStick.h>
+	<OISInputManager.h>
+
+1212602688 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgeinputmanager.cpp
+	"PgeInputManager.h"
 	"PgeBaseInputListener.h"
 
