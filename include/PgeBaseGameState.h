@@ -28,7 +28,7 @@ namespace PGE
             class.  The base state manager automatically attaches the states as
             input listeners, so no further work is necessary.
     */
-    class BaseGameState : public BaseInputListener
+    class _PgeExport BaseGameState : public BaseInputListener
     {
     public:
         BaseGameState();
@@ -80,7 +80,7 @@ namespace PGE
             the state with a type, such as PAUSE, which will be passed through
             to this factory to create a new pause state.
     */
-    class GameStateFactory
+    class _PgeExport GameStateFactory
     {
     public:
         /** Constructory */

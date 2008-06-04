@@ -52,7 +52,7 @@ namespace PGE
             listeners, and the events will be pumped through all attached
             listeners.
     */
-    class InputManager : public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener
+    class _PgeExport InputManager : public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener
     {
     public:
         /** Destructor */

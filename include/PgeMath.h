@@ -232,7 +232,7 @@ namespace PGE
             method <code>GetRandomString</code>.  To get a string using custom
             characters, the class must be instantiated.
     */
-    class RandomString
+    class _PgeExport RandomString
     {
     private:
         static const String DefaultChars;

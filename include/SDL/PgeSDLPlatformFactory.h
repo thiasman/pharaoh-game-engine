@@ -20,7 +20,7 @@ namespace PGE
         The SDL platform factory generates the platform-specific objects for
         using SDL.
     */
-    class SDLPlatformFactory : public PlatformFactory
+    class _PgeExport SDLPlatformFactory : public PlatformFactory
     {
     public:
         SDLPlatformFactory();
