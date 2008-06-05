@@ -53,9 +53,9 @@ namespace PGE
             mMouse->capture();
         if ( mJoySticks.size() > 0 )
         {
-            mJoyStickIter       = mJoySticks.begin();
-            mJoyStickIterEnd    = mJoySticks.end();
-            while ( mJoyStickIter != mJoyStickIterEnd )
+            mJoyStickIter   = mJoySticks.begin();
+            mJoyStickEnd    = mJoySticks.end();
+            while ( mJoyStickIter != mJoyStickEnd )
             {
                 (*mJoyStickIter)->capture();
                 ++mJoyStickIter;
@@ -109,11 +109,31 @@ namespace PGE
             mOISInputManager = ( OIS::InputManager::createInputSystem( winHandle ) );
             mOISInputManager->enableAddOnFactory( OIS::InputManager::AddOn_All );
 
-            mKeyboard = KeyboardPtr( (OIS::Keyboard*)mOISInputManager->createInputObject( OIS::OISKeyboard, true ) );
-            mKeyboard->setEventCallback( this );
+            if ( mOISInputManager->getNumberOfDevices( OIS::OISKeyboard ) > 0 )
+            {
+                mKeyboard = KeyboardPtr( (OIS::Keyboard*)mOISInputManager->createInputObject( OIS::OISKeyboard, true ) );
+                mKeyboard->setEventCallback( this );
+            }
+            if ( mOISInputManager->getNumberOfDevices( OIS::OISMouse ) > 0 )
+            {
+                mMouse = MousePtr( (OIS::Mouse*)mOISInputManager->createInputObject( OIS::OISMouse, true ) );
+                mMouse->setEventCallback( this );
+            }
+            if ( mOISInputManager->getNumberOfDevices( OIS::OISJoyStick ) > 0 )
+            {
+                // Resize the joystick array to hold them all
+                mJoySticks.resize( mOISInputManager->getNumberOfDevices( OIS::OISJoyStick ) );
 
-            mMouse = MousePtr( (OIS::Mouse*)mOISInputManager->createInputObject( OIS::OISMouse, true ) );
-            mMouse->setEventCallback( this );
+                // Create the joysticks
+                mJoyStickIter = mJoySticks.begin();
+                mJoyStickEnd  = mJoySticks.end();
+                while ( mJoyStickIter != mJoyStickEnd )
+                {
+                    (*mJoyStickIter) = JoyStickPtr( static_cast< OIS::JoyStick* >( mOISInputManager->createInputObject( OIS::OISJoyStick, true ) ) );
+                    (*mJoyStickIter)->setEventCallback( this );
+                    ++mJoyStickIter;
+                }
+            }
         }
     }
 
@@ -126,11 +146,31 @@ namespace PGE
             mOISInputManager = ( OIS::InputManager::createInputSystem( pl ) );
             mOISInputManager->enableAddOnFactory( OIS::InputManager::AddOn_All );
 
-            mKeyboard = KeyboardPtr( (OIS::Keyboard*)mOISInputManager->createInputObject( OIS::OISKeyboard, true ) );
-            mKeyboard->setEventCallback( this );
+            if ( mOISInputManager->getNumberOfDevices( OIS::OISKeyboard ) > 0 )
+            {
+                mKeyboard = KeyboardPtr( (OIS::Keyboard*)mOISInputManager->createInputObject( OIS::OISKeyboard, true ) );
+                mKeyboard->setEventCallback( this );
+            }
+            if ( mOISInputManager->getNumberOfDevices( OIS::OISMouse ) > 0 )
+            {
+                mMouse = MousePtr( (OIS::Mouse*)mOISInputManager->createInputObject( OIS::OISMouse, true ) );
+                mMouse->setEventCallback( this );
+            }
+            if ( mOISInputManager->getNumberOfDevices( OIS::OISJoyStick ) > 0 )
+            {
+                // Resize the joystick array to hold them all
+                mJoySticks.resize( mOISInputManager->getNumberOfDevices( OIS::OISJoyStick ) );
 
-            mMouse = MousePtr( (OIS::Mouse*)mOISInputManager->createInputObject( OIS::OISMouse, true ) );
-            mMouse->setEventCallback( this );
+                // Create the joysticks
+                mJoyStickIter = mJoySticks.begin();
+                mJoyStickEnd  = mJoySticks.end();
+                while ( mJoyStickIter != mJoyStickEnd )
+                {
+                    (*mJoyStickIter) = JoyStickPtr( static_cast< OIS::JoyStick* >( mOISInputManager->createInputObject( OIS::OISJoyStick, true ) ) );
+                    (*mJoyStickIter)->setEventCallback( this );
+                    ++mJoyStickIter;
+                }
+            }
         }
     }
 
