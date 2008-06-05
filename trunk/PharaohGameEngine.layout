@@ -4,11 +4,11 @@
 	<File name="Demos\BasicTest\DemoApp.h" open="1" top="0" tabpos="7">
 		<Cursor position="518" topLine="11" />
 	</File>
-	<File name="Demos\BasicTest\DemoGameState.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="1078" topLine="54" />
+	<File name="Demos\BasicTest\DemoGameState.cpp" open="1" top="1" tabpos="10">
+		<Cursor position="4982" topLine="141" />
 	</File>
 	<File name="Demos\BasicTest\DemoGameState.h" open="1" top="0" tabpos="9">
-		<Cursor position="3961" topLine="96" />
+		<Cursor position="2191" topLine="50" />
 	</File>
 	<File name="Demos\BasicTest\DemoGameStateFactory.h" open="1" top="0" tabpos="14">
 		<Cursor position="531" topLine="0" />
@@ -23,7 +23,7 @@
 		<Cursor position="2930" topLine="67" />
 	</File>
 	<File name="include\PgeBaseInputListener.h" open="1" top="0" tabpos="18">
-		<Cursor position="3845" topLine="68" />
+		<Cursor position="2988" topLine="68" />
 	</File>
 	<File name="include\PgeBaseWindowListener.h" open="1" top="0" tabpos="17">
 		<Cursor position="1898" topLine="47" />
@@ -73,7 +73,7 @@
 	<File name="src\PgeGameStateManager.cpp" open="1" top="0" tabpos="12">
 		<Cursor position="6394" topLine="171" />
 	</File>
-	<File name="src\PgeInputManager.cpp" open="1" top="1" tabpos="21">
+	<File name="src\PgeInputManager.cpp" open="1" top="0" tabpos="21">
 		<Cursor position="6591" topLine="150" />
 	</File>
 	<File name="src\PgeMath.cpp" open="0" top="0" tabpos="0">

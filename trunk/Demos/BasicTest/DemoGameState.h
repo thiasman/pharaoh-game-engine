@@ -46,70 +46,31 @@ public:
     /** Render the current frame. */
     virtual void Render();
 
-    //keyPressed----------------------------------------------------------------
-    bool KeyPressed( const OIS::KeyEvent& e )
-    {
-        return true;
-    }
+    /** Keyboard key pressed */
+    bool KeyPressed( const OIS::KeyEvent& e );
 
-    //keyReleased---------------------------------------------------------------
-    bool KeyReleased( const OIS::KeyEvent& e )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-        lfm << "Key: " << e.key << ", " << ((OIS::Keyboard*)(e.device))->getAsString(e.key) << ", Character = " << (char)e.text << std::endl;
+    /** Keyboard key released */
+    bool KeyReleased( const OIS::KeyEvent& e );
 
-        return true;
-    }
+    /** Mouse moved */
+    virtual bool MouseMoved( const OIS::MouseEvent& e );
+    /** Mouse button pressed */
+    virtual bool MousePressed( const OIS::MouseEvent& e, OIS::MouseButtonID id );
+    /** Mouse button released */
+    virtual bool MouseReleased( const OIS::MouseEvent& e, OIS::MouseButtonID id );
 
     /** Joystick axis moved */
-    bool AxisMoved( const OIS::JoyStickEvent& e, int axis )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-		lfm << e.device->vendor() << ". Axis # " << axis << " Value: " << e.state.mAxes[axis].abs << std::endl;
-        return true;
-    }
+    bool AxisMoved( const OIS::JoyStickEvent& e, int axis );
     /** Joystick pov moved */
-    bool PovMoved( const OIS::JoyStickEvent& e, int index )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-		lfm << e.device->vendor() << ". POV " << std::endl;
-        return true;
-    }
+    bool PovMoved( const OIS::JoyStickEvent& e, int index );
     /** Joystick 3D vector moved */
-    bool Vector3Moved( const OIS::JoyStickEvent& e, int index )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-		lfm << e.device->vendor() << ". Vector3 " << std::endl;
-        return true;
-    }
+    bool Vector3Moved( const OIS::JoyStickEvent& e, int index );
     /** Joystick slider moved */
-    bool SliderMoved( const OIS::JoyStickEvent& e, int index )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-		lfm << e.device->vendor() << ". Slider " << std::endl;
-        return true;
-    }
+    bool SliderMoved( const OIS::JoyStickEvent& e, int index );
     /** Joystick button pressed */
-    bool ButtonPressed( const OIS::JoyStickEvent& e, int button )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-		lfm << e.device->vendor() << ". Button Pressed # = " << button << std::endl;
-        return true;
-    }
+    bool ButtonPressed( const OIS::JoyStickEvent& e, int button );
     /** Joystick button released */
-    bool ButtonReleased( const OIS::JoyStickEvent& e, int button )
-    {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-		lfm << e.device->vendor() << ". Button Released # = " << button << std::endl;
-        return true;
-    }
+    bool ButtonReleased( const OIS::JoyStickEvent& e, int button );
 
 protected:
 
