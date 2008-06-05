@@ -62,6 +62,55 @@ public:
         return true;
     }
 
+    /** Joystick axis moved */
+    bool AxisMoved( const OIS::JoyStickEvent& e, int axis )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
+		lfm << e.device->vendor() << ". Axis # " << axis << " Value: " << e.state.mAxes[axis].abs << std::endl;
+        return true;
+    }
+    /** Joystick pov moved */
+    bool PovMoved( const OIS::JoyStickEvent& e, int index )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
+		lfm << e.device->vendor() << ". POV " << std::endl;
+        return true;
+    }
+    /** Joystick 3D vector moved */
+    bool Vector3Moved( const OIS::JoyStickEvent& e, int index )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
+		lfm << e.device->vendor() << ". Vector3 " << std::endl;
+        return true;
+    }
+    /** Joystick slider moved */
+    bool SliderMoved( const OIS::JoyStickEvent& e, int index )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
+		lfm << e.device->vendor() << ". Slider " << std::endl;
+        return true;
+    }
+    /** Joystick button pressed */
+    bool ButtonPressed( const OIS::JoyStickEvent& e, int button )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
+		lfm << e.device->vendor() << ". Button Pressed # = " << button << std::endl;
+        return true;
+    }
+    /** Joystick button released */
+    bool ButtonReleased( const OIS::JoyStickEvent& e, int button )
+    {
+        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
+		lfm << e.device->vendor() << ". Button Released # = " << button << std::endl;
+        return true;
+    }
+
 protected:
 
 private:

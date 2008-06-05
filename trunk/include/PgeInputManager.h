@@ -147,7 +147,7 @@ namespace PGE
         MousePtr        mMouse;         /**< Active mouse */
         std::vector< JoyStickPtr > mJoySticks;  /**< Array of all joysticks attached to the system. */
         std::vector< JoyStickPtr >::iterator    mJoyStickIter;
-        std::vector< JoyStickPtr >::iterator    mJoyStickIterEnd;
+        std::vector< JoyStickPtr >::iterator    mJoyStickEnd;
 
         /** There can be multiple input listeners attached to the input manager.
             The input manager actually registers itself as a listener to OIS,
