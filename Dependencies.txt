@@ -7,3 +7,10 @@ to a library, make sure the DLL is accessible by the application.
 * OpenGL (http://www.opengl.org)
 * TinyXML (http://www.grinninglizard.com/tinyxml)
 * OIS - Object Oriented Input System (http://sourceforge.net/projects/wgois)
+
+
+The following libraries have implementations in the core engine, but are not
+necessarily required.  The engine can be used without them completely, or they
+can be replaced by another library.
+
+* Audiere (http://audiere.sourceforge.net/)
