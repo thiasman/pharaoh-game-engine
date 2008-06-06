@@ -17,6 +17,9 @@
 #include "PgeBaseWindowSystem.h"
 #include "version.h"
 
+#include "PgeAudioManager.h"
+#include "../AudioSystems/Audiere/PgeAudiereAudioSystem.h"
+
 #include "DemoGameState.h"
 #include "DemoGameStateFactory.h"
 
@@ -51,6 +54,10 @@ public:
         mStateManager->StartGame( "demo" );
 
         InputManager* inputMgr = InputManager::getSingletonPtr();
+        AudioManager* audioMgr = AudioManager::getSingletonPtr();
+        int soundIndex = audioMgr->CreateSound2D( "media/boom.mp3", true );
+        int channelIndex = 0;
+        audioMgr->Play( soundIndex, channelIndex );
         while ( !mStateManager->IsClosing() )
         {
             // Capture input:
@@ -91,6 +98,11 @@ protected:
             // Add the state manager as an input listener
             assert( !mStateManager.IsNull() );
             InputManager::getSingletonPtr()->AddInputListener( mStateManager.Get(), "State Manager" );
+
+            // Initialize the audio manager:
+            //BaseAudioSystem* audioSys = new AudiereAudioSystem();
+            //AudioManager::getSingletonPtr()->Init( audioSys );
+            AudioManager::getSingletonPtr()->Init( new AudiereAudioSystem() );
         }
         catch ( std::exception& e )
         {

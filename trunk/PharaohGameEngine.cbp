@@ -51,13 +51,17 @@
 			<Add library="dxguid" />
 			<Add library="opengl32" />
 			<Add library="glu32" />
+			<Add library="audiere" />
 			<Add directory="$(#sdl.lib)" />
 		</Linker>
+		<Unit filename="AudioSystems\Audiere\PgeAudiereAudioSystem.cpp" />
+		<Unit filename="AudioSystems\Audiere\PgeAudiereAudioSystem.h" />
 		<Unit filename="Demos\BasicTest\DemoApp.h" />
 		<Unit filename="Demos\BasicTest\DemoGameState.cpp" />
 		<Unit filename="Demos\BasicTest\DemoGameState.h" />
 		<Unit filename="Demos\BasicTest\DemoGameStateFactory.h" />
 		<Unit filename="Dependencies.txt" />
+		<Unit filename="include\PgeAudioManager.h" />
 		<Unit filename="include\PgeBaseApplication.h" />
 		<Unit filename="include\PgeBaseEntity.h" />
 		<Unit filename="include\PgeBaseEntityInterface.h" />
@@ -88,6 +92,7 @@
 		<Unit filename="include\cmd\StringUtil.h" />
 		<Unit filename="include\version.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src\PgeAudioManager.cpp" />
 		<Unit filename="src\PgeBaseApplication.cpp" />
 		<Unit filename="src\PgeBaseEntity.cpp" />
 		<Unit filename="src\PgeBaseGameState.cpp" />

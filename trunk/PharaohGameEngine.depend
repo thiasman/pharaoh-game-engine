@@ -979,7 +979,7 @@
 	"cmd/StringUtil.h"
 	"cmd/LogFileManager.h"
 
-1212672590 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\version.h
+1212788815 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\version.h
 
 1212185550 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebasewindowsystem.h
 	<string>
@@ -1171,13 +1171,15 @@
 	"PgeInputManager.h"
 	"cmd/LogFileManager.h"
 
-1212602195 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\demos\basictest\demoapp.h
+1212789202 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\demos\basictest\demoapp.h
 	"PgeBaseApplication.h"
 	"PgeSharedPtr.h"
 	"PgeGameStateManager.h"
 	"PgePlatformFactory.h"
 	"PgeBaseWindowSystem.h"
 	"version.h"
+	"PgeAudioManager.h"
+	"../AudioSystems/Audiere/PgeAudiereAudioSystem.h"
 	"DemoGameState.h"
 	"DemoGameStateFactory.h"
 	"cmd/LogFileManager.h"
@@ -1525,4 +1527,21 @@
 	<OISKeyboard.h>
 	<OISJoyStick.h>
 	<OISInputManager.h>
+
+1212787727 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.cpp
+	"PgeAudiereAudioSystem.h"
+
+1212786794 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.h
+	"PgeAudioManager.h"
+	"audiere.h"
+
+1212789323 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgeaudiomanager.h
+	<vector>
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeSharedPtr.h"
+	"PgePoint3D.h"
+
+1212788427 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgeaudiomanager.cpp
+	"PgeAudioManager.h"
 
