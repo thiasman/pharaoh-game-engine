@@ -56,7 +56,7 @@ namespace PGE
         /** Load the image into memory.  If the image is already loaded, it does
             nothing.
         */
-        bool Load();
+        bool Load( GLuint minFilter, GLuint maxFilter, bool forceMipmap );
 
         /** Unload the image from memory */
         bool Unload();
@@ -103,7 +103,7 @@ namespace PGE
             first added.  If the image exists and is already loaded, it is not
             loaded again.
         */
-        bool LoadImage( const String& imageFileName );
+        bool LoadImage( const String& imageFileName, GLuint minFilter = GL_LINEAR, GLuint maxFilter = GL_LINEAR, bool forceMipmap = false );
 
         /** Get a pointer to the texture item */
         TextureItem* GetTextureItemPtr( const String& textureName );

@@ -14,6 +14,7 @@
 #include "PgeBaseWindowListener.h"
 #include "PgeBaseInputListener.h"
 #include "PgeInputManager.h"
+#include "PgeTextureManager.h"
 #include "PgeTimer.h"
 
 namespace PGE
@@ -80,6 +81,8 @@ namespace PGE
 
         Timer           mTimer;         /**< Timer used by the application.  Individual states may use additional timers. */
         size_t          mWindowHandle;  /**< Id of the window associated with this app. */
+
+        TextureManager* mTextureManager;    /**< Instantiation of the texture manager */
 
         /** Perform additional initialization for the application-specific
             case.

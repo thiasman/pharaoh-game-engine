@@ -5,16 +5,16 @@
 		<Cursor position="2481" topLine="34" />
 	</File>
 	<File name="AudioSystems\Audiere\PgeAudiereAudioSystem.h" open="1" top="0" tabpos="27">
-		<Cursor position="1554" topLine="50" />
+		<Cursor position="290" topLine="0" />
 	</File>
 	<File name="Demos\BasicTest\DemoApp.h" open="1" top="0" tabpos="7">
 		<Cursor position="1837" topLine="46" />
 	</File>
-	<File name="Demos\BasicTest\DemoGameState.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="1604" topLine="63" />
+	<File name="Demos\BasicTest\DemoGameState.cpp" open="1" top="1" tabpos="10">
+		<Cursor position="3899" topLine="40" />
 	</File>
 	<File name="Demos\BasicTest\DemoGameState.h" open="1" top="0" tabpos="9">
-		<Cursor position="2228" topLine="58" />
+		<Cursor position="2228" topLine="48" />
 	</File>
 	<File name="Demos\BasicTest\DemoGameStateFactory.h" open="1" top="0" tabpos="14">
 		<Cursor position="531" topLine="0" />
@@ -28,14 +28,20 @@
 	<File name="include\PgeBaseApplication.h" open="1" top="0" tabpos="5">
 		<Cursor position="1268" topLine="14" />
 	</File>
+	<File name="include\PgeBaseEntity.h" open="0" top="0" tabpos="0">
+		<Cursor position="231" topLine="0" />
+	</File>
+	<File name="include\PgeBaseEntityInterface.h" open="0" top="0" tabpos="0">
+		<Cursor position="487" topLine="0" />
+	</File>
 	<File name="include\PgeBaseGameState.h" open="1" top="0" tabpos="8">
-		<Cursor position="2930" topLine="67" />
+		<Cursor position="2930" topLine="64" />
 	</File>
 	<File name="include\PgeBaseInputListener.h" open="1" top="0" tabpos="18">
-		<Cursor position="2988" topLine="68" />
+		<Cursor position="383" topLine="3" />
 	</File>
 	<File name="include\PgeBaseWindowListener.h" open="1" top="0" tabpos="17">
-		<Cursor position="1898" topLine="47" />
+		<Cursor position="1898" topLine="44" />
 	</File>
 	<File name="include\PgeBaseWindowSystem.h" open="1" top="0" tabpos="15">
 		<Cursor position="374" topLine="8" />
@@ -50,7 +56,7 @@
 		<Cursor position="9332" topLine="231" />
 	</File>
 	<File name="include\PgePlatformFactory.h" open="1" top="0" tabpos="26">
-		<Cursor position="0" topLine="20" />
+		<Cursor position="0" topLine="19" />
 	</File>
 	<File name="include\PgeSharedPtr.h" open="1" top="0" tabpos="30">
 		<Cursor position="1530" topLine="28" />
@@ -65,7 +71,7 @@
 		<Cursor position="0" topLine="7" />
 	</File>
 	<File name="include\SDL\PgeSDLPlatformFactory.h" open="1" top="0" tabpos="3">
-		<Cursor position="467" topLine="7" />
+		<Cursor position="467" topLine="5" />
 	</File>
 	<File name="include\SDL\PgeSDLWindowSystem.h" open="1" top="0" tabpos="4">
 		<Cursor position="373" topLine="4" />
@@ -95,7 +101,7 @@
 		<Cursor position="2474" topLine="58" />
 	</File>
 	<File name="src\PgeGameStateManager.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="6394" topLine="171" />
+		<Cursor position="6394" topLine="168" />
 	</File>
 	<File name="src\PgeInputManager.cpp" open="1" top="0" tabpos="21">
 		<Cursor position="6591" topLine="7" />
@@ -103,7 +109,7 @@
 	<File name="src\PgeMath.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="20441" topLine="649" />
 	</File>
-	<File name="src\PgeTextureManager.cpp" open="1" top="1" tabpos="32">
+	<File name="src\PgeTextureManager.cpp" open="1" top="0" tabpos="32">
 		<Cursor position="767" topLine="21" />
 	</File>
 	<File name="src\SDL\PgeSDLPlatformFactory.cpp" open="1" top="0" tabpos="1">

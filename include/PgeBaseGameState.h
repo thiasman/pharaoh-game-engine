@@ -63,6 +63,9 @@ namespace PGE
         /** Get the state's ID string */
         String GetID() const                    { return mID; }
 
+        /** Set the position and size of the display */
+        virtual void SetWindowSize( UInt32 w, UInt32 h )    { }
+
     protected:
 
     private:

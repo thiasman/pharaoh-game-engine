@@ -10,11 +10,7 @@
 #ifndef PGEBASEENTITY_H_INCLUDED
 #define PGEBASEENTITY_H_INCLUDED
 
-#ifdef __APPLE__
 #include <SDL/SDL.h>
-#else
-#include <SDL.h>
-#endif
 
 #include "PgeBaseEntityInterface.h"
 #include "PgeTypes.h"

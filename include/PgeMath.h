@@ -215,6 +215,15 @@ namespace PGE
         static void PolarToRect( Real ang, Real dist, Int* x, Int* y, Int centerX, Int centerY );
         static void PolarToRect( Real ang, Real dist, Real* x, Real* y, Real centerX, Real centerY );
 
+        /** Find the most significant bit of a number */
+        static UInt32 FindMSB( UInt32 val );
+
+        /** Test whether a number is a power of 2 */
+        static bool IsPowerOf2( UInt32 val );
+
+        /** Get the next value, after a given number, that is a power of 2 */
+        static UInt32 FindNextPowerOf2( UInt32 start );
+
     }; // class Math
 
     /** @class RandomString

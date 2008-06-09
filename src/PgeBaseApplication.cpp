@@ -24,7 +24,8 @@
 namespace PGE
 {
     BaseApplication::BaseApplication( PlatformFactory* factory )
-        : mPlatformFactory( factory )
+        : mPlatformFactory( factory ),
+          mTextureManager( 0 )
     {
         //ctor
     }
@@ -32,6 +33,7 @@ namespace PGE
     BaseApplication::~BaseApplication()
     {
         //dtor
+        delete mTextureManager;
     }
 
     //Init----------------------------------------------------------------------
@@ -55,6 +57,9 @@ namespace PGE
         // Initialize the input manager:
         InputManager* inputMgr = InputManager::getSingletonPtr();
         inputMgr->Init( pl );
+
+        // Initialize the texture manager:
+        mTextureManager = new TextureManager();
 
         // Perform additional initialization:
         AdditionalInit();
