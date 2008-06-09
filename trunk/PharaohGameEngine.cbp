@@ -52,6 +52,9 @@
 			<Add library="opengl32" />
 			<Add library="glu32" />
 			<Add library="audiere" />
+			<Add library="devIL" />
+			<Add library="ILU" />
+			<Add library="ILUT" />
 			<Add directory="$(#sdl.lib)" />
 		</Linker>
 		<Unit filename="AudioSystems\Audiere\PgeAudiereAudioSystem.cpp" />

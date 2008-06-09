@@ -55,7 +55,7 @@ public:
 
         InputManager* inputMgr = InputManager::getSingletonPtr();
         AudioManager* audioMgr = AudioManager::getSingletonPtr();
-        int soundIndex = audioMgr->CreateSound2D( "media/boom.mp3", true );
+        int soundIndex = audioMgr->CreateStream2D( "media/Mists_of_Time.ogg", true );
         int channelIndex = 0;
         audioMgr->Play( soundIndex, channelIndex );
         while ( !mStateManager->IsClosing() )

@@ -75,6 +75,7 @@ public:
 protected:
 
 private:
+    PGE::String  mTextureName;
 };
 
 #endif // DEMOGAMESTATE_H
