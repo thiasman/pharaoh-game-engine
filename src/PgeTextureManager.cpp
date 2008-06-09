@@ -2,11 +2,15 @@
 /*! $Id$
  *  @file   PgeTextureManager.h
  *  @author Chad M. Draper
- *  @date   May 8, 2007
+ *  @date   May 8, 2008
  *
  */
 
 #include "PgeTextureManager.h"
+
+#include <gl/gl.h>
+#include <il/il.h>
+#include <il/ilu.h>
 
 namespace PGE
 {
@@ -16,14 +20,34 @@ namespace PGE
 
     TextureItem::TextureItem( const String& imageFileName )
         : mIsLoaded( false ),
-          mImageFileName( imageFileName )
+          mImageFileName( imageFileName ),
+          mWidth( 0 ), mHeight( 0 ),
+          mTextureID( 0 )
     {
     }
 
     //Load----------------------------------------------------------------------
     bool TextureItem::Load()
     {
-        mIsLoaded = true;
+        ILuint imageID;
+        ilGenImages( 1, &imageID );
+        ilBindImage( imageID );
+        if ( ilLoadImage( const_cast< char* >( mImageFileName.c_str() ) ) )
+        {
+            // Generate the GL texture
+            glGenTextures( 1, &mTextureID );
+            mWidth  = ilGetInteger( IL_IMAGE_WIDTH );
+            mHeight = ilGetInteger( IL_IMAGE_HEIGHT );
+
+            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+            glTexImage2D( GL_TEXTURE_2D, 0, ilGetInteger( IL_IMAGE_BPP ), mWidth, mHeight, 0, ilGetInteger( IL_IMAGE_FORMAT ), GL_UNSIGNED_BYTE, ilGetData() );
+            mIsLoaded = true;
+
+        }
+
+        ilDeleteImages( 1, &imageID );
 
         return true;
     }
@@ -54,6 +78,9 @@ namespace PGE
 
     TextureManager::TextureManager()
     {
+        // Initialize the image loading library
+        assert( !( ilGetInteger( IL_VERSION_NUM ) < IL_VERSION ) );
+        ilInit();
     }
 
     TextureManager::~TextureManager()

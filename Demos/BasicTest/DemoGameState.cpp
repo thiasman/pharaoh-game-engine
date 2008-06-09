@@ -7,12 +7,17 @@
  */
 
 #include "DemoGameState.h"
+#include "PgeAudioManager.h"
+#include "PgeTextureManager.h"
 
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include <il/il.h>
+#include <il/ilu.h>
 
 DemoGameState::DemoGameState()
-    : PGE::BaseGameState()
+    : PGE::BaseGameState(),
+      mTextureName( "media/puppies.jpg" )
 {
     //ctor
 }
@@ -44,6 +49,8 @@ void DemoGameState::Init()
     // Reset the modelview matrix:
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
+
+    PGE::TextureManager::GetSingleton().LoadImage( mTextureName );
 }
 
 void DemoGameState::Destroy()
@@ -66,17 +73,24 @@ void DemoGameState::Update( PGE::Real32 elapsedMS )
 
 void DemoGameState::Render()
 {
+    PGE::TextureItem* texItem = PGE::TextureManager::GetSingleton().GetTextureItemPtr( mTextureName );
+    PGE::UInt32 texID = texItem->GetID();
+    glBindTexture( GL_TEXTURE_2D, texID );
     glBegin( GL_QUADS );
 
+        glTexCoord2i( 0, 0 );
         glColor3f( 1.0f, 0.0f, 0.0f );
         glVertex2f( -0.5f, -0.5f );
 
+        glTexCoord2i( 1, 0 );
         glColor3f( 0.0f, 1.0f, 0.0f );
         glVertex2f( 0.5f, -0.5f );
 
+        glTexCoord2i( 1, 1 );
         glColor3f( 0.0f, 0.0f, 1.0f );
         glVertex2f( 0.5f, 0.5f );
 
+        glTexCoord2i( 0, 1 );
         glColor3f( 1.0f, 1.0f, 1.0f );
         glVertex2f( -0.5f, 0.5f );
 
@@ -181,6 +195,12 @@ bool DemoGameState::ButtonPressed( const OIS::JoyStickEvent& e, int button )
     cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
     cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
     lfm << e.device->vendor() << ". Button Pressed # = " << button << std::endl;
+
+    PGE::AudioManager* audioMgr = PGE::AudioManager::getSingletonPtr();
+    int soundIndex = audioMgr->CreateSound2D( "media/boom.mp3", false );
+    int channelIndex = 2;
+    audioMgr->Play( soundIndex, channelIndex );
+
     return true;
 }
 /** Joystick button released */

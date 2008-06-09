@@ -1189,12 +1189,16 @@
 	"PgeBaseGameState.h"
 	"DemoGameState.h"
 
-1212160083 source:c:\sdks\pharaohgameengine\demos\basictest\demogamestate.cpp
+1212952157 source:c:\sdks\pharaohgameengine\demos\basictest\demogamestate.cpp
 	"DemoGameState.h"
+	"PgeAudioManager.h"
+	"PgeTextureManager.h"
 	<gl/gl.h>
 	<gl/glu.h>
+	<il/il.h>
+	<il/ilu.h>
 
-1212599263 c:\sdks\pharaohgameengine\demos\basictest\demogamestate.h
+1212952014 c:\sdks\pharaohgameengine\demos\basictest\demogamestate.h
 	"PgePlatform.h"
 	"PgeTypes.h"
 	"PgeBaseGameState.h"
@@ -1273,13 +1277,15 @@
 1212160072 c:\sdks\pharaohgameengine\include\pgeplatformfactory.h
 	"PgePlatform.h"
 
-1212591833 c:\sdks\pharaohgameengine\demos\basictest\demoapp.h
+1212761058 c:\sdks\pharaohgameengine\demos\basictest\demoapp.h
 	"PgeBaseApplication.h"
 	"PgeSharedPtr.h"
 	"PgeGameStateManager.h"
 	"PgePlatformFactory.h"
 	"PgeBaseWindowSystem.h"
 	"version.h"
+	"PgeAudioManager.h"
+	"../AudioSystems/Audiere/PgeAudiereAudioSystem.h"
 	"DemoGameState.h"
 	"DemoGameStateFactory.h"
 	"cmd/LogFileManager.h"
@@ -1306,7 +1312,7 @@
 	"PgeTypes.h"
 	"PgeException.h"
 
-1212600029 c:\sdks\pharaohgameengine\include\version.h
+1212761392 c:\sdks\pharaohgameengine\include\version.h
 
 1212160083 c:\sdks\pharaohgameengine\demos\basictest\demogamestatefactory.h
 	"PgeTypes.h"
@@ -1441,14 +1447,18 @@
 1212160072 c:\sdks\pharaohgameengine\include\pgesingleton.h
 	"PgePlatform.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgetexturemanager.cpp
+1212952240 source:c:\sdks\pharaohgameengine\src\pgetexturemanager.cpp
 	"PgeTextureManager.h"
+	<gl/gl.h>
+	<il/il.h>
+	<il/ilu.h>
 
-1212160072 c:\sdks\pharaohgameengine\include\pgetexturemanager.h
+1212952296 c:\sdks\pharaohgameengine\include\pgetexturemanager.h
 	<map>
 	"PgeTypes.h"
 	"PgeSingleton.h"
 	"PgeSharedPtr.h"
+	<gl/gl.h>
 
 1212160079 source:c:\sdks\pharaohgameengine\src\pgetileengine.cpp
 	"PgeTileEngine.h"
@@ -1543,5 +1553,26 @@
 	"PgePoint3D.h"
 
 1212788427 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgeaudiomanager.cpp
+	"PgeAudioManager.h"
+
+1212759486 c:\sdks\pharaohgameengine\include\pgeaudiomanager.h
+	<vector>
+	"PgePlatform.h"
+	"PgeTypes.h"
+	"PgeSharedPtr.h"
+	"PgePoint3D.h"
+
+1212759544 c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.h
+	"PgeAudioManager.h"
+	"audiere.h"
+
+1212600028 source:c:\sdks\pharaohgameengine\src\pgeinputmanager.cpp
+	"PgeInputManager.h"
+	"PgeBaseInputListener.h"
+
+1212759544 source:c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.cpp
+	"PgeAudiereAudioSystem.h"
+
+1212759486 source:c:\sdks\pharaohgameengine\src\pgeaudiomanager.cpp
 	"PgeAudioManager.h"
 

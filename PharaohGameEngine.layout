@@ -8,13 +8,13 @@
 		<Cursor position="1554" topLine="50" />
 	</File>
 	<File name="Demos\BasicTest\DemoApp.h" open="1" top="0" tabpos="7">
-		<Cursor position="3064" topLine="86" />
+		<Cursor position="1837" topLine="46" />
 	</File>
 	<File name="Demos\BasicTest\DemoGameState.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="4982" topLine="141" />
+		<Cursor position="1604" topLine="63" />
 	</File>
 	<File name="Demos\BasicTest\DemoGameState.h" open="1" top="0" tabpos="9">
-		<Cursor position="2191" topLine="50" />
+		<Cursor position="2228" topLine="58" />
 	</File>
 	<File name="Demos\BasicTest\DemoGameStateFactory.h" open="1" top="0" tabpos="14">
 		<Cursor position="531" topLine="0" />
@@ -22,7 +22,7 @@
 	<File name="Dependencies.txt" open="1" top="0" tabpos="23">
 		<Cursor position="424" topLine="0" />
 	</File>
-	<File name="include\PgeAudioManager.h" open="1" top="1" tabpos="24">
+	<File name="include\PgeAudioManager.h" open="1" top="0" tabpos="24">
 		<Cursor position="4102" topLine="105" />
 	</File>
 	<File name="include\PgeBaseApplication.h" open="1" top="0" tabpos="5">
@@ -57,6 +57,12 @@
 	</File>
 	<File name="include\PgeSingleton.h" open="1" top="0" tabpos="29">
 		<Cursor position="916" topLine="27" />
+	</File>
+	<File name="include\PgeTextureManager.h" open="1" top="0" tabpos="31">
+		<Cursor position="1472" topLine="37" />
+	</File>
+	<File name="include\PgeTypes.h" open="1" top="0" tabpos="33">
+		<Cursor position="0" topLine="7" />
 	</File>
 	<File name="include\SDL\PgeSDLPlatformFactory.h" open="1" top="0" tabpos="3">
 		<Cursor position="467" topLine="7" />
@@ -96,6 +102,9 @@
 	</File>
 	<File name="src\PgeMath.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="20441" topLine="649" />
+	</File>
+	<File name="src\PgeTextureManager.cpp" open="1" top="1" tabpos="32">
+		<Cursor position="767" topLine="21" />
 	</File>
 	<File name="src\SDL\PgeSDLPlatformFactory.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="162" topLine="0" />

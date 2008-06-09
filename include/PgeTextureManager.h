@@ -16,6 +16,8 @@
 #include "PgeSingleton.h"
 #include "PgeSharedPtr.h"
 
+#include <gl/gl.h>
+
 namespace PGE
 {
     /** @class TextureItem
@@ -28,6 +30,9 @@ namespace PGE
     private:
         bool    mIsLoaded;              /**< Indicates if the image exists in memory */
         String  mImageFileName;         /**< Name of the image file */
+        UInt32  mWidth, mHeight;        /**< Dimensions of the texture */
+        GLuint  mTextureID;             /**< Id of the loaded texture */
+
 
     public:
         /** Constructor */
@@ -35,6 +40,15 @@ namespace PGE
 
         /** Get the name of the image */
         const String& GetImageName() const        { return mImageFileName; }
+
+        /** Get the image width */
+        UInt32 GetWidth() const             { return mWidth; }
+
+        /** Get the image width */
+        UInt32 GetHeight() const            { return mHeight; }
+
+        /** Get the texture ID */
+        GLuint GetID() const               { return mTextureID; }
 
         /** Get the load state */
         bool IsLoaded() const               { return mIsLoaded; }
