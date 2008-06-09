@@ -630,6 +630,34 @@ namespace PGE
         *y = centerY + dist * Math::Sin( ang );
     }
 
+    //FindMSB-------------------------------------------------------------------
+    UInt32 Math::FindMSB( UInt32 val )
+    {
+        int pos = 0;
+        while ( val >>= 1 )
+            ++pos;
+        return pos;
+    }
+
+    //IsPowerOf2----------------------------------------------------------------
+    bool Math::IsPowerOf2( UInt32 val )
+    {
+        if ( val )
+        {
+            return ( ( val & ( val - 1 ) ) == 0 );
+        }
+        return false;
+    }
+
+    //FindNextPowerOf2----------------------------------------------------------
+    UInt32 Math::FindNextPowerOf2( UInt32 start )
+    {
+        UInt32 msb = FindMSB( start );
+
+        // Shifting 1 to the left msb + 1 times will give the next power of 2
+        return ( 1 << ( msb + 1 ) );
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // RandomString
     ////////////////////////////////////////////////////////////////////////////
@@ -676,4 +704,5 @@ namespace PGE
         }
         return result;
     }
+
 }

@@ -19,6 +19,7 @@
 #include "PgeBaseWindowListener.h"
 #include "PgeBaseInputListener.h"
 #include "PgeInputManager.h"
+#include "PgePoint2D.h"
 
 #include "cmd/LogFileManager.h"
 
@@ -120,6 +121,7 @@ namespace PGE
 
     private:
         std::vector< StatePtr > mStates;
+        Point2D                 mDisplaySize;   /**< Size of the display area */
     };
 
 } // namespace PGE

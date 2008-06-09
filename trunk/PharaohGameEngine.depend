@@ -610,7 +610,7 @@
 	"PgeTypes.h"
 	"PgePoint2D.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_audio.h"
@@ -629,14 +629,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_main.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_stdinc.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -662,17 +662,17 @@
 	<stdlib.h>
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_config.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_config.h
 	"SDL_platform.h"
 	<stdarg.h>
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_platform.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_platform.h
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\begin_code.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\begin_code.h
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\close_code.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\close_code.h
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_audio.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -682,23 +682,23 @@
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_error.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_endian.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_endian.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_mutex.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_thread.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_mutex.h"
@@ -706,24 +706,24 @@
 	<process.h>
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_rwops.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_cdrom.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_cdrom.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_cpuinfo.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_events.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_active.h"
@@ -734,58 +734,58 @@
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_active.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_active.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_keyboard.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keysym.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_keysym.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_keysym.h
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_mouse.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_video.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_joystick.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_quit.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_loadso.h
-	"SDL_stdinc.h"
-	"SDL_error.h"
-	"begin_code.h"
-	"close_code.h"
-
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_timer.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1199055974 c:\sdks\sdl\1.2.13\include\sdl\sdl_version.h
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -890,7 +890,7 @@
 	"PgeSDLWindowSystem.h"
 	"../PgeException.h"
 
-1212160083 source:c:\sdks\pharaohgameengine\main.cpp
+1213017339 source:c:\sdks\pharaohgameengine\main.cpp
 	"include/PgeBaseApplication.h"
 	"include/SDL/PgeSDLPlatformFactory.h"
 	"Demos/BasicTest/DemoApp.h"
@@ -1189,7 +1189,7 @@
 	"PgeBaseGameState.h"
 	"DemoGameState.h"
 
-1212952157 source:c:\sdks\pharaohgameengine\demos\basictest\demogamestate.cpp
+1213045454 source:c:\sdks\pharaohgameengine\demos\basictest\demogamestate.cpp
 	"DemoGameState.h"
 	"PgeAudioManager.h"
 	"PgeTextureManager.h"
@@ -1197,14 +1197,16 @@
 	<gl/glu.h>
 	<il/il.h>
 	<il/ilu.h>
+	"cmd/LogFileManager.h"
 
-1212952014 c:\sdks\pharaohgameengine\demos\basictest\demogamestate.h
+1213045454 c:\sdks\pharaohgameengine\demos\basictest\demogamestate.h
 	"PgePlatform.h"
 	"PgeTypes.h"
 	"PgeBaseGameState.h"
+	<gl/gl.h>
 	"cmd/LogFileManager.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgeplatform.h
+1213017331 c:\sdks\pharaohgameengine\include\pgeplatform.h
 	<stddef.h>
 	<memory.h>
 	<stdlib.h>
@@ -1212,28 +1214,29 @@
 	<windows.h>
 	"config.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgetypes.h
+1213017331 c:\sdks\pharaohgameengine\include\pgetypes.h
 	"PgePlatform.h"
 	<string>
 
-1212591832 c:\sdks\pharaohgameengine\include\pgebasegamestate.h
+1213047966 c:\sdks\pharaohgameengine\include\pgebasegamestate.h
 	"PgePlatform.h"
 	"PgeTypes.h"
 	"PgeBaseInputListener.h"
 	"PgeInputManager.h"
 
-1212591832 c:\sdks\pharaohgameengine\include\pgebaseapplication.h
+1213022769 c:\sdks\pharaohgameengine\include\pgebaseapplication.h
 	"PgeSharedPtr.h"
 	"PgeBaseWindowListener.h"
 	"PgeBaseInputListener.h"
 	"PgeInputManager.h"
+	"PgeTextureManager.h"
 	"PgeTimer.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgesharedptr.h
+1213017331 c:\sdks\pharaohgameengine\include\pgesharedptr.h
 	"PgePlatform.h"
 	<assert.h>
 
-1212591832 c:\sdks\pharaohgameengine\include\pgebasewindowlistener.h
+1213017331 c:\sdks\pharaohgameengine\include\pgebasewindowlistener.h
 
 1212160072 c:\sdks\pharaohgameengine\include\pgegamemanager.h
 	"PgePlatform.h"
@@ -1248,22 +1251,22 @@
 	"PgePoint2D.h"
 	"PgePoint3D.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgetimer.h
+1213017331 c:\sdks\pharaohgameengine\include\pgetimer.h
 	"PgeTypes.h"
 	<mmsystem.h>
 	<sys/time.h>
 
-1212160072 c:\sdks\pharaohgameengine\include\pgepoint2d.h
+1213017331 c:\sdks\pharaohgameengine\include\pgepoint2d.h
 	<ostream>
 	"PgeTypes.h"
 	"PgeMath.h"
 
-1212591832 c:\sdks\pharaohgameengine\include\pgemath.h
+1213034419 c:\sdks\pharaohgameengine\include\pgemath.h
 	"PgeTypes.h"
 	<limits>
 	<math.h>
 
-1212160072 c:\sdks\pharaohgameengine\include\pgepoint3d.h
+1213017331 c:\sdks\pharaohgameengine\include\pgepoint3d.h
 	<ostream>
 	"PgeTypes.h"
 	"PgeMath.h"
@@ -1271,13 +1274,13 @@
 1212160072 c:\sdks\pharaohgameengine\include\pgetileengine.h
 	"PgeBaseGameEngine.h"
 
-1212591831 c:\sdks\pharaohgameengine\include\sdl\pgesdlplatformfactory.h
+1213017330 c:\sdks\pharaohgameengine\include\sdl\pgesdlplatformfactory.h
 	"PgePlatformFactory.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgeplatformfactory.h
+1213017331 c:\sdks\pharaohgameengine\include\pgeplatformfactory.h
 	"PgePlatform.h"
 
-1212761058 c:\sdks\pharaohgameengine\demos\basictest\demoapp.h
+1213047211 c:\sdks\pharaohgameengine\demos\basictest\demoapp.h
 	"PgeBaseApplication.h"
 	"PgeSharedPtr.h"
 	"PgeGameStateManager.h"
@@ -1290,7 +1293,7 @@
 	"DemoGameStateFactory.h"
 	"cmd/LogFileManager.h"
 
-1212591832 c:\sdks\pharaohgameengine\include\pgegamestatemanager.h
+1213046840 c:\sdks\pharaohgameengine\include\pgegamestatemanager.h
 	<vector>
 	"PgeTypes.h"
 	"PgeSharedPtr.h"
@@ -1299,32 +1302,33 @@
 	"PgeBaseWindowListener.h"
 	"PgeBaseInputListener.h"
 	"PgeInputManager.h"
+	"PgePoint2D.h"
 	"cmd/LogFileManager.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgeexception.h
+1213017331 c:\sdks\pharaohgameengine\include\pgeexception.h
 	<exception>
 	<string>
 	"PgePlatform.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgebasewindowsystem.h
+1213017331 c:\sdks\pharaohgameengine\include\pgebasewindowsystem.h
 	<string>
 	<vector>
 	"PgeTypes.h"
 	"PgeException.h"
 
-1212761392 c:\sdks\pharaohgameengine\include\version.h
+1213034792 c:\sdks\pharaohgameengine\include\version.h
 
-1212160083 c:\sdks\pharaohgameengine\demos\basictest\demogamestatefactory.h
+1213017335 c:\sdks\pharaohgameengine\demos\basictest\demogamestatefactory.h
 	"PgeTypes.h"
 	"PgeBaseGameState.h"
 	"DemoGameState.h"
 
-1212160067 c:\sdks\pharaohgameengine\include\cmd\logfilemanager.h
+1213017330 c:\sdks\pharaohgameengine\include\cmd\logfilemanager.h
 	"LogFile.h"
 	<map>
 	<sstream>
 
-1212160067 c:\sdks\pharaohgameengine\include\cmd\logfile.h
+1213017330 c:\sdks\pharaohgameengine\include\cmd\logfile.h
 	<string>
 	<sstream>
 	<iostream>
@@ -1334,7 +1338,7 @@
 	<time.h>
 	"StringUtil.h"
 
-1212160067 c:\sdks\pharaohgameengine\include\cmd\stringutil.h
+1213017330 c:\sdks\pharaohgameengine\include\cmd\stringutil.h
 	<string>
 	<sstream>
 	<vector>
@@ -1342,7 +1346,7 @@
 	<tchar.h>
 	<direct.h>
 
-1212591833 source:c:\sdks\pharaohgameengine\src\pgebaseapplication.cpp
+1213038098 source:c:\sdks\pharaohgameengine\src\pgebaseapplication.cpp
 	"PgePlatform.h"
 	"version.h"
 	"PgeTypes.h"
@@ -1356,25 +1360,24 @@
 	"cmd/StringUtil.h"
 	"cmd/LogFileManager.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgematrix2d.h
+1213017331 c:\sdks\pharaohgameengine\include\pgematrix2d.h
 	"PgeTypes.h"
 	"PgeEnums.h"
 	<ostream>
 
-1212160072 c:\sdks\pharaohgameengine\include\pgeenums.h
+1213017331 c:\sdks\pharaohgameengine\include\pgeenums.h
 	"PgeTypes.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgebaseentity.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgebaseentity.cpp
 	"PgeBaseEntity.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgebaseentity.h
+1213018549 c:\sdks\pharaohgameengine\include\pgebaseentity.h
 	<SDL/SDL.h>
-	<SDL.h>
 	"PgeBaseEntityInterface.h"
 	"PgeTypes.h"
 	"PgePoint2D.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgebaseentityinterface.h
+1213017331 c:\sdks\pharaohgameengine\include\pgebaseentityinterface.h
 	"PgeTypes.h"
 	"tinyxml.h"
 
@@ -1391,11 +1394,11 @@
 1212160079 source:c:\sdks\pharaohgameengine\src\pgebasegameengine.cpp
 	"PgeBaseGameEngine.h"
 
-1212591833 source:c:\sdks\pharaohgameengine\src\pgebasegamestate.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgebasegamestate.cpp
 	"PgeBaseGameState.h"
 	"PgeMath.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgebasewindowsystem.cpp
+1213037099 source:c:\sdks\pharaohgameengine\src\pgebasewindowsystem.cpp
 	"version.h"
 	"PgeException.h"
 	"PgeBaseWindowSystem.h"
@@ -1404,56 +1407,59 @@
 1212160079 source:c:\sdks\pharaohgameengine\src\pgegamemanager.cpp
 	"PgeGameManager.h"
 
-1212591833 source:c:\sdks\pharaohgameengine\src\pgegamestatemanager.cpp
+1213047917 source:c:\sdks\pharaohgameengine\src\pgegamestatemanager.cpp
 	"PgeGameStateManager.h"
 	"PgeBaseWindowSystem.h"
 	"cmd/LogFileManager.h"
 
-1212591833 source:c:\sdks\pharaohgameengine\src\pgemath.cpp
+1213034452 source:c:\sdks\pharaohgameengine\src\pgemath.cpp
 	"PgeMath.h"
 	<math.h>
 	<stdlib.h>
 	"cmd/StringUtil.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgematrix2d.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgematrix2d.cpp
 	"PgeMatrix2D.h"
 	"PgePoint2D.h"
 	"PgeMath.h"
 
-1212160080 source:c:\sdks\pharaohgameengine\src\pgematrix3d.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgematrix3d.cpp
 	"PgeMatrix3D.h"
 	"PgePoint3D.h"
 	"PgeMath.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgematrix3d.h
+1213017331 c:\sdks\pharaohgameengine\include\pgematrix3d.h
 	"PgeTypes.h"
 	"PgeEnums.h"
 	<ostream>
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgeplatformfactory.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgeplatformfactory.cpp
 	"PgePlatformFactory.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgepoint2d.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgepoint2d.cpp
 	"PgePoint2D.h"
 	"PgePoint3D.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgepoint3d.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgepoint3d.cpp
 	"PgePoint3D.h"
 	"PgePoint2D.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgesingleton.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgesingleton.cpp
 	"PgeSingleton.h"
 
-1212160072 c:\sdks\pharaohgameengine\include\pgesingleton.h
+1213024543 c:\sdks\pharaohgameengine\include\pgesingleton.h
 	"PgePlatform.h"
+	"cmd/LogFileManager.h"
 
-1212952240 source:c:\sdks\pharaohgameengine\src\pgetexturemanager.cpp
+1213034792 source:c:\sdks\pharaohgameengine\src\pgetexturemanager.cpp
 	"PgeTextureManager.h"
+	"PgeMath.h"
 	<gl/gl.h>
+	<gl/glu.h>
 	<il/il.h>
 	<il/ilu.h>
 
-1212952296 c:\sdks\pharaohgameengine\include\pgetexturemanager.h
+1213034792 c:\sdks\pharaohgameengine\include\pgetexturemanager.h
 	<map>
 	"PgeTypes.h"
 	"PgeSingleton.h"
@@ -1465,22 +1471,22 @@
 	<gl/gl.h>
 	<gl/glu.h>
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgetimer.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgetimer.cpp
 	"PgeTimer.h"
 
-1212160079 source:c:\sdks\pharaohgameengine\src\pgetypes.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgetypes.cpp
 	"PgeTypes.h"
 
-1212160074 source:c:\sdks\pharaohgameengine\src\sdl\pgesdlplatformfactory.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\sdl\pgesdlplatformfactory.cpp
 	"SDL/PgeSDLPlatformFactory.h"
 	"SDL/PgeSDLWindowSystem.h"
 
-1212591831 c:\sdks\pharaohgameengine\include\sdl\pgesdlwindowsystem.h
+1213017330 c:\sdks\pharaohgameengine\include\sdl\pgesdlwindowsystem.h
 	<SDL/SDL.h>
 	<SDL/SDL.h>
 	"PgeBaseWindowSystem.h"
 
-1212160074 source:c:\sdks\pharaohgameengine\src\sdl\pgesdlwindowsystem.cpp
+1213045455 source:c:\sdks\pharaohgameengine\src\sdl\pgesdlwindowsystem.cpp
 	<SDL/SDL_syswm.h>
 	"PgePlatform.h"
 	"PgeException.h"
@@ -1488,7 +1494,7 @@
 	"SDL/PgeSDLWindowSystem.h"
 	"cmd/LogFileManager.h"
 
-1212591832 c:\sdks\pharaohgameengine\include\pgebaseinputlistener.h
+1213017331 c:\sdks\pharaohgameengine\include\pgebaseinputlistener.h
 	<vector>
 	"PgePlatform.h"
 	"PgeTypes.h"
@@ -1498,7 +1504,7 @@
 	<OISJoyStick.h>
 	<OISInputManager.h>
 
-1212591833 source:c:\sdks\pharaohgameengine\src\pgebaseinputlistener.cpp
+1213017333 source:c:\sdks\pharaohgameengine\src\pgebaseinputlistener.cpp
 	"PgeBaseInputListener.h"
 
 1212607445 c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\include\pgebaseinputlistener.h
@@ -1528,7 +1534,7 @@
 	"PgeInputManager.h"
 	"PgeBaseInputListener.h"
 
-1212599619 c:\sdks\pharaohgameengine\include\pgeinputmanager.h
+1213017331 c:\sdks\pharaohgameengine\include\pgeinputmanager.h
 	<map>
 	"PgePlatform.h"
 	"PgeTypes.h"
@@ -1555,24 +1561,37 @@
 1212788427 source:c:\jamdev2\code\aftereffects_combustion\tests\pharaohgameengine\src\pgeaudiomanager.cpp
 	"PgeAudioManager.h"
 
-1212759486 c:\sdks\pharaohgameengine\include\pgeaudiomanager.h
+1213017331 c:\sdks\pharaohgameengine\include\pgeaudiomanager.h
 	<vector>
 	"PgePlatform.h"
 	"PgeTypes.h"
 	"PgeSharedPtr.h"
 	"PgePoint3D.h"
 
-1212759544 c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.h
+1213017334 c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.h
 	"PgeAudioManager.h"
 	"audiere.h"
 
-1212600028 source:c:\sdks\pharaohgameengine\src\pgeinputmanager.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgeinputmanager.cpp
 	"PgeInputManager.h"
 	"PgeBaseInputListener.h"
 
-1212759544 source:c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.cpp
+1213017334 source:c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.cpp
 	"PgeAudiereAudioSystem.h"
 
-1212759486 source:c:\sdks\pharaohgameengine\src\pgeaudiomanager.cpp
+1213017332 source:c:\sdks\pharaohgameengine\src\pgeaudiomanager.cpp
 	"PgeAudioManager.h"
+
+1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_syswm.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_version.h"
+	"begin_code.h"
+	<X11/Xlib.h>
+	<X11/Xatom.h>
+	<microwin/nano-X.h>
+	<windows.h>
+	<sys/neutrino.h>
+	<Ph.h>
+	"close_code.h"
 

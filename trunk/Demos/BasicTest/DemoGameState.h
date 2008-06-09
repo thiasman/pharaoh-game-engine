@@ -14,6 +14,8 @@
 #include "PgeTypes.h"
 #include "PgeBaseGameState.h"
 
+#include <gl/gl.h>
+
 #include "cmd/LogFileManager.h"
 
 class DemoGameState : public PGE::BaseGameState
@@ -72,10 +74,14 @@ public:
     /** Joystick button released */
     bool ButtonReleased( const OIS::JoyStickEvent& e, int button );
 
+    /** Set the position and size of the display */
+    void SetWindowSize( PGE::UInt32 w, PGE::UInt32 h );
+
 protected:
 
 private:
     PGE::String  mTextureName;
+    GLuint mTexID;
 };
 
 #endif // DEMOGAMESTATE_H

@@ -15,7 +15,8 @@ namespace PGE
 {
     GameStateManager::GameStateManager( GameStateFactory* stateFactory )
         : mStateFactory( StateFactoryPtr( stateFactory ) ),
-          mIsClosed( false )
+          mIsClosed( false ),
+          mDisplaySize( 1, 1 )
     {
         //ctor
     }
@@ -81,6 +82,10 @@ namespace PGE
 
         // Activate the new state
         mStates.back()->Init();
+cmd::LogFileManager::getInstance() << "display size = " << mDisplaySize << std::endl;
+
+        // Give the state the window size:
+        mStates.back()->SetWindowSize( mDisplaySize.x, mDisplaySize.y );
     }
 
     //PushState-----------------------------------------------------------------
@@ -114,6 +119,9 @@ namespace PGE
 
         // Activate the new state
         mStates.back()->Init();
+
+        // Give the state the window size:
+        mStates.back()->SetWindowSize( mDisplaySize.x, mDisplaySize.y );
     }
 
     //PopState------------------------------------------------------------------
@@ -146,7 +154,10 @@ namespace PGE
         // Get the window metrics:
         int x, y, z, width, height;
         win->GetMetrics( x, y, z, width, height );
+        mDisplaySize = Point2D( width, height );
 
+        if ( !mStates.empty() )
+            mStates.back()->SetWindowSize( width, height );
         lfm << "Window position = ( " << x << ", " << y << ", " << z << " ), size = ( " << width << ", " << height << " )\n";
     }
 

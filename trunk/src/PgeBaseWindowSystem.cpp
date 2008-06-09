@@ -37,6 +37,14 @@ namespace PGE
         mHeight = h;
 
         CreateSurface();
+
+        // Send notification of size change:
+        std::vector< BaseWindowListener* >::iterator iter = mWindowListeners.begin();
+        while ( iter != mWindowListeners.end() )
+        {
+            (*iter)->WindowSizeChanged( this );
+            iter++;
+        }
     }
 
 //    // CreateSurface------------------------------------------------------------

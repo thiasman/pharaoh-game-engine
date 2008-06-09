@@ -168,7 +168,7 @@ namespace PGE
         {
             HWND hWnd = sysInfo.window;
             RECT rc;
-            GetWindowRect( hWnd, &rc );
+            GetClientRect( hWnd, &rc );
             x = rc.left;
             y = rc.top;
             width = rc.right - rc.left;

@@ -15,9 +15,12 @@
 #include <il/il.h>
 #include <il/ilu.h>
 
+#include "cmd/LogFileManager.h"
+
 DemoGameState::DemoGameState()
     : PGE::BaseGameState(),
-      mTextureName( "media/puppies.jpg" )
+      mTextureName( "media/puppies.jpg" ),
+      mTexID( 0 )
 {
     //ctor
 }
@@ -53,6 +56,21 @@ void DemoGameState::Init()
     PGE::TextureManager::GetSingleton().LoadImage( mTextureName );
 }
 
+//SetWindowPosition
+void DemoGameState::SetWindowSize( PGE::UInt32 w, PGE::UInt32 h )
+{
+    glMatrixMode( GL_PROJECTION );
+    glLoadIdentity();
+
+    float aspectRatio = w / double( h );
+    if ( aspectRatio < 1.0 )
+        glOrtho( -aspectRatio, aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f );
+    else
+        glOrtho( -1.0f, 1.0f, 1.0f / aspectRatio, -1.0f / aspectRatio, -1.0f, 1.0f );
+
+    glMatrixMode( GL_MODELVIEW );
+}
+
 void DemoGameState::Destroy()
 {
 }
@@ -69,6 +87,9 @@ void DemoGameState::Update( PGE::Real32 elapsedMS )
 {
     glClear( GL_COLOR_BUFFER_BIT );
     glRotatef( elapsedMS * 360.0f / 2000.0f, 0.0f, 0.0f, 1.0f );
+    //glMatrixMode( GL_MODELVIEW );
+    //glLoadIdentity();
+    //glRotatef( 30.0f, 0.0f, 0.0f, 1.0f );
 }
 
 void DemoGameState::Render()
@@ -76,23 +97,39 @@ void DemoGameState::Render()
     PGE::TextureItem* texItem = PGE::TextureManager::GetSingleton().GetTextureItemPtr( mTextureName );
     PGE::UInt32 texID = texItem->GetID();
     glBindTexture( GL_TEXTURE_2D, texID );
+
+    float aspectRatio = texItem->GetWidth() / float( texItem->GetHeight() );
+    float w = 1.0f, h = 1.0f;
+    if ( aspectRatio < 1.0 )
+    {
+        w = aspectRatio;
+        h = 1.0;
+    }
+    else
+    {
+        w = 1.0;
+        h = 1.0f / aspectRatio;
+    }
+
     glBegin( GL_QUADS );
 
+        glColor3f( 1.0, 1.0, 1.0 );
+
         glTexCoord2i( 0, 0 );
-        glColor3f( 1.0f, 0.0f, 0.0f );
-        glVertex2f( -0.5f, -0.5f );
+        //glColor3f( 1.0f, 0.0f, 0.0f );
+        glVertex2f( -w, -h );
 
         glTexCoord2i( 1, 0 );
-        glColor3f( 0.0f, 1.0f, 0.0f );
-        glVertex2f( 0.5f, -0.5f );
+        //glColor3f( 0.0f, 1.0f, 0.0f );
+        glVertex2f( w, -h );
 
         glTexCoord2i( 1, 1 );
-        glColor3f( 0.0f, 0.0f, 1.0f );
-        glVertex2f( 0.5f, 0.5f );
+        //glColor3f( 0.0f, 0.0f, 1.0f );
+        glVertex2f( w, h );
 
         glTexCoord2i( 0, 1 );
-        glColor3f( 1.0f, 1.0f, 1.0f );
-        glVertex2f( -0.5f, 0.5f );
+        //glColor3f( 1.0f, 1.0f, 1.0f );
+        glVertex2f( -w, h );
 
     glEnd();
 }
@@ -129,6 +166,12 @@ bool DemoGameState::MousePressed( const OIS::MouseEvent& e, OIS::MouseButtonID i
     cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
     const OIS::MouseState state = e.state;
     lfm << "Mouse button " << id << " pressed. Abs( " << state.X.abs << ", " << state.Y.abs << ", " << state.Z.abs << " ), Rel( " << state.X.rel << ", " << state.Y.rel << ", " << state.Z.rel << " )\n";
+
+    PGE::AudioManager* audioMgr = PGE::AudioManager::getSingletonPtr();
+    int soundIndex = audioMgr->CreateSound2D( "media/boom.mp3", false );
+    int channelIndex = 2;
+    audioMgr->Play( soundIndex, channelIndex );
+
     return true;
 }
 /** Mouse button released */

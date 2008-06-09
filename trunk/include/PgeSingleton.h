@@ -12,6 +12,8 @@
 
 #include "PgePlatform.h"
 
+#include "cmd/LogFileManager.h"
+
 namespace PGE
 {
     /** @class Singleton
@@ -55,6 +57,8 @@ namespace PGE
             return mInstance;
         }
     };
+
+    //template < typename T > T* Singleton< T >::mInstance = 0;
 
 } // namespace PGE
 
