@@ -62,11 +62,61 @@ namespace PGE
         /** Start playing the instance */
         virtual void    Play()      { }
 
+        /** Check if the sound is playing */
+        virtual bool    IsPlaying() const   { return false; }
+
         /** Stop playing the instance */
         virtual void    Stop()      { }
 
-        /** Get the length of the sound */
-        virtual float   Length()    { return 0.0f; }
+        /** Check if the stream is seekable */
+        virtual bool    IsSeekable() const      { return false; }
+
+        /** Get the length of the sound, returning 0 if the stream is not
+            seekable.
+        */
+        virtual float   Length() const          { return 0.0f; }
+
+        /** Get the current position within the stream, if the stream is
+            seekable.
+        */
+        virtual float   GetPosition() const     { return 0; }
+
+        /** Set the position within the stream, if the stream is seekable.
+            Otherwise, does nothing.
+        */
+        virtual void    SetPosition( float pos )    { }
+
+        /** Reset the sound to the beginning.  On seekable streams, this is
+            the same as SetPosition( 0 ).
+        */
+        virtual void    Restart()                   { }
+
+        /** Set the repeat flag, indicating if the sound should loop. */
+        virtual void    SetRepeat( bool repeat )    { }
+
+        /** Get the repeat state of the sound */
+        virtual bool    GetRepeat() const           { }
+
+        /** Set the volume of the sound */
+        virtual void    SetVolume( float volume )   { }
+
+        /** Multiply the volume by a ratio */
+        virtual void    MultiplyVolume( float ratio )   { }
+
+        /** Get the volume of the sound */
+        virtual float   GetVolume() const   { return 0.0f; }
+
+        /** Set the pan offset.  -1 = left, 0 = center, 1 = right. */
+        virtual void    SetPan( float pan )         { }
+
+        /** Get the pan offset. */
+        virtual float   GetPan() const              { return 0.0f; }
+
+        /** Set the pitch offset.  Range typically from 0.5 to 2.0, default=1.0. */
+        virtual void    SetPitchOffset( float pitch )   { }
+
+        /** Get the pitch offset. */
+        virtual float   GetPitchOffset() const      { }
 
         String      mFileName;      /**< Name of the audio file */
         SoundFlags  mFlags;         /**< Flags used to initialize the sound */
@@ -159,6 +209,9 @@ namespace PGE
         */
         void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
 
+        /** Check whether a sound is currently playing */
+        bool IsPlaying( int index ) const;
+
         /** Stop a song at a given index */
         void Stop( int channelIndex );
 
@@ -171,8 +224,52 @@ namespace PGE
         /** For 3D sounds, set the min and max distance range */
         void Set3DRange( int channelIndex, float minDist, float maxDist );
 
+        /** Check if a stream is seekable */
+        bool IsSeekable( int index ) const;
+
         /** Get the length of a sound */
         float GetSoundLength( int index );
+
+        /** Get the current position within the stream, if the stream is
+            seekable.
+        */
+        float GetPosition( int index ) const;
+
+        /** Set the position within the stream, if the stream is seekable.
+            Otherwise, does nothing.
+        */
+        void SetPosition( int index, float pos );
+
+        /** Reset the sound to the beginning.  On seekable streams, this is
+            the same as SetPosition( 0 ).
+        */
+        void Restart( int index );
+
+        /** Set the repeat flag, indicating if the sound should loop. */
+        void SetRepeat( int index, bool repeat );
+
+        /** Get the repeat state of the sound */
+        bool GetRepeat( int index ) const;
+
+        /** Set the volume of a specific sound */
+        void SetVolume( int index, float volume );
+        /** Get the volume of a sound */
+        float GetVolume( int index );
+        /** Set the volume of <i>ALL</i> sounds */
+        void SetVolume( float volume );
+        /** Multiply the volume of a sound by a ratio */
+        void MultiplyVolume( int index, float ratio );
+        /** Multiply the volume of <i>ALL</i> sounds by a ratio */
+        void MultiplyVolume( float ratio );
+
+        /** Set the pan offset.  -1 = left, 0 = center, 1 = right. */
+        void    SetPan( int index, float pan );
+        /** Get the pan offset. */
+        float   GetPan( int index ) const;
+        /** Set the pitch offset.  Range typically from 0.5 to 2.0, default=1.0. */
+        void    SetPitchOffset( int index, float pitch );
+        /** Get the pitch offset. */
+        float   GetPitchOffset( int index ) const;
 
         /** Get a pointer to a sound instance */
         SoundInstance* GetSoundInstance( int index );
@@ -239,10 +336,13 @@ namespace PGE
         /** Play a sound with a given index, using the specified channels.  For
             3D Sounds, this will also set the initial position of the sound.
         */
-        virtual void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO ) = 0;
+        void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
+
+        /** Check whether a sound is currently playing */
+        bool IsPlaying( int index ) const;
 
         /** Stop a song at a given index */
-        virtual void Stop( int channelIndex ) = 0;
+        void Stop( int channelIndex );
 
         /** Find a song with a given file name that has specified flags. */
         int Find( const String& fileName, SoundFlags flags );
@@ -255,8 +355,52 @@ namespace PGE
         */
         virtual void Set3DRange( int channelIndex, float minDist, float maxDist ) { }
 
+        /** Check if a stream is seekable */
+        bool IsSeekable( int index ) const;
+
         /** Get the length of a sound */
-        virtual float GetSoundLength( int index ) = 0;
+        float GetSoundLength( int index );
+
+        /** Get the current position within the stream, if the stream is
+            seekable.
+        */
+        float GetPosition( int index ) const;
+
+        /** Set the position within the stream, if the stream is seekable.
+            Otherwise, does nothing.
+        */
+        void SetPosition( int index, float pos );
+
+        /** Reset the sound to the beginning.  On seekable streams, this is
+            the same as SetPosition( 0 ).
+        */
+        void Restart( int index );
+
+        /** Set the repeat flag, indicating if the sound should loop. */
+        void SetRepeat( int index, bool repeat );
+
+        /** Get the repeat state of the sound */
+        bool GetRepeat( int index ) const;
+
+        /** Set the volume of a specific sound */
+        void SetVolume( int index, float volume );
+        /** Get the volume of a sound */
+        float GetVolume( int index );
+        /** Set the volume of <i>ALL</i> sounds */
+        void SetVolume( float volume );
+        /** Multiply the volume of a sound by a ratio */
+        void MultiplyVolume( int index, float ratio );
+        /** Multiply the volume of <i>ALL</i> sounds by a ratio */
+        void MultiplyVolume( float ratio );
+
+        /** Set the pan offset.  -1 = left, 0 = center, 1 = right. */
+        void    SetPan( int index, float pan );
+        /** Get the pan offset. */
+        float   GetPan( int index ) const;
+        /** Set the pitch offset.  Range typically from 0.5 to 2.0, default=1.0. */
+        void    SetPitchOffset( int index, float pitch );
+        /** Get the pitch offset. */
+        float   GetPitchOffset( int index ) const;
 
         /** Get a pointer to a sound instance */
         SoundInstance* GetSoundInstance( int index );

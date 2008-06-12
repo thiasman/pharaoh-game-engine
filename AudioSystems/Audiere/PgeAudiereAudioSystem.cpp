@@ -28,6 +28,13 @@ namespace PGE
         mStreamPtr->play();
     }
 
+    //IsPlaying
+    bool AudiereSoundInstance::IsPlaying() const
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->isPlaying();
+    }
+
     //Stop
     void AudiereSoundInstance::Stop()
     {
@@ -35,11 +42,102 @@ namespace PGE
         mStreamPtr->stop();
     }
 
+    //IsSeekable
+    bool AudiereSoundInstance::IsSeekable() const
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->isSeekable();
+    }
+
     //Length
-    float AudiereSoundInstance::Length()
+    float AudiereSoundInstance::Length() const
     {
         assert( mStreamPtr );
         return mStreamPtr->getLength();
+    }
+
+    //GetPosition
+    float AudiereSoundInstance::GetPosition() const
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->getPosition();
+    }
+
+    //SetPosition
+    void AudiereSoundInstance::SetPosition( float pos )
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->setPosition( pos );
+    }
+
+    //Restart
+    void AudiereSoundInstance::Restart()
+    {
+        assert( mStreamPtr );
+        mStreamPtr->reset();
+    }
+
+    //SetRepeat
+    void AudiereSoundInstance::SetRepeat( bool repeat )
+    {
+        assert( mStreamPtr );
+        mStreamPtr->setRepeat( repeat );
+    }
+
+    //GetRepeat
+    bool AudiereSoundInstance::GetRepeat() const
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->getRepeat();
+    }
+
+    //SetVolume
+    void AudiereSoundInstance::SetVolume( float volume )
+    {
+        assert( mStreamPtr );
+        mStreamPtr->setVolume( volume );
+    }
+
+    //MultiplyVolume
+    void AudiereSoundInstance::MultiplyVolume( float ratio )
+    {
+        assert( mStreamPtr );
+        mStreamPtr->setVolume( ratio * mStreamPtr->getVolume() );
+    }
+
+    //GetVolume
+    float AudiereSoundInstance::GetVolume() const
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->getVolume();
+    }
+
+    //SetPan
+    void AudiereSoundInstance::SetPan( float pan )
+    {
+        assert( mStreamPtr );
+        mStreamPtr->setPan( pan );
+    }
+
+    //GetPan
+    float AudiereSoundInstance::GetPan() const
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->getPan();
+    }
+
+    //SetPitchOffset
+    void AudiereSoundInstance::SetPitchOffset( float pitch )
+    {
+        assert( mStreamPtr );
+        mStreamPtr->setPitchShift( pitch );
+    }
+
+    //GetPitchOffset
+    float AudiereSoundInstance::GetPitchOffset() const
+    {
+        assert( mStreamPtr );
+        return mStreamPtr->getPitchShift();
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -89,33 +187,6 @@ namespace PGE
         // Add the instance to the list:
         mSoundInstances.push_back( SoundInstancePtr( instance ) );
         return mSoundInstances.size() - 1;
-    }
-
-    //Play
-    void AudiereAudioSystem::Play( int index, int& channelIndex, const Point3Df& pos )
-    {
-        // Get the instance:
-        SoundInstance* instance = GetSoundInstance( index );
-        assert( instance );
-        instance->Play();
-    }
-
-    //Stop
-    void AudiereAudioSystem::Stop( int channelIndex )
-    {
-        // Get the instance:
-        SoundInstance* instance = GetSoundInstance( channelIndex );
-        assert( instance );
-        instance->Stop();
-    }
-
-    //GetSoundLength
-    float AudiereAudioSystem::GetSoundLength( int index )
-    {
-        // Get the instance:
-        SoundInstance* instance = GetSoundInstance( index );
-        assert( instance );
-        return instance->Length();
     }
 
 } // namespace PGE

@@ -130,11 +130,116 @@ namespace PGE
         mAudioSystem->Set3DRange( channelIndex, minDist, maxDist );
     }
 
+    //IsSeekable
+    bool AudioManager::IsSeekable( int index ) const
+    {
+        assert( !mAudioSystem.IsNull() );
+        return mAudioSystem->IsSeekable( index );
+    }
+
     //GetSoundLength
     float AudioManager::GetSoundLength( int index )
     {
         assert( !mAudioSystem.IsNull() );
         return mAudioSystem->GetSoundLength( index );
+    }
+
+    //GetPosition
+    float AudioManager::GetPosition( int index ) const
+    {
+        assert( !mAudioSystem.IsNull() );
+        return mAudioSystem->GetPosition( index );
+    }
+
+    //SetPosition
+    void AudioManager::SetPosition( int index, float pos )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->SetPosition( index, pos );
+    }
+
+    //Restart
+    void AudioManager::Restart( int index )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->Restart( index );
+    }
+
+    //SetRepeat
+    void AudioManager::SetRepeat( int index, bool repeat )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->SetRepeat( index, repeat );
+    }
+
+    //GetRepeat
+    bool AudioManager::GetRepeat( int index ) const
+    {
+        assert( !mAudioSystem.IsNull() );
+        return mAudioSystem->GetRepeat( index );
+    }
+
+    //SetVolume
+    void AudioManager::SetVolume( int index, float volume )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->SetVolume( index, volume );
+    }
+
+    //GetVolume
+    float AudioManager::GetVolume( int index )
+    {
+        assert( !mAudioSystem.IsNull() );
+        return mAudioSystem->GetVolume( index );
+    }
+
+    //SetVolume
+    void AudioManager::SetVolume( float volume )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->SetVolume( volume );
+    }
+
+    //MultiplyVolume
+    void AudioManager::MultiplyVolume( int index, float ratio )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->MultiplyVolume( index, ratio );
+    }
+
+    //MultiplyVolume
+    void AudioManager::MultiplyVolume( float ratio )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->MultiplyVolume( ratio );
+    }
+
+    //SetPan
+    void AudioManager::SetPan( int index, float pan )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->SetPan( index, pan );
+    }
+
+    //GetPan
+    float AudioManager::GetPan( int index ) const
+    {
+        assert( !mAudioSystem.IsNull() );
+        return mAudioSystem->GetPan( index );
+    }
+
+    //SetPitchOffset
+    void AudioManager::SetPitchOffset( int index, float pitch )
+    {
+        assert( !mAudioSystem.IsNull() );
+        mAudioSystem->SetPitchOffset( index, pitch );
+    }
+
+    //GetPitchOffset
+    float AudioManager::GetPitchOffset( int index ) const
+    {
+        assert( !mAudioSystem.IsNull() );
+        return mAudioSystem->GetPitchOffset( index );
     }
 
     //GetSoundInstance
@@ -197,6 +302,184 @@ namespace PGE
     int BaseAudioSystem::GetSoundCount() const
     {
         return mSoundInstances.size();
+    }
+
+    //Play
+    void BaseAudioSystem::Play( int index, int& channelIndex, const Point3Df& pos )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->Play();
+    }
+
+    //IsPlaying
+    bool BaseAudioSystem::IsPlaying( int index ) const
+    {
+        // Get the instance:
+        SoundInstance* instance = mSoundInstances.at( index ).Get();
+        //SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        return instance->IsPlaying();
+    }
+
+    //Stop
+    void BaseAudioSystem::Stop( int channelIndex )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( channelIndex );
+        assert( instance );
+        instance->Stop();
+    }
+
+    //IsSeekable
+    bool BaseAudioSystem::IsSeekable( int index ) const
+    {
+        // Get the instance:
+        SoundInstance* instance = mSoundInstances.at( index ).Get();
+        assert( instance );
+        return instance->IsSeekable();
+    }
+
+    //GetSoundLength
+    float BaseAudioSystem::GetSoundLength( int index )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        return instance->Length();
+    }
+
+    //GetPosition
+    float BaseAudioSystem::GetPosition( int index ) const
+    {
+        // Get the instance:
+        SoundInstance* instance = mSoundInstances.at( index ).Get();
+        assert( instance );
+        return instance->GetPosition();
+    }
+
+    //SetPosition
+    void BaseAudioSystem::SetPosition( int index, float pos )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->SetPosition( pos );
+    }
+
+    //Restart
+    void BaseAudioSystem::Restart( int index )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->Restart();
+    }
+
+    //SetRepeat
+    void BaseAudioSystem::SetRepeat( int index, bool repeat )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->SetRepeat( repeat );
+    }
+
+    //GetRepeat
+    bool BaseAudioSystem::GetRepeat( int index ) const
+    {
+        // Get the instance:
+        SoundInstance* instance = mSoundInstances.at( index ).Get();
+        assert( instance );
+        return instance->GetRepeat();
+    }
+
+    //SetVolume
+    void BaseAudioSystem::SetVolume( int index, float volume )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->SetVolume( volume );
+    }
+
+    //GetVolume
+    float BaseAudioSystem::GetVolume( int index )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        return instance->GetVolume();
+    }
+
+    //SetVolume
+    void BaseAudioSystem::SetVolume( float volume )
+    {
+        // Iterate over the sounds and set the volume
+        SoundInstanceVector::iterator iter = mSoundInstances.begin();
+        while ( iter != mSoundInstances.end() )
+        {
+            (*iter)->SetVolume( volume );
+            ++iter;
+        }
+    }
+
+    //MultiplyVolume
+    void BaseAudioSystem::MultiplyVolume( int index, float ratio )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->MultiplyVolume( ratio );
+    }
+
+    //MultiplyVolume
+    void BaseAudioSystem::MultiplyVolume( float ratio )
+    {
+        // Iterate over the sounds and multiply the volume
+        SoundInstanceVector::iterator iter = mSoundInstances.begin();
+        while ( iter != mSoundInstances.end() )
+        {
+            (*iter)->MultiplyVolume( ratio );
+            ++iter;
+        }
+    }
+
+    //SetPan
+    void BaseAudioSystem::SetPan( int index, float pan )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->SetPan( pan );
+    }
+
+    //GetPan
+    float BaseAudioSystem::GetPan( int index ) const
+    {
+        // Get the instance:
+        SoundInstance* instance = mSoundInstances.at( index ).Get();
+        assert( instance );
+        instance->GetPan();
+    }
+
+    //SetPitchOffset
+    void BaseAudioSystem::SetPitchOffset( int index, float pitch )
+    {
+        // Get the instance:
+        SoundInstance* instance = GetSoundInstance( index );
+        assert( instance );
+        instance->SetPitchOffset( pitch );
+    }
+
+    //GetPitchOffset
+    float BaseAudioSystem::GetPitchOffset( int index ) const
+    {
+        // Get the instance:
+        SoundInstance* instance = mSoundInstances.at( index ).Get();
+        assert( instance );
+        instance->GetPitchOffset();
     }
 
 } // namespace PGE

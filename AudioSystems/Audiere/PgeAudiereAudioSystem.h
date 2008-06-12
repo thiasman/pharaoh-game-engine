@@ -28,11 +28,61 @@ namespace PGE
         /** Start playing the instance */
         void    Play();
 
+        /** Check if the sound is playing */
+        bool    IsPlaying() const;
+
         /** Stop playing the instance */
         void    Stop();
 
-        /** Get the length of the sound */
-        float   Length();
+        /** Check if the stream is seekable */
+        bool    IsSeekable() const;
+
+        /** Get the length of the sound, returning 0 if the stream is not
+            seekable.
+        */
+        float   Length() const;
+
+        /** Get the current position within the stream, if the stream is
+            seekable.
+        */
+        float   GetPosition() const;
+
+        /** Set the position within the stream, if the stream is seekable.
+            Otherwise, does nothing.
+        */
+        void    SetPosition( float pos );
+
+        /** Reset the sound to the beginning.  On seekable streams, this is
+            the same as SetPosition( 0 ).
+        */
+        void    Restart();
+
+        /** Set the repeat flag, indicating if the sound should loop. */
+        void    SetRepeat( bool repeat );
+
+        /** Get the repeat state of the sound */
+        bool    GetRepeat() const;
+
+        /** Set the volume of the sound */
+        void    SetVolume( float volume );
+
+        /** Multiply the volume by a ratio */
+        void    MultiplyVolume( float ratio );
+
+        /** Get the volume of the sound */
+        float   GetVolume() const;
+
+        /** Set the pan offset.  -1 = left, 0 = center, 1 = right. */
+        void    SetPan( float pan );
+
+        /** Get the pan offset. */
+        float   GetPan() const;
+
+        /** Set the pitch offset.  Range typically from 0.5 to 2.0, default=1.0. */
+        void    SetPitchOffset( float pitch );
+
+        /** Get the pitch offset. */
+        float   GetPitchOffset() const;
 
         audiere::OutputStreamPtr    mStreamPtr; /** Pointer to the stream associated with this instance */
     };
@@ -62,17 +112,6 @@ namespace PGE
                 will still result in 2D audio.
         */
         virtual int CreateSound( const String& fileName, SoundFlags flags );
-
-        /** Play a sound with a given index, using the specified channels.  For
-            3D Sounds, this will also set the initial position of the sound.
-        */
-        virtual void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
-
-        /** Stop a song at a given index */
-        virtual void Stop( int channelIndex );
-
-        /** Get the length of a sound */
-        virtual float GetSoundLength( int index );
 
     protected:
     private:
