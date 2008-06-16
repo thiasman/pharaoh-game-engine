@@ -9,6 +9,7 @@
 #include "DemoGameState.h"
 #include "PgeAudioManager.h"
 #include "PgeTextureManager.h"
+#include "PgeMath.h"
 
 #include <gl/gl.h>
 #include <gl/glu.h>
@@ -20,7 +21,8 @@
 DemoGameState::DemoGameState()
     : PGE::BaseGameState(),
       mTextureName( "media/puppies.jpg" ),
-      mTexID( 0 )
+      mTexID( 0 ),
+      mAngle( 0 )
 {
     //ctor
 }
@@ -85,11 +87,27 @@ void DemoGameState::Resume()
 
 void DemoGameState::Update( PGE::Real32 elapsedMS )
 {
+    cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
+    cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::Update(...)" );
+
     glClear( GL_COLOR_BUFFER_BIT );
-    glRotatef( elapsedMS * 360.0f / 2000.0f, 0.0f, 0.0f, 1.0f );
-    //glMatrixMode( GL_MODELVIEW );
-    //glLoadIdentity();
-    //glRotatef( 30.0f, 0.0f, 0.0f, 1.0f );
+    //glRotatef( elapsedMS * 360.0f / 2000.0f, 0.0f, 0.0f, 1.0f );
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
+    glRotatef( mAngle, 0.0f, 0.0f, 1.0f );
+
+    PGE::InputManager& inputMgr = PGE::InputManager::getSingleton();
+    if ( inputMgr.GetJoystickCount() > 0 )
+    {
+        PGE::AudioManager& audioMgr = PGE::AudioManager::getSingleton();
+        const OIS::JoyStickState& state = inputMgr.GetJoystick( 0 )->getJoyStickState();
+        if ( state.mButtons[ 4 ] )
+            audioMgr.SetPan( 0, -1 );
+        else if ( state.mButtons[ 5 ] )
+            audioMgr.SetPan( 0, 1 );
+        else
+            audioMgr.SetPan( 0, 0 );
+    }
 }
 
 void DemoGameState::Render()
@@ -190,6 +208,11 @@ bool DemoGameState::AxisMoved( const OIS::JoyStickEvent& e, int axis )
     cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
     cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
     lfm << e.device->vendor() << ". Axis # " << axis << " Value: " << e.state.mAxes[axis].abs << std::endl;
+    if ( axis == 1 )
+    {
+        float ratio = PGE::Math::Clamp( e.state.mAxes[ axis ].abs, -10000, 10000 ) / 10000.0f;
+        mAngle = ratio * 360.0f;
+    }
     return true;
 }
 /** Joystick pov moved */

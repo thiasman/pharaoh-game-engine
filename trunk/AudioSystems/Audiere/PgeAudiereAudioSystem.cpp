@@ -67,7 +67,7 @@ namespace PGE
     void AudiereSoundInstance::SetPosition( float pos )
     {
         assert( mStreamPtr );
-        return mStreamPtr->setPosition( pos );
+        return mStreamPtr->setPosition( static_cast<int>(pos) );
     }
 
     //Restart
