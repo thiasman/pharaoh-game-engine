@@ -89,7 +89,7 @@ namespace PGE
     //GetJoystick---------------------------------------------------------------
     OIS::JoyStick*  InputManager::GetJoystick( unsigned int index ) const
     {
-        assert( mJoySticks.size() <= index );
+        assert( mJoySticks.size() > index );
         assert( !mJoySticks.at( index ).IsNull() );
         return mJoySticks.at( index ).Get();
     }

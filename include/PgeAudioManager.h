@@ -95,7 +95,7 @@ namespace PGE
         virtual void    SetRepeat( bool repeat )    { }
 
         /** Get the repeat state of the sound */
-        virtual bool    GetRepeat() const           { }
+        virtual bool    GetRepeat() const           { return false; }
 
         /** Set the volume of the sound */
         virtual void    SetVolume( float volume )   { }
@@ -116,7 +116,7 @@ namespace PGE
         virtual void    SetPitchOffset( float pitch )   { }
 
         /** Get the pitch offset. */
-        virtual float   GetPitchOffset() const      { }
+        virtual float   GetPitchOffset() const      { return 1.0f; }
 
         String      mFileName;      /**< Name of the audio file */
         SoundFlags  mFlags;         /**< Flags used to initialize the sound */

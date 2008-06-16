@@ -461,7 +461,7 @@ namespace PGE
         // Get the instance:
         SoundInstance* instance = mSoundInstances.at( index ).Get();
         assert( instance );
-        instance->GetPan();
+        return instance->GetPan();
     }
 
     //SetPitchOffset
@@ -479,7 +479,7 @@ namespace PGE
         // Get the instance:
         SoundInstance* instance = mSoundInstances.at( index ).Get();
         assert( instance );
-        instance->GetPitchOffset();
+        return instance->GetPitchOffset();
     }
 
 } // namespace PGE

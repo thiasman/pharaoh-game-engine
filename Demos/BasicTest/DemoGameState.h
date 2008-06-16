@@ -82,6 +82,8 @@ protected:
 private:
     PGE::String  mTextureName;
     GLuint mTexID;
+
+    float   mAngle;
 };
 
 #endif // DEMOGAMESTATE_H
