@@ -1189,10 +1189,11 @@
 	"PgeBaseGameState.h"
 	"DemoGameState.h"
 
-1213129304 source:c:\sdks\pharaohgameengine\demos\basictest\demogamestate.cpp
+1213620457 source:c:\sdks\pharaohgameengine\demos\basictest\demogamestate.cpp
 	"DemoGameState.h"
 	"PgeAudioManager.h"
 	"PgeTextureManager.h"
+	"PgeMath.h"
 	<gl/gl.h>
 	<gl/glu.h>
 	<il/il.h>
@@ -1574,14 +1575,14 @@
 	"PgeAudioManager.h"
 	"audiere.h"
 
-1213110209 source:c:\sdks\pharaohgameengine\src\pgeinputmanager.cpp
+1213620456 source:c:\sdks\pharaohgameengine\src\pgeinputmanager.cpp
 	"PgeInputManager.h"
 	"PgeBaseInputListener.h"
 
-1213017334 source:c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.cpp
+1213620456 source:c:\sdks\pharaohgameengine\audiosystems\audiere\pgeaudiereaudiosystem.cpp
 	"PgeAudiereAudioSystem.h"
 
-1213017332 source:c:\sdks\pharaohgameengine\src\pgeaudiomanager.cpp
+1213620456 source:c:\sdks\pharaohgameengine\src\pgeaudiomanager.cpp
 	"PgeAudioManager.h"
 
 1199052374 c:\sdks\sdl\1.2.13\include\sdl\sdl_syswm.h
