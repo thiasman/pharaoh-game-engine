@@ -67,7 +67,7 @@ namespace PGE
     void InputManager::SetWindowSize( int w, int h )
     {
         assert( !mMouse.IsNull() );
-        const OIS::MouseState mouseState = mMouse->getMouseState();
+        const OIS::MouseState& mouseState = mMouse->getMouseState();
         mouseState.width = w;
         mouseState.height = h;
     }
