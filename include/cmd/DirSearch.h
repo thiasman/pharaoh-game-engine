@@ -19,6 +19,8 @@
 #ifndef DIRSEARCH_H_INCLUDED
 #define DIRSEARCH_H_INCLUDED
 
+#include "PgePlatform.h"
+
 // Include the proper headers for the operating system.  If Windows, then we
 // can skip the code implementation and just use the existing headers.
 #if defined( __WIN32__ ) || defined( _WIN32 )
