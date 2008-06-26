@@ -20,7 +20,8 @@
 
 DemoGameState::DemoGameState()
     : PGE::BaseGameState(),
-      mTextureName( "media/puppies.jpg" ),
+      //mTextureName( "media/puppies.jpg" ),
+      mTextureName( "puppies.jpg" ),
       mTexID( 0 ),
       mAngle( 0 )
 {
@@ -172,8 +173,8 @@ bool DemoGameState::KeyReleased( const OIS::KeyEvent& e )
 bool DemoGameState::MouseMoved( const OIS::MouseEvent& e )
 {
     cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-    cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-    const OIS::MouseState state = e.state;
+    cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::MouseMoved(...)" );
+    const OIS::MouseState& state = e.state;
     lfm << "Mouse Moved: Abs( " << state.X.abs << ", " << state.Y.abs << ", " << state.Z.abs << " ), Rel( " << state.X.rel << ", " << state.Y.rel << ", " << state.Z.rel << " )\n";
     return true;
 }
@@ -182,7 +183,7 @@ bool DemoGameState::MousePressed( const OIS::MouseEvent& e, OIS::MouseButtonID i
 {
     cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
     cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-    const OIS::MouseState state = e.state;
+    const OIS::MouseState& state = e.state;
     lfm << "Mouse button " << id << " pressed. Abs( " << state.X.abs << ", " << state.Y.abs << ", " << state.Z.abs << " ), Rel( " << state.X.rel << ", " << state.Y.rel << ", " << state.Z.rel << " )\n";
 
     PGE::AudioManager* audioMgr = PGE::AudioManager::getSingletonPtr();
@@ -197,7 +198,7 @@ bool DemoGameState::MouseReleased( const OIS::MouseEvent& e, OIS::MouseButtonID 
 {
     cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
     cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoGameState::KeyReleased(...)" );
-    const OIS::MouseState state = e.state;
+    const OIS::MouseState& state = e.state;
     lfm << "Mouse button " << id << " released. Abs( " << state.X.abs << ", " << state.Y.abs << ", " << state.Z.abs << " ), Rel( " << state.X.rel << ", " << state.Y.rel << ", " << state.Z.rel << " )\n";
     return true;
 }

@@ -82,7 +82,6 @@ namespace PGE
 
         // Activate the new state
         mStates.back()->Init();
-cmd::LogFileManager::getInstance() << "display size = " << mDisplaySize << std::endl;
 
         // Give the state the window size:
         mStates.back()->SetWindowSize( mDisplaySize.x, mDisplaySize.y );
@@ -148,9 +147,6 @@ cmd::LogFileManager::getInstance() << "display size = " << mDisplaySize << std::
     //WindowSizeChanged---------------------------------------------------------
     void GameStateManager::WindowSizeChanged( BaseWindowSystem* win )
     {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "GameStateManager::WindowSizeChanged(...)" );
-
         // Get the window metrics:
         int x, y, z, width, height;
         win->GetMetrics( x, y, z, width, height );
@@ -158,7 +154,9 @@ cmd::LogFileManager::getInstance() << "display size = " << mDisplaySize << std::
 
         if ( !mStates.empty() )
             mStates.back()->SetWindowSize( width, height );
-        lfm << "Window position = ( " << x << ", " << y << ", " << z << " ), size = ( " << width << ", " << height << " )\n";
+
+        // Resize the mouse's area:
+        InputManager::getSingleton().SetWindowSize( width, height );
     }
 
     //WindowClosed--------------------------------------------------------------

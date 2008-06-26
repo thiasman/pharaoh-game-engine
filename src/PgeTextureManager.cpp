@@ -14,6 +14,10 @@
 #include <il/il.h>
 #include <il/ilu.h>
 
+#include <unzip.h>
+
+#include "cmd/LogFileManager.h"
+
 namespace PGE
 {
     ////////////////////////////////////////////////////////////////////////////
@@ -31,10 +35,53 @@ namespace PGE
     //Load----------------------------------------------------------------------
     bool TextureItem::Load( GLuint minFilter, GLuint maxFilter, bool forceMipmap )
     {
+        /** NOTE: This is a test of using an archive file.  This will need to
+            be modified to allow direct file access, or archived file access.
+        */
+        // Open the archive file
+        unzFile zipFile = unzOpen( "media/data.zip" );
+        if ( !zipFile )
+            return false;
+
+        // Locate the desired image file
+        // ( 1 = case sensitive comparison, 0 is case insensitive )
+        int status = unzLocateFile( zipFile, mImageFileName.c_str(), 1 );
+        if ( status != UNZ_OK )
+            return false;
+        status = unzOpenCurrentFile( zipFile );
+        if ( status != UNZ_OK )
+            return false;
+
+        // Get the info for the file we are looking for:
+        unz_file_info fileInfo;
+        unzGetCurrentFileInfo( zipFile, &fileInfo, NULL, 0, NULL, 0, NULL, 0 );
+
+        // Create a buffer to hold the uncompressed file data:
+        unsigned char* buf = new unsigned char [ fileInfo.uncompressed_size ];
+        if ( !buf )
+        {
+            unzCloseCurrentFile( zipFile );
+            unzClose( zipFile );
+            return false;
+        }
+
+        // Read the file into memory
+        unzReadCurrentFile( zipFile, buf, fileInfo.uncompressed_size );
+
+        // Close the file:
+        unzCloseCurrentFile( zipFile );
+        unzClose( zipFile );
+
+        // Load the texture:
+
+        //****
+
+        // Get the decompressed data
         ILuint imageID;
         ilGenImages( 1, &imageID );
         ilBindImage( imageID );
-        if ( ilLoadImage( const_cast< char* >( mImageFileName.c_str() ) ) )
+        //if ( ilLoadImage( const_cast< char* >( mImageFileName.c_str() ) ) )
+        if ( ilLoadL( IL_TYPE_UNKNOWN, buf, 0 ) )
         {
             // Generate the GL texture
             glGenTextures( 1, &mTextureID );
@@ -75,6 +122,11 @@ namespace PGE
         }
 
         //ilDeleteImages( 1, &imageID );
+
+        //***
+
+        // Free memory:
+        delete buf;
 
         return true;
     }

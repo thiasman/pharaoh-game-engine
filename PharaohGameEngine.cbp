@@ -18,6 +18,8 @@
 					<Add library="OIS_d" />
 					<Add library="dinput8" />
 					<Add library="dxguid" />
+					<Add library="unzip_d" />
+					<Add library="zlib1" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -33,6 +35,8 @@
 					<Add library="OIS" />
 					<Add library="dinput8" />
 					<Add library="dxguid" />
+					<Add library="unzip" />
+					<Add library="zlib1" />
 				</Linker>
 			</Target>
 		</Build>
@@ -88,6 +92,8 @@
 		<Unit filename="include\PgeTypes.h" />
 		<Unit filename="include\SDL\PgeSDLPlatformFactory.h" />
 		<Unit filename="include\SDL\PgeSDLWindowSystem.h" />
+		<Unit filename="include\cmd\DirSearch.cpp" />
+		<Unit filename="include\cmd\DirSearch.h" />
 		<Unit filename="include\cmd\LogFile.h" />
 		<Unit filename="include\cmd\LogFileManager.h" />
 		<Unit filename="include\cmd\StringUtil.h" />
