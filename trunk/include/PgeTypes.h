@@ -13,6 +13,7 @@
 
 #include "PgePlatform.h"
 #include <string>
+#include <vector>
 
 namespace PGE
 {
@@ -38,6 +39,7 @@ namespace PGE
     typedef float           Real;
 
     typedef std::string     String;
+    typedef std::vector< String >   StringVector;
 
 } // namespace PGE
 

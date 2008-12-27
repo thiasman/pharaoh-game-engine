@@ -48,6 +48,9 @@ namespace PGE
         /** Resume (unpause) */
         virtual void Resume()       { }
 
+        /** Check if the state is finished */
+        bool IsFinished() const     { return mIsFinished; }
+
         /** Prepare the frame for rendering after an elapsed period of time.
             This should not actually perform the rendering (that needs to be
             called later.)  Instead, this move objects to their necessary
@@ -67,11 +70,14 @@ namespace PGE
         virtual void SetWindowSize( UInt32 w, UInt32 h )    { }
 
     protected:
+        bool        mIsFinished;    /**< Indicates that the state has finished,
+                                         and the manager may replace it the next
+                                         time around. */
 
     private:
-        String      mID;        /** ID of the game state.  This is <B>NOT</B>
-                                    guaranteed to be unique!
-                                */
+        String      mID;        /**< ID of the game state.  This is <B>NOT</B>
+                                     guaranteed to be unique! */
+
     }; // class BaseGameState
 
     /** @class GameStateFactory

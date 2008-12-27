@@ -6,14 +6,18 @@
  *
  */
 
+#if defined( __APPLE__ ) || defined( __MINGW32__ )
 #include <SDL/SDL_syswm.h>
+#else
+#include <SDL_syswm.h>
+#endif
 
 #include "PgePlatform.h"
 #include "PgeException.h"
 #include "PgeBaseWindowListener.h"
 #include "SDL/PgeSDLWindowSystem.h"
 
-#include "cmd/LogFileManager.h"
+//#include "PgeLogFileManager.h"
 
 namespace PGE
 {

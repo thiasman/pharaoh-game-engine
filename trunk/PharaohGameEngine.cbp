@@ -18,8 +18,7 @@
 					<Add library="OIS_d" />
 					<Add library="dinput8" />
 					<Add library="dxguid" />
-					<Add library="unzip_d" />
-					<Add library="zlib1" />
+					<Add library="physfs_d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -35,8 +34,7 @@
 					<Add library="OIS" />
 					<Add library="dinput8" />
 					<Add library="dxguid" />
-					<Add library="unzip" />
-					<Add library="zlib1" />
+					<Add library="physfs" />
 				</Linker>
 			</Target>
 		</Build>
@@ -56,9 +54,12 @@
 			<Add library="opengl32" />
 			<Add library="glu32" />
 			<Add library="audiere" />
-			<Add library="DevIL" />
+			<Add library="devil" />
+			<Add library="ilu" />
 			<Add directory="$(#sdl.lib)" />
 		</Linker>
+		<Unit filename="AudioSystems\Audiere\PgeAudiereArchiveFile.cpp" />
+		<Unit filename="AudioSystems\Audiere\PgeAudiereArchiveFile.h" />
 		<Unit filename="AudioSystems\Audiere\PgeAudiereAudioSystem.cpp" />
 		<Unit filename="AudioSystems\Audiere\PgeAudiereAudioSystem.h" />
 		<Unit filename="Demos\BasicTest\DemoApp.h" />
@@ -66,6 +67,14 @@
 		<Unit filename="Demos\BasicTest\DemoGameState.h" />
 		<Unit filename="Demos\BasicTest\DemoGameStateFactory.h" />
 		<Unit filename="Dependencies.txt" />
+		<Unit filename="dependencies\tinyxml\tinystr.cpp" />
+		<Unit filename="dependencies\tinyxml\tinystr.h" />
+		<Unit filename="dependencies\tinyxml\tinyxml.cpp" />
+		<Unit filename="dependencies\tinyxml\tinyxml.h" />
+		<Unit filename="dependencies\tinyxml\tinyxmlerror.cpp" />
+		<Unit filename="dependencies\tinyxml\tinyxmlparser.cpp" />
+		<Unit filename="include\PgeArchiveFile.h" />
+		<Unit filename="include\PgeArchiveManager.h" />
 		<Unit filename="include\PgeAudioManager.h" />
 		<Unit filename="include\PgeBaseApplication.h" />
 		<Unit filename="include\PgeBaseEntity.h" />
@@ -74,8 +83,10 @@
 		<Unit filename="include\PgeBaseInputListener.h" />
 		<Unit filename="include\PgeBaseWindowListener.h" />
 		<Unit filename="include\PgeBaseWindowSystem.h" />
+		<Unit filename="include\PgeColor.h" />
 		<Unit filename="include\PgeEnums.h" />
 		<Unit filename="include\PgeException.h" />
+		<Unit filename="include\PgeFontManager.h" />
 		<Unit filename="include\PgeGameStateManager.h" />
 		<Unit filename="include\PgeInputManager.h" />
 		<Unit filename="include\PgeMath.h" />
@@ -88,23 +99,25 @@
 		<Unit filename="include\PgeSharedPtr.h" />
 		<Unit filename="include\PgeSingleton.h" />
 		<Unit filename="include\PgeTextureManager.h" />
+		<Unit filename="include\PgeTileGameState.h" />
+		<Unit filename="include\PgeTileMap.h" />
 		<Unit filename="include\PgeTimer.h" />
 		<Unit filename="include\PgeTypes.h" />
+		<Unit filename="include\PgeViewport.h" />
+		<Unit filename="include\PgeXmlArchiveFile.h" />
 		<Unit filename="include\SDL\PgeSDLPlatformFactory.h" />
 		<Unit filename="include\SDL\PgeSDLWindowSystem.h" />
-		<Unit filename="include\cmd\DirSearch.cpp" />
-		<Unit filename="include\cmd\DirSearch.h" />
-		<Unit filename="include\cmd\LogFile.h" />
-		<Unit filename="include\cmd\LogFileManager.h" />
-		<Unit filename="include\cmd\StringUtil.h" />
 		<Unit filename="include\version.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src\PgeArchiveFile.cpp" />
+		<Unit filename="src\PgeArchiveManager.cpp" />
 		<Unit filename="src\PgeAudioManager.cpp" />
 		<Unit filename="src\PgeBaseApplication.cpp" />
 		<Unit filename="src\PgeBaseEntity.cpp" />
 		<Unit filename="src\PgeBaseGameState.cpp" />
 		<Unit filename="src\PgeBaseInputListener.cpp" />
 		<Unit filename="src\PgeBaseWindowSystem.cpp" />
+		<Unit filename="src\PgeFontManager.cpp" />
 		<Unit filename="src\PgeGameStateManager.cpp" />
 		<Unit filename="src\PgeInputManager.cpp" />
 		<Unit filename="src\PgeMath.cpp" />
@@ -115,8 +128,12 @@
 		<Unit filename="src\PgePoint3D.cpp" />
 		<Unit filename="src\PgeSingleton.cpp" />
 		<Unit filename="src\PgeTextureManager.cpp" />
+		<Unit filename="src\PgeTileGameState.cpp" />
+		<Unit filename="src\PgeTileMap.cpp" />
 		<Unit filename="src\PgeTimer.cpp" />
 		<Unit filename="src\PgeTypes.cpp" />
+		<Unit filename="src\PgeViewport.cpp" />
+		<Unit filename="src\PgeXmlArchiveFile.cpp" />
 		<Unit filename="src\SDL\PgeSDLPlatformFactory.cpp" />
 		<Unit filename="src\SDL\PgeSDLWindowSystem.cpp" />
 		<Extensions>

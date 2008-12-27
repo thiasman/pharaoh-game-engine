@@ -92,7 +92,7 @@ namespace PGE
     #if PGE_PLATFORM == PGE_PLATFORM_WIN32
 
         //#define WIN32_EXTRA_LEAN
-        #include <windows.h>
+        //#include <windows.h>
 
         // If we're not including this from a client build, specify that the stuff
         // should get exported. Otherwise, import it.
@@ -121,6 +121,9 @@ namespace PGE
 
         #if defined( __MINGW32__ )
             #define EXT_HASH
+		#elif ( defined( _MSC_VER ) )
+            // Don't do anything...
+            
         #else
             #define snprintf _snprintf
             #define vsnprintf _vsnprintf

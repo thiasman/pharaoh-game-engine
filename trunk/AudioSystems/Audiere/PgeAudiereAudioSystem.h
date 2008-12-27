@@ -13,13 +13,15 @@
 #include "PgeAudioManager.h"
 
 #include "audiere.h"
+#include "PgeSharedPtr.h"
+#include "PgeAudiereArchiveFile.h"
 
 namespace PGE
 {
     /** @class AudiereSoundInstance
         A sound instance that contains the Audiere stream pointer.
     */
-    class AudiereSoundInstance : public SoundInstance
+    class _PgeExport AudiereSoundInstance : public SoundInstance
     {
     public:
         /** Clear the instance */
@@ -95,8 +97,11 @@ namespace PGE
             This class should not be used directly after initializing the audio
             manager via <code>AudioManager::getSingletonPtr()->Initialize( new AudiereAudioSystem() );</code>.
     */
-    class AudiereAudioSystem : public BaseAudioSystem
+    class _PgeExport AudiereAudioSystem : public BaseAudioSystem
     {
+    protected:
+        AudiereArchiveFile  mMemFile;
+
     public:
         /** Constructor */
         AudiereAudioSystem();
@@ -116,6 +121,10 @@ namespace PGE
     protected:
     private:
         audiere::AudioDevicePtr    mDevice;
+
+        typedef SharedPtr< AudiereArchiveFile >     MemoryFilePtr;
+        typedef std::map< String, MemoryFilePtr >   MemoryFileMap;
+        MemoryFileMap mMemoryFiles;
 
     }; // class AudiereAudioSystem
 

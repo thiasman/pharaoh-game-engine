@@ -1,6 +1,6 @@
 
 /////////////////////////////////////////////////////////////////////
-// $Id: StringUtil.h,v 1.2 2008/05/07 16:31:28 Lunazoid Exp $
+// $Id: StringUtil.h,v 1.3 2008/07/03 12:48:17 Lunazoid Exp $
 //
 // StringUtil.h -- Header file for the StringUtil class.
 //
@@ -46,7 +46,8 @@ namespace cmd
         /// end of the string.
         static void trim( std::string& str, bool removeStart = true, bool removeEnd = true )
         {
-            std::string ws( _T( " \t\n" ) );     // Whitespace characters
+//            std::string ws( _T( " \t\n" ) );     // Whitespace characters
+            std::string ws( " \t\n" );
             // Method (for trim start.  end is similar)
             // 1.) find the location of the first character that is not whitespace.
             // 2.) erase all characters up to that index.
@@ -331,7 +332,8 @@ namespace cmd
             // is the given string:
             if ( i == std::string::npos )
             {
-                outExt = _T("");
+//                outExt = _T("");
+                outExt = "";
                 outFilename = fixedPath;
             }
             else

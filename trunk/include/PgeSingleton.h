@@ -10,9 +10,8 @@
 #ifndef PGESINGLETON_H
 #define PGESINGLETON_H
 
+#include <assert.h>
 #include "PgePlatform.h"
-
-#include "cmd/LogFileManager.h"
 
 namespace PGE
 {

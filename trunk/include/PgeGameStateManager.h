@@ -21,7 +21,7 @@
 #include "PgeInputManager.h"
 #include "PgePoint2D.h"
 
-#include "cmd/LogFileManager.h"
+//#include "PgeLogFileManager.h"
 
 namespace PGE
 {
@@ -34,13 +34,13 @@ namespace PGE
         between the app and the states.
 
         @remarks
-            The game state manager is window listener, and can be added to the
+            The game state manager is a window listener, and can be added to the
             render window so that it will shut down when the window is closed.
 
         @remarks
             The game state manager is also derived from BaseInputListener, but
             none of the input event methods are implemented.  This is mostly to
-            help with passing input along to the states, but attaching the
+            help with passing input along to the states, by attaching the
             states (also derived from BaseInputListener) as listeners.  However,
             if the state manager is desired to have input handling, simply
             subclass the manager, and implement the methods.

@@ -42,7 +42,7 @@ namespace cmd
     public:
 
         /** Error codes
-            @remark These affect how the error messages are displayed
+            @remarks These affect how the error messages are displayed
         */
         enum ErrorCode
             {
@@ -54,7 +54,7 @@ namespace cmd
             };
 
         /** Logging level
-            @remark Indicates how verbose the logging should be.  Basically,
+            @remarks Indicates how verbose the logging should be.  Basically,
                     anything that's an error or higher will always be written
                     (unless logging is disabled.)  Other comments will depend on
                     the current logging level.
@@ -332,11 +332,11 @@ namespace cmd
     };
 
     /** @class LogFileSection
-        @remark
+        @remarks
         Section group in a log file.  This is essentially a helper class for
         creating a new section which will "pop" itself when it goes out of scope.
 
-        @remark
+        @remarks
         This works well for automatically closing the section when going out of
         scope.  However, it should be noted that if there is a system crash, the
         stack will get released, but the heap may be orphaned.  This means that

@@ -9,7 +9,7 @@
 #include "PgeGameStateManager.h"
 #include "PgeBaseWindowSystem.h"
 
-#include "cmd/LogFileManager.h"
+//#include "PgeLogFileManager.h"
 
 namespace PGE
 {
@@ -168,13 +168,15 @@ namespace PGE
     //WindowFocusChanged--------------------------------------------------------
     void GameStateManager::WindowFocusChanged( BaseWindowSystem* win )
     {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "GameStateManager::WindowFocusChanged(...)" );
+/*
+        LogFileManager& lfm = LogFileManager::GetSingleton();
+        LogFileSection sect( lfm.GetDefaultLog(), "GameStateManager::WindowFocusChanged(...)" );
 
         if ( win->IsActive() )
             lfm << "Window activated\n";
         else
             lfm << "Window deactivated\n";
+*/
     }
 
     //Update--------------------------------------------------------------------

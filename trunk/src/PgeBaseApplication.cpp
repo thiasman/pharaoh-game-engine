@@ -13,27 +13,46 @@
 #include "PgePlatformFactory.h"
 #include "PgeBaseWindowSystem.h"
 #include "PgeBaseWindowListener.h"
+#include "PgeArchiveManager.h"
+#include "PgeTextureManager.h"
+//#include "PgeFontManager.h"
+//#include "PgeLogFileManager.h"
+#include "PgeTileMap.h"
+//#include "PgeStringUtil.h"
 
 #include "PgePoint2D.h"
 #include "PgeMatrix2D.h"
 #include "PgeMath.h"
 
 #include "cmd/StringUtil.h"
-#include "cmd/LogFileManager.h"
-
+using cmd::StringUtil;
 namespace PGE
 {
     BaseApplication::BaseApplication( PlatformFactory* factory )
         : mPlatformFactory( factory ),
-          mTextureManager( 0 )
+          mTextureManager( 0 ),
+          mArchiveManager( 0 ),
+          mTileManager( 0 )
+          //mFontManager( 0 )
+          //mLogFileManager( 0 )
     {
         //ctor
+        //mLogFileManager = new LogFileManager();
     }
 
     BaseApplication::~BaseApplication()
     {
         //dtor
         delete mTextureManager;
+        mTextureManager = 0;
+        delete mArchiveManager;
+        mArchiveManager = 0;
+        delete mTileManager;
+        mTileManager = 0;
+        //delete mFontManager;
+        //mFontManager = 0;
+        //delete mLogFileManager;
+        //mLogFileManager = 0;
     }
 
     //Init----------------------------------------------------------------------
@@ -47,7 +66,8 @@ namespace PGE
         //BaseInputListener::Init( mWindowHandle );
 
         OIS::ParamList pl;
-        String hndStr = cmd::StringUtil::toString( mWindowHandle );
+//        String hndStr = StringUtil::ToString( mWindowHandle );
+        String hndStr = StringUtil::toString( mWindowHandle );
         pl.insert( std::make_pair( String( "WINDOW" ), hndStr ) );
 #if PGE_PLATFORM == PGE_PLATFORM_WIN32
         pl.insert( std::make_pair( String( "w32_mouse" ), String( "DISCL_FOREGROUND" ) ) );
@@ -58,8 +78,11 @@ namespace PGE
         InputManager* inputMgr = InputManager::getSingletonPtr();
         inputMgr->Init( pl );
 
-        // Initialize the texture manager:
+        // Initialize the managers:
+        mTileManager    = new TileManager();
+        mArchiveManager = new ArchiveManager();
         mTextureManager = new TextureManager();
+        //mFontManager    = new FontManager();
 
         // Perform additional initialization:
         AdditionalInit();
@@ -68,8 +91,6 @@ namespace PGE
     //_createWindow-------------------------------------------------------------
     void BaseApplication::_createWindow()
     {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::_createWindow(...)" );
         try
         {
             assert( !mPlatformFactory.IsNull() );
@@ -84,14 +105,14 @@ namespace PGE
         }
         catch ( std::exception& e )
         {
-            lfm << e.what() << std::endl;
+//            lfm << e.what() << std::endl;
         }
     }
 
     void BaseApplication::Run()
     {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::Run(...)" );
+//        LogFileManager& lfm = LogFileManager::GetSingleton();
+//        LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::Run(...)" );
 
 /*
         try
@@ -148,14 +169,14 @@ namespace PGE
     //WindowSizeChanged---------------------------------------------------------
     void BaseApplication::WindowSizeChanged( BaseWindowSystem* win )
     {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowSizeChanged(...)" );
+//        LogFileManager& lfm = LogFileManager::GetSingleton();
+//        LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowSizeChanged(...)" );
 
         // Get the window metrics:
         int x, y, z, width, height;
         win->GetMetrics( x, y, z, width, height );
 
-        lfm << "Window position = ( " << x << ", " << y << ", " << z << " ), size = ( " << width << ", " << height << " )\n";
+//        lfm << "Window position = ( " << x << ", " << y << ", " << z << " ), size = ( " << width << ", " << height << " )\n";
     }
 
     //WindowClosed--------------------------------------------------------------
@@ -166,13 +187,15 @@ namespace PGE
     //WindowFocusChanged--------------------------------------------------------
     void BaseApplication::WindowFocusChanged( BaseWindowSystem* win )
     {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowFocusChanged(...)" );
+/*
+        LogFileManager& lfm = LogFileManager::GetSingleton();
+        LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowFocusChanged(...)" );
 
         if ( win->IsActive() )
             lfm << "Window activated\n";
         else
             lfm << "Window deactivated\n";
+*/
     }
 
 } // namespace PGE

@@ -169,9 +169,14 @@ namespace PGE
         assert( mDevice );
 
         // Make sure the sound has not already been created:
+        if ( GetSoundInstanceConst( fileName ) )
+            return 0;
+/*
+        // Make sure the sound has not already been created:
         int index = Find( fileName, flags );
         if ( index != AudioManager::getSingleton().GetInvalidSoundIndex() )
             return index;
+*/
 
         // Create a new sound instance:
         AudiereSoundInstance* instance = new AudiereSoundInstance;
@@ -181,11 +186,27 @@ namespace PGE
         // Create the stream:
         bool    isStream = ( flags & SoundFlags_Stream );
         bool    isLoopable = ( flags & SoundFlags_Loopable );
-        instance->mStreamPtr = audiere::OutputStreamPtr( audiere::OpenSound( mDevice, fileName.c_str(), isStream ) );
+        //instance->mStreamPtr = audiere::OutputStreamPtr( audiere::OpenSound( mDevice, fileName.c_str(), isStream ) );
+        //AudiereArchiveFile memFile( fileName );
+
+        // Create and open the memory file:
+        MemoryFilePtr memFile;
+        MemoryFileMap::iterator fileMapIter = mMemoryFiles.find( fileName );
+        if ( fileMapIter == mMemoryFiles.end() )
+        {
+            memFile = MemoryFilePtr( new AudiereArchiveFile( fileName ) );
+            mMemoryFiles[ fileName ] = memFile;
+        }
+        else
+            memFile = fileMapIter->second;
+        //mMemFile.Open( fileName );
+        //instance->mStreamPtr = audiere::OutputStreamPtr( audiere::OpenSound( mDevice, &memFile, isStream, audiere::FF_OGG ) );
+        instance->mStreamPtr = audiere::OutputStreamPtr( audiere::OpenSound( mDevice, memFile.Get(), isStream, audiere::FF_AUTODETECT ) );
+        //instance->mStreamPtr = audiere::OutputStreamPtr( audiere::OpenSound( mDevice, &mMemFile, isStream, audiere::FF_OGG ) );
         instance->mStreamPtr->setRepeat( isLoopable );
 
         // Add the instance to the list:
-        mSoundInstances.push_back( SoundInstancePtr( instance ) );
+        mSoundInstances[ fileName ] = SoundInstancePtr( instance );
         return mSoundInstances.size() - 1;
     }
 

@@ -11,6 +11,7 @@
 #define PGEAUDIOMANAGER_H
 
 #include <vector>
+#include <map>
 
 #include "PgePlatform.h"
 #include "PgeTypes.h"
@@ -50,7 +51,7 @@ namespace PGE
             to start/stop playback of the stream by overridding the Start and
             Stop methods.
     */
-    class SoundInstance
+    class _PgeExport SoundInstance
     {
     public:
         /** Destructor */
@@ -158,7 +159,7 @@ namespace PGE
                 audioMgr->Play( streamIdx, streamIdx );
             </code>
     */
-    class AudioManager
+    class _PgeExport AudioManager
     {
     private:
         /** Constructor */
@@ -207,13 +208,16 @@ namespace PGE
         /** Play a sound with a given index, using the specified channels.  For
             3D Sounds, this will also set the initial position of the sound.
         */
-        void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
+        void Play( const String& name, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
+        //void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
 
         /** Check whether a sound is currently playing */
-        bool IsPlaying( int index ) const;
+        bool IsPlaying( const String& name ) const;
+        //bool IsPlaying( int index ) const;
 
         /** Stop a song at a given index */
-        void Stop( int channelIndex );
+        void Stop( const String& name );
+        //void Stop( int index );
 
         /** Stop all sounds/streams */
         void StopAll();
@@ -222,57 +226,76 @@ namespace PGE
         int Find( const String& fileName, SoundFlags flags );
 
         /** For 3D sounds, set the min and max distance range */
-        void Set3DRange( int channelIndex, float minDist, float maxDist );
+        void Set3DRange( const String& name, float minDist, float maxDist );
+        //void Set3DRange( int index, float minDist, float maxDist );
 
         /** Check if a stream is seekable */
-        bool IsSeekable( int index ) const;
+        bool IsSeekable( const String& name ) const;
+        //bool IsSeekable( int index ) const;
 
         /** Get the length of a sound */
-        float GetSoundLength( int index );
+        float GetSoundLength( const String& name );
+        //float GetSoundLength( int index );
 
         /** Get the current position within the stream, if the stream is
             seekable.
         */
-        float GetPosition( int index ) const;
+        float GetPosition( const String& name ) const;
+        //float GetPosition( int index ) const;
 
         /** Set the position within the stream, if the stream is seekable.
             Otherwise, does nothing.
         */
-        void SetPosition( int index, float pos );
+        void SetPosition( const String& name, float pos );
+        //void SetPosition( int index, float pos );
 
         /** Reset the sound to the beginning.  On seekable streams, this is
             the same as SetPosition( 0 ).
         */
-        void Restart( int index );
+        void Restart( const String& name );
+        //void Restart( int index );
 
         /** Set the repeat flag, indicating if the sound should loop. */
-        void SetRepeat( int index, bool repeat );
+        void SetRepeat( const String& name, bool repeat );
+        //void SetRepeat( int index, bool repeat );
 
         /** Get the repeat state of the sound */
-        bool GetRepeat( int index ) const;
+        bool GetRepeat( const String& name ) const;
+        //bool GetRepeat( int index ) const;
 
         /** Set the volume of a specific sound */
-        void SetVolume( int index, float volume );
+        void SetVolume( const String& name, float volume );
+        //void SetVolume( int index, float volume );
         /** Get the volume of a sound */
-        float GetVolume( int index );
+        float GetVolume( const String& name );
+        //float GetVolume( int index );
         /** Set the volume of <i>ALL</i> sounds */
         void SetVolume( float volume );
         /** Multiply the volume of a sound by a ratio */
-        void MultiplyVolume( int index, float ratio );
+        void MultiplyVolume( const String& name, float ratio );
+        //void MultiplyVolume( int index, float ratio );
         /** Multiply the volume of <i>ALL</i> sounds by a ratio */
         void MultiplyVolume( float ratio );
 
         /** Set the pan offset.  -1 = left, 0 = center, 1 = right. */
-        void    SetPan( int index, float pan );
+        void    SetPan( const String& name, float pan );
+        //void    SetPan( int index, float pan );
         /** Get the pan offset. */
-        float   GetPan( int index ) const;
+        float   GetPan( const String& name ) const;
+        //float   GetPan( int index ) const;
         /** Set the pitch offset.  Range typically from 0.5 to 2.0, default=1.0. */
-        void    SetPitchOffset( int index, float pitch );
+        void    SetPitchOffset( const String& name, float pitch );
+        //void    SetPitchOffset( int index, float pitch );
         /** Get the pitch offset. */
-        float   GetPitchOffset( int index ) const;
+        float   GetPitchOffset( const String& name ) const;
+        //float   GetPitchOffset( int index ) const;
 
         /** Get a pointer to a sound instance */
-        SoundInstance* GetSoundInstance( int index );
+        SoundInstance* GetSoundInstance( const String& name );
+        //SoundInstance* GetSoundInstance( int index );
+
+        /** Get a constant pointer to a sound instance */
+        SoundInstance* GetSoundInstanceConst( const String& name ) const;
 
         /** Get the number of sounds in the system */
         int GetSoundCount() const;
@@ -319,7 +342,7 @@ namespace PGE
             the approptiate methods in a derived class, and providing a factory
             to generate the audio system.
     */
-    class BaseAudioSystem
+    class _PgeExport BaseAudioSystem
     {
     public:
         /** Constructor */
@@ -336,16 +359,22 @@ namespace PGE
         /** Play a sound with a given index, using the specified channels.  For
             3D Sounds, this will also set the initial position of the sound.
         */
-        void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
+        void Play( const String& name, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
+        //void Play( int index, int& channelIndex, const Point3Df& pos = Point3Df::ZERO );
 
         /** Check whether a sound is currently playing */
-        bool IsPlaying( int index ) const;
+        bool IsPlaying( const String& name ) const;
+        //bool IsPlaying( int index ) const;
 
         /** Stop a song at a given index */
-        void Stop( int channelIndex );
+        void Stop( const String& name );
+        //void Stop( int index );
+
+        /** Stop all songs */
+        void StopAll();
 
         /** Find a song with a given file name that has specified flags. */
-        int Find( const String& fileName, SoundFlags flags );
+        //int Find( const String& fileName, SoundFlags flags );
 
         /** For 3D sounds, set the min and max distance range
             @remarks
@@ -353,57 +382,75 @@ namespace PGE
                 by default.  It <B>MUST</B> be overridden in order to be useful
                 in 3D audio libraries.
         */
-        virtual void Set3DRange( int channelIndex, float minDist, float maxDist ) { }
+        virtual void Set3DRange( const String& name, float minDist, float maxDist ) { }
 
         /** Check if a stream is seekable */
-        bool IsSeekable( int index ) const;
+        bool IsSeekable( const String& name ) const;
+        //bool IsSeekable( int index ) const;
 
         /** Get the length of a sound */
-        float GetSoundLength( int index );
+        float GetSoundLength( const String& name );
+        //float GetSoundLength( int index );
 
         /** Get the current position within the stream, if the stream is
             seekable.
         */
-        float GetPosition( int index ) const;
+        float GetPosition( const String& name ) const;
+        //float GetPosition( int index ) const;
 
         /** Set the position within the stream, if the stream is seekable.
             Otherwise, does nothing.
         */
-        void SetPosition( int index, float pos );
+        void SetPosition( const String& name, float pos );
+        //void SetPosition( int index, float pos );
 
         /** Reset the sound to the beginning.  On seekable streams, this is
             the same as SetPosition( 0 ).
         */
-        void Restart( int index );
+        void Restart( const String& name );
+        //void Restart( int index );
 
         /** Set the repeat flag, indicating if the sound should loop. */
-        void SetRepeat( int index, bool repeat );
+        void SetRepeat( const String& name, bool repeat );
+        //void SetRepeat( int index, bool repeat );
 
         /** Get the repeat state of the sound */
-        bool GetRepeat( int index ) const;
+        bool GetRepeat( const String& name ) const;
+        //bool GetRepeat( int index ) const;
 
         /** Set the volume of a specific sound */
-        void SetVolume( int index, float volume );
+        void SetVolume( const String& name, float volume );
+        //void SetVolume( int index, float volume );
         /** Get the volume of a sound */
-        float GetVolume( int index );
+        float GetVolume( const String& name );
+        //float GetVolume( int index );
         /** Set the volume of <i>ALL</i> sounds */
         void SetVolume( float volume );
         /** Multiply the volume of a sound by a ratio */
-        void MultiplyVolume( int index, float ratio );
+        void MultiplyVolume( const String& name, float ratio );
+        //void MultiplyVolume( int index, float ratio );
         /** Multiply the volume of <i>ALL</i> sounds by a ratio */
         void MultiplyVolume( float ratio );
 
         /** Set the pan offset.  -1 = left, 0 = center, 1 = right. */
-        void    SetPan( int index, float pan );
+        void    SetPan( const String& name, float pan );
+        //void    SetPan( int index, float pan );
         /** Get the pan offset. */
-        float   GetPan( int index ) const;
+        float   GetPan( const String& name ) const;
+        //float   GetPan( int index ) const;
         /** Set the pitch offset.  Range typically from 0.5 to 2.0, default=1.0. */
-        void    SetPitchOffset( int index, float pitch );
+        void    SetPitchOffset( const String& name, float pitch );
+        //void    SetPitchOffset( int index, float pitch );
         /** Get the pitch offset. */
-        float   GetPitchOffset( int index ) const;
+        float   GetPitchOffset( const String& name ) const;
+        //float   GetPitchOffset( int index ) const;
 
         /** Get a pointer to a sound instance */
-        SoundInstance* GetSoundInstance( int index );
+        SoundInstance* GetSoundInstance( const String& name );
+        //SoundInstance* GetSoundInstance( int index );
+
+        /** Get a constant pointer to a sound instance */
+        SoundInstance* GetSoundInstanceConst( const String& name ) const;
 
         /** Get the number of sounds in the system */
         int GetSoundCount() const;
@@ -411,9 +458,13 @@ namespace PGE
     protected:
         typedef SharedPtr< SoundInstance >          SoundInstancePtr;
         typedef std::vector< SoundInstancePtr >     SoundInstanceVector;
-        typedef SoundInstanceVector::iterator       SoundInstanceIter;
+        //typedef SoundInstanceVector::iterator       SoundInstanceIter;
+        typedef std::map< String, SoundInstancePtr > SoundInstanceMap;
+        typedef SoundInstanceMap::iterator          SoundInstanceIter;
+        typedef SoundInstanceMap::const_iterator    SoundInstanceConstIter;
 
-        SoundInstanceVector     mSoundInstances;
+        //SoundInstanceVector     mSoundInstances;
+        SoundInstanceMap        mSoundInstances;
         Point3Df                mPrevListenerPos;
 
     }; // class AudioSystemInterface

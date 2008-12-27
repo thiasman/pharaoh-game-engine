@@ -16,6 +16,10 @@
 #include "PgeSingleton.h"
 #include "PgeSharedPtr.h"
 
+#if PGE_PLATFORM == PGE_PLATFORM_WIN32
+#   include <windows.h>
+#endif
+
 #include <gl/gl.h>
 
 namespace PGE
@@ -31,6 +35,7 @@ namespace PGE
         bool    mIsLoaded;              /**< Indicates if the image exists in memory */
         String  mImageFileName;         /**< Name of the image file */
         UInt32  mWidth, mHeight;        /**< Dimensions of the texture */
+        UInt32  mOriginalWidth, mOriginalHeight; /**< The image is resized to a power-of-2.  These store the original dimensions. */
         GLuint  mTextureID;             /**< Id of the loaded texture */
 
 
@@ -43,9 +48,13 @@ namespace PGE
 
         /** Get the image width */
         UInt32 GetWidth() const             { return mWidth; }
+        /** Get the original image width */
+        UInt32 GetOriginalWidth() const     { return mOriginalWidth; }
 
         /** Get the image width */
         UInt32 GetHeight() const            { return mHeight; }
+        /** Get the original image height */
+        UInt32 GetOriginalHeight() const    { return mOriginalHeight; }
 
         /** Get the texture ID */
         GLuint GetID() const               { return mTextureID; }
@@ -55,8 +64,16 @@ namespace PGE
 
         /** Load the image into memory.  If the image is already loaded, it does
             nothing.
+
+            @param  minFilter       Flag for filtering the image when downscaling
+            @param  maxFilter       Flag for filtering the image when upscaling
+            @param  forceMipmap     Generates mipmaps of the texture, regardless of its dimensions
+            @param  resizeIfNeeded  If the image dimensions are not a power of 2, then the
+                                    canvas is resized to the next power of 2.  The original image
+                                    pixels are not changed (the image occupies the top-left
+                                    corner of the resized canvas.)
         */
-        bool Load( GLuint minFilter, GLuint maxFilter, bool forceMipmap );
+        bool Load( GLuint minFilter, GLuint maxFilter, bool forceMipmap, bool resizeIfNeeded = true );
 
         /** Unload the image from memory */
         bool Unload();
@@ -99,11 +116,14 @@ namespace PGE
         /** Add an image to the manager.  Optionally, load it into memory. */
         bool AddImage( const String& imageFileName );
 
+        /** Remove an image from the manager. */
+        bool RemoveImage( const String& imageFileName );
+
         /** Load an image.  If the image is not already in the manager, it is
             first added.  If the image exists and is already loaded, it is not
             loaded again.
         */
-        bool LoadImage( const String& imageFileName, GLuint minFilter = GL_LINEAR, GLuint maxFilter = GL_LINEAR, bool forceMipmap = false );
+        bool LoadImage( const String& imageFileName, GLuint minFilter = GL_LINEAR, GLuint maxFilter = GL_LINEAR, bool forceMipmap = false, bool resizeIfNeeded = true );
 
         /** Get a pointer to the texture item */
         TextureItem* GetTextureItemPtr( const String& textureName );
