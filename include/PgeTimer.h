@@ -13,7 +13,8 @@
 #include "PgeTypes.h"
 
 #if ( PGE_PLATFORM == PGE_PLATFORM_WIN32 )
-    #include <mmsystem.h>
+#   include <windows.h>
+#   include <mmsystem.h>
     // Link with winmm.lib...
 #else
     #include <sys/time.h>

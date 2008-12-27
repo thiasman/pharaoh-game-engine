@@ -8,6 +8,10 @@
 
 #include "PgeTileEngine.h"
 
+#if PGE_PLATFORM == PGE_PLATFORM_WIN32
+#   include <windows.h>
+#endif
+
 #include <gl/gl.h>
 #include <gl/glu.h>
 

@@ -10,7 +10,13 @@
 #ifndef PGESDLPLATFORMFACTORY_H
 #define PGESDLPLATFORMFACTORY_H
 
-#include "PgePlatformFactory.h"
+#if defined( __APPLE__ ) || defined( __MINGW32__ )
+#include <SDL/SDL.h>
+#else
+#include <SDL.h>
+#endif
+
+#include "../PgePlatformFactory.h"
 
 namespace PGE
 {

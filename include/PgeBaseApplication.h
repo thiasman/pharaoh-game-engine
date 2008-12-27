@@ -14,13 +14,20 @@
 #include "PgeBaseWindowListener.h"
 #include "PgeBaseInputListener.h"
 #include "PgeInputManager.h"
-#include "PgeTextureManager.h"
+//#include "PgeTextureManager.h"
+//#include "PgeArchiveManager.h"
 #include "PgeTimer.h"
 
 namespace PGE
 {
     class PlatformFactory;
     class BaseWindowSystem;
+    class ArchiveManager;
+    class TextureManager;
+    class TileManager;
+//    class FontManager;
+//    class LogFileManager;
+
 
     /** @class BaseApplication
         The application is where the game really gets started.  The main
@@ -82,7 +89,12 @@ namespace PGE
         Timer           mTimer;         /**< Timer used by the application.  Individual states may use additional timers. */
         size_t          mWindowHandle;  /**< Id of the window associated with this app. */
 
-        TextureManager* mTextureManager;    /**< Instantiation of the texture manager */
+        TextureManager* mTextureManager;    ///< Instantiation of the texture manager
+        ArchiveManager* mArchiveManager;    ///< Instantiation of the archive manager
+        TileManager*    mTileManager;       ///< Instantiation of the tile manager
+        //FontManager*    mFontManager;       ///< Instantiation of the font manager
+        //LogFileManager* mLogFileManager;    ///< Instantiation of the log file manager
+
 
         /** Perform additional initialization for the application-specific
             case.

@@ -460,7 +460,8 @@ namespace PGE
         /** Constructor */
         Point3D( const Point3D& pt ) : Point3DTempl< Int >( pt )    { }
         /** Constructor */
-        Point3D( const Point3DTempl<Int>& pt ) : Point3DTempl< Int >( pt )    { }
+        template < typename U >
+        Point3D( const Point3DTempl<U>& pt ) : Point3DTempl< Int >( pt.x, pt.y, pt.z )    { }
 
         /** Constructor that implicitly converts from a floating-point point. */
         Point3D( const Point3Df& pt );
@@ -480,7 +481,8 @@ namespace PGE
         /** Constructor */
         Point3Df( const Point3Df& pt ) : Point3DTempl< Real >( pt )    { }
         /** Constructor */
-        Point3Df( const Point3DTempl<Real>& pt ) : Point3DTempl< Real >( pt )    { }
+        template < typename U >
+        Point3Df( const Point3DTempl<U>& pt ) : Point3DTempl< Real >( pt.x, pt.y, pt.z )    { }
 
         /** Constructor that implicitly converts from a integer point. */
         Point3Df( const Point3D& pt );

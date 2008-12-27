@@ -6,6 +6,8 @@
  *
  */
 
+#include <assert.h>
+
 #include "PgeMatrix2D.h"
 #include "PgePoint2D.h"
 #include "PgeMath.h"

@@ -9,7 +9,9 @@
 #include "PgeMath.h"
 #include <math.h>
 #include <stdlib.h>
+//#include "PgeStringUtil.h"
 #include "cmd/StringUtil.h"
+using cmd::StringUtil;
 
 namespace PGE
 {
@@ -243,7 +245,7 @@ namespace PGE
     //IFloor--------------------------------------------------------------------
     Int Math::IFloor( Int n )
     {
-        return static_cast< Int >( floor( n ) );
+        return static_cast< Int >( Floor( n ) );
     }
 
     //Ceil----------------------------------------------------------------------
@@ -255,7 +257,7 @@ namespace PGE
     //ICeil---------------------------------------------------------------------
     Int Math::ICeil( Int n )
     {
-        return static_cast< Int >( ceil( n ) );
+        return static_cast< Int >( Ceil( n ) );
     }
 
     //Round---------------------------------------------------------------------
@@ -475,7 +477,8 @@ namespace PGE
 
         // Convert the hex string to the corresponding integer:
         Int intVal = 0;
-        cmd::StringUtil::toUpper( hexVal );
+//        StringUtil::ToUpper( hexVal );
+        StringUtil::toUpper( hexVal );
         String::const_iterator hexIter;
         for ( hexIter = hexVal.begin(); hexIter != hexVal.end(); hexIter++ )
         {
@@ -642,20 +645,27 @@ namespace PGE
     //IsPowerOf2----------------------------------------------------------------
     bool Math::IsPowerOf2( UInt32 val )
     {
-        if ( val )
-        {
-            return ( ( val & ( val - 1 ) ) == 0 );
-        }
-        return false;
+        return ( ( val > 0 ) && ( val & ( val - 1 ) ) == 0 );
     }
 
     //FindNextPowerOf2----------------------------------------------------------
     UInt32 Math::FindNextPowerOf2( UInt32 start )
     {
+        /*
         UInt32 msb = FindMSB( start );
 
         // Shifting 1 to the left msb + 1 times will give the next power of 2
         return ( 1 << ( msb + 1 ) );
+        */
+        UInt32 v = start;
+        v--;
+        v |= v >> 1;
+        v |= v >> 2;
+        v |= v >> 4;
+        v |= v >> 8;
+        v |= v >> 16;
+        v++;
+        return v;
     }
 
     ////////////////////////////////////////////////////////////////////////////

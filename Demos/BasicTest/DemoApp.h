@@ -15,6 +15,7 @@
 #include "PgeGameStateManager.h"
 #include "PgePlatformFactory.h"
 #include "PgeBaseWindowSystem.h"
+#include "PgeArchiveManager.h"
 #include "version.h"
 
 #include "PgeAudioManager.h"
@@ -24,6 +25,9 @@
 #include "DemoGameStateFactory.h"
 
 #include "cmd/LogFileManager.h"
+using cmd::LogFileManager;
+using cmd::LogFileSection;
+//#include "PgeLogFileManager.h"
 
 using namespace PGE;
 
@@ -42,8 +46,10 @@ public:
     */
     void Run()
     {
-        cmd::LogFileManager& lfm = cmd::LogFileManager::getInstance();
-        cmd::LogFileSection sect( lfm.GetDefaultLog(), "DemoApp::Run(...)" );
+//        PGE::LogFileManager& lfm = PGE::LogFileManager::GetSingleton();
+//        PGE::LogFileSection sect( lfm.GetDefaultLog(), "DemoApp::Run(...)" );
+
+        int frameCount = 0;
 
         mWindow->SetTitle( "Loading..." );
 
@@ -54,12 +60,21 @@ public:
         mStateManager->StartGame( "demo" );
 
         InputManager* inputMgr = InputManager::getSingletonPtr();
+
         AudioManager* audioMgr = AudioManager::getSingletonPtr();
-        int soundIndex = audioMgr->CreateStream2D( "media/Mists_of_Time.ogg", true );
+        int soundIndex = audioMgr->CreateStream2D( "Mists_of_Time.ogg", true );
         int channelIndex = 0;
-        audioMgr->Play( soundIndex, channelIndex );
+        audioMgr->Play( "Mists_of_Time.ogg", channelIndex );
+
+        //audioMgr->Play( soundIndex, channelIndex );
+        mTimer.Restart();
+        Timer fpsTimer;
+        Real32 elapsedTime = 0;
         while ( !mStateManager->IsClosing() )
         {
+            Real timerElapsed = mTimer.GetElapsedTime() / 1000.0;
+            //lfm << "timerElapsed = " << timerElapsed << std::endl;
+
             // Capture input:
             inputMgr->Capture();
 
@@ -67,9 +82,11 @@ public:
             mWindow->MessagePump();
 
             // Update the logic:
-            mStateManager->Update( mTimer.GetElapsedTime() );
+            mStateManager->Update( timerElapsed );
+            //mStateManager->Update( mTimer.GetTotalTime() / 1000.0 );
 
             // Lock the surface before rendering:
+            mWindow->LockSurface();
 
 
             // Update the display:
@@ -77,7 +94,20 @@ public:
 
             // Unlock the surface before rendering:
             mWindow->UnlockSurface();
+
+            // Update frame rate every second:
+            elapsedTime = fpsTimer.GetTotalTime() / 1000.0;
+            if ( elapsedTime < 1.0 )
+                frameCount++;
+            else
+            {
+//                lfm << "Frame Rate: " << Real32( frameCount / elapsedTime ) << ", frame count = " << frameCount << ", elapsedTime = " << elapsedTime << std::endl;
+                frameCount = 0;
+                fpsTimer.Restart();
+            }
+            //mTimer.Restart();
         }
+        audioMgr->StopAll();
         mWindow->Shutdown();
 
         mWindow->SetTitle( "Goodbye." );
@@ -89,6 +119,10 @@ protected:
     */
     void AdditionalInit()
     {
+        LogFileManager& lfm = LogFileManager::getInstance();
+        //LogFileManager& lfm = LogFileManager::GetSingleton();
+        LogFileSection sect( lfm.GetDefaultLog(), "DemoApp::AdditionalInit(...)" );
+
         try
         {
             // Add the state manager as a listener to the window
@@ -106,6 +140,12 @@ protected:
             //BaseAudioSystem* audioSys = new AudiereAudioSystem();
             //AudioManager::getSingletonPtr()->Init( audioSys );
             AudioManager::getSingletonPtr()->Init( new AudiereAudioSystem() );
+
+            PGE::ArchiveManager* archiveMgr = PGE::ArchiveManager::GetSingletonPtr();
+            String baseDir = PGE::ArchiveManager::GetSingleton().GetApplicationDir();
+            archiveMgr->AddArchive( baseDir + "media" );
+            archiveMgr->AddArchive( baseDir + "media/data.zip" );
+            //lfm << *archiveMgr << std::endl;
         }
         catch ( std::exception& e )
         {

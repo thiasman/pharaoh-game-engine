@@ -53,7 +53,8 @@ namespace PGE
         bool operator!=( const Point2DTempl<T>& p ) const   { return !IsEqual( p ); }
 
         /** Assignment operator */
-        const Point2DTempl<T>& operator=( const Point2DTempl<T>& p )
+        template < typename U >
+        const Point2DTempl<T>& operator=( const Point2DTempl<U>& p )
         {
             x = p.x;
             y = p.y;
@@ -68,32 +69,36 @@ namespace PGE
         }
 
         /** Add another point to this point and return the sum */
-        Point2DTempl<T> operator+( const Point2DTempl<T>& p ) const
+        template < typename U >
+        Point2DTempl<T> operator+( const Point2DTempl<U>& p ) const
         {
             Point2DTempl<T> pt( x + p.x, y + p.y );
             return pt;
         }
 
         /** Subtract another point from this point and return the difference */
-        Point2DTempl<T> operator-( const Point2DTempl<T>& p ) const
+        template < typename U >
+        Point2DTempl<T> operator-( const Point2DTempl<U>& p ) const
         {
             Point2DTempl<T> pt( x - p.x, y - p.y );
             return pt;
         }
 
         /** Multiply another point by this point and return the product */
-        Point2DTempl<T> operator*( const Point2DTempl<T>& p ) const
+        template < typename U >
+        Point2DTempl<T> operator*( const Point2DTempl<U>& p ) const
         {
             Point2DTempl<T> pt( x * p.x, y * p.y );
             return pt;
         }
 
         /** Divide this point by another point and return the result */
-        Point2DTempl<T> operator/( const Point2DTempl<T>& p ) const
+        template < typename U >
+        Point2DTempl<T> operator/( const Point2DTempl<U>& p ) const
         {
             Point2DTempl<T> pt;
-            pt.x = ( p.x == 0 ) ? x : x / pt.x;
-            pt.y = ( p.y == 0 ) ? y : y / pt.y;
+            pt.x = ( p.x == 0 ) ? x : x / p.x;
+            pt.y = ( p.y == 0 ) ? y : y / p.y;
             return pt;
         }
 
@@ -128,68 +133,65 @@ namespace PGE
         }
 
         /** Add another point to this point */
-        Point2DTempl<T>& operator+=( const Point2DTempl<T>& p )
+        template < typename U >
+        Point2DTempl<T>& operator+=( const Point2DTempl<U>& p )
         {
-            x += p.x;
-            y += p.y;
+            x = x + p.x;
+            y = y + p.y;
             return *this;
         }
 
         /** Subtract another point from this point */
-        Point2DTempl<T>& operator-=( const Point2DTempl<T>& p )
+        template < typename U >
+        Point2DTempl<T>& operator-=( const Point2DTempl<U>& p )
         {
-            x -= p.x;
-            y -= p.y;
+            x = x - p.x;
+            y = y - p.y;
             return *this;
         }
 
         /** Multiply another point by this point */
-        Point2DTempl<T>& operator*=( const Point2DTempl<T>& p )
+        template < typename U >
+        Point2DTempl<T>& operator*=( const Point2DTempl<U>& p )
         {
-            x *= p.x;
-            y *= p.y;
+            x = x - p.x;
+            y = y - p.y;
             return *this;
         }
 
         /** Divide this point by another point */
-        Point2DTempl<T>& operator/=( const Point2DTempl<T>& p )
+        template < typename U >
+        Point2DTempl<T>& operator/=( const Point2DTempl<U>& p )
         {
-            x /= ( p.x == 0 ) ? T( 1.0 ) : p.x;
-            y /= ( p.y == 0 ) ? T( 1.0 ) : p.y;
+            x = x / ( p.x == 0 ) ? T( 1.0 ) : p.x;
+            y = y / ( p.y == 0 ) ? T( 1.0 ) : p.y;
             return *this;
         }
 
         /** Add a scalar to this point */
-        Point2DTempl<T>& operator+( T scalar )
+        Point2DTempl<T> operator+( T scalar )
         {
-            x += scalar;
-            y += scalar;
-            return *this;
+            return Point2DTempl<T>( x + scalar, y + scalar );
         }
 
         /** Subtract a scalar from this point */
-        Point2DTempl<T>& operator-( T scalar )
+        Point2DTempl<T> operator-( T scalar )
         {
-            x -= scalar;
-            y -= scalar;
-            return *this;
+            return Point2DTempl<T>( x - scalar, y - scalar );
         }
 
         /** Multiply a scalar by this point */
-        Point2DTempl<T>& operator*( T scalar )
+        Point2DTempl<T> operator*( T scalar )
         {
-            x *= scalar;
-            y *= scalar;
-            return *this;
+            return Point2DTempl<T>( x * scalar, y * scalar );
         }
 
         /** Divide this point by a scalar */
-        Point2DTempl<T>& operator/( T scalar )
+        Point2DTempl<T> operator/( T scalar )
         {
             if ( scalar != 0 )
             {
-                x += scalar;
-                y += scalar;
+                return Point2DTempl<T>( x / scalar, y / scalar );
             }
             return *this;
         }
@@ -411,7 +413,7 @@ namespace PGE
             std::ostream::sentry opfx(stream);
             if ( !opfx )
                 return stream;
-            return ( stream << "Point3D( " << src.x << ", " << src.y << " )" );
+            return ( stream << "Point2D( " << src.x << ", " << src.y << " )" );
         }
 
     }; // class Point2DTempl;
@@ -430,7 +432,8 @@ namespace PGE
         /** Constructor */
         Point2D( const Point2D& pt ) : Point2DTempl< Int >( pt )    { }
         /** Constructor */
-        Point2D( const Point2DTempl<Int>& pt ) : Point2DTempl< Int >( pt ) { }
+        template < typename U >
+        Point2D( const Point2DTempl<U>& pt ) : Point2DTempl< Int >( pt.x, pt.y ) { }
 
         /** Constructor that implicitly converts from a floating-point point. */
         Point2D( const Point2Df& pt );
@@ -458,7 +461,8 @@ namespace PGE
         /** Constructor */
         Point2Df( const Point2Df& pt ) : Point2DTempl< Real >( pt )    { }
         /** Constructor */
-        Point2Df( const Point2DTempl<Real>& pt ) : Point2DTempl< Real >( pt ) { }
+        template < typename U >
+        Point2Df( const Point2DTempl<U>& pt ) : Point2DTempl< Real >( pt.x, pt.y ) { }
 
         /** Constructor that implicitly converts from a integer point. */
         Point2Df( const Point2D& pt );

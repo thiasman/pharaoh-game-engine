@@ -8,15 +8,28 @@
 
 #include "PgeTextureManager.h"
 #include "PgeMath.h"
+#include "PgeArchiveFile.h"
+#include "PgeArchiveManager.h"
+
+#if PGE_PLATFORM == PGE_PLATFORM_WIN32
+#   include <windows.h>
+#endif
 
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <il/il.h>
 #include <il/ilu.h>
 
-#include <unzip.h>
+/** @remarks
+        In order to handle image loading, Pharaoh Game Engine depends on DevIL
+        (<a href="http://openil.sourceforge.net">http://openil.sourceforge.net</a>).
+        The thing to do for MinGW compilers is to download the Windows libraries,
+        then reimp the *.lib files to generate *.a files.
+*/
 
-#include "cmd/LogFileManager.h"
+//#include <unzip.h>
+
+//#include "PgeLogFileManager.h"
 
 namespace PGE
 {
@@ -33,100 +46,145 @@ namespace PGE
     }
 
     //Load----------------------------------------------------------------------
-    bool TextureItem::Load( GLuint minFilter, GLuint maxFilter, bool forceMipmap )
+    bool TextureItem::Load( GLuint minFilter, GLuint maxFilter, bool forceMipmap, bool resizeIfNeeded )
     {
+//        LogFileManager& lfm = LogFileManager::GetSingleton();
+//        LogFileSection sect( lfm.GetDefaultLog(), "TextureItem::Load(...)" );
+
         /** NOTE: This is a test of using an archive file.  This will need to
             be modified to allow direct file access, or archived file access.
         */
-        // Open the archive file
-        unzFile zipFile = unzOpen( "media/data.zip" );
-        if ( !zipFile )
-            return false;
-
-        // Locate the desired image file
-        // ( 1 = case sensitive comparison, 0 is case insensitive )
-        int status = unzLocateFile( zipFile, mImageFileName.c_str(), 1 );
-        if ( status != UNZ_OK )
-            return false;
-        status = unzOpenCurrentFile( zipFile );
-        if ( status != UNZ_OK )
-            return false;
-
-        // Get the info for the file we are looking for:
-        unz_file_info fileInfo;
-        unzGetCurrentFileInfo( zipFile, &fileInfo, NULL, 0, NULL, 0, NULL, 0 );
-
-        // Create a buffer to hold the uncompressed file data:
-        unsigned char* buf = new unsigned char [ fileInfo.uncompressed_size ];
-        if ( !buf )
+        ArchiveFile* file = ArchiveManager::GetSingleton().CreateArchiveFile( mImageFileName );
+        if ( file )
         {
-            unzCloseCurrentFile( zipFile );
-            unzClose( zipFile );
-            return false;
-        }
-
-        // Read the file into memory
-        unzReadCurrentFile( zipFile, buf, fileInfo.uncompressed_size );
-
-        // Close the file:
-        unzCloseCurrentFile( zipFile );
-        unzClose( zipFile );
-
-        // Load the texture:
-
-        //****
-
-        // Get the decompressed data
-        ILuint imageID;
-        ilGenImages( 1, &imageID );
-        ilBindImage( imageID );
-        //if ( ilLoadImage( const_cast< char* >( mImageFileName.c_str() ) ) )
-        if ( ilLoadL( IL_TYPE_UNKNOWN, buf, 0 ) )
-        {
-            // Generate the GL texture
-            glGenTextures( 1, &mTextureID );
-            glBindTexture( GL_TEXTURE_2D, mTextureID );
-            mWidth  = ilGetInteger( IL_IMAGE_WIDTH );
-            mHeight = ilGetInteger( IL_IMAGE_HEIGHT );
-
-            // If forcing mipmap generation, or if the size is not a power of 2,
-            // generate as mipmaps
-            if ( forceMipmap || !Math::IsPowerOf2( mWidth ) || !Math::IsPowerOf2( mHeight ) )
+            UInt32 fileSize = file->Length();
+            unsigned char* buf = new unsigned char [ fileSize ];
+            if ( !buf )
             {
-                gluBuild2DMipmaps( GL_TEXTURE_2D,
-                                ilGetInteger( IL_IMAGE_BPP ),
-                                mWidth,
-                                mHeight,
-                                ilGetInteger( IL_IMAGE_FORMAT ),
-                                GL_UNSIGNED_BYTE,
-                                ilGetData() );
+                delete file;
+                return false;
+            }
+            file->Read( buf, fileSize );
+
+            // Load the texture:
+
+            //****
+            ilInit();
+            iluInit();
+
+            // Make sure the DevIL version is valid:
+            if ( ilGetInteger( IL_VERSION_NUM ) < IL_VERSION || iluGetInteger( ILU_VERSION_NUM ) < ILU_VERSION )
+            {
+                // Invalid version...
+                delete file;
+                delete buf;
+                return false;
+            }
+
+
+            // Get the decompressed data
+            ILuint imageID;
+            ilGenImages( 1, &imageID );
+            ilBindImage( imageID );
+            //if ( ilLoadImage( const_cast< char* >( mImageFileName.c_str() ) ) )
+            if ( ilLoadL( IL_TYPE_UNKNOWN, buf, fileSize ) )
+            {
+                // Convert the image to unsigned bytes:
+                ilConvertImage( IL_RGBA, IL_UNSIGNED_BYTE );
+
+                // Generate the GL texture
+                glGenTextures( 1, &mTextureID );
+                glBindTexture( GL_TEXTURE_2D, mTextureID );
+                mWidth  = ilGetInteger( IL_IMAGE_WIDTH );
+                mHeight = ilGetInteger( IL_IMAGE_HEIGHT );
+                mOriginalWidth  = mWidth;
+                mOriginalHeight = mHeight;
+
+                // OpenGL will work better with textures that have dimensions
+                // that are a power of 2.  If doing a scrolling tile map, then
+                // this is pretty much a necessity.  However, there are times
+                // when using a mipmap instead is perfectly fine (ie, when NOT
+                // doing tiles, or in cases where we might be running out of
+                // video memory...
+                if ( resizeIfNeeded && !forceMipmap )
+                {
+                    UInt32 newWidth = mWidth, newHeight = mHeight;
+                    if ( !Math::IsPowerOf2( mWidth ) )
+                    {
+                        // Find the next power of 2:
+                        newWidth = Math::FindNextPowerOf2( mWidth );
+                    }
+
+                    if ( !Math::IsPowerOf2( mHeight ) )
+                    {
+                        // Find the next power of 2:
+                        newHeight = Math::FindNextPowerOf2( mHeight );
+                    }
+
+                    if ( newWidth != mWidth || newHeight != mHeight )
+                    {
+                        // Resize the canvas:
+                        ilClearColor( 0, 0, 0, 0 );
+                        iluImageParameter( ILU_PLACEMENT, ILU_UPPER_LEFT );
+                        iluEnlargeCanvas( newWidth, newHeight, ilGetInteger( IL_IMAGE_DEPTH ) );
+                        mWidth  = ilGetInteger( IL_IMAGE_WIDTH );
+                        mHeight = ilGetInteger( IL_IMAGE_HEIGHT );
+
+                        ilEnable(IL_FILE_OVERWRITE);
+                        ilSaveImage( TEXT("c:\downloads\resized.png") );
+                    }
+                }
+
+                // If forcing mipmap generation, or if the size is not a power of 2,
+                // generate as mipmaps
+                if ( forceMipmap || !Math::IsPowerOf2( mWidth ) || !Math::IsPowerOf2( mHeight ) )
+                {
+                    gluBuild2DMipmaps( GL_TEXTURE_2D,
+                                    ilGetInteger( IL_IMAGE_BPP ),
+                                    mWidth,
+                                    mHeight,
+                                    ilGetInteger( IL_IMAGE_FORMAT ),
+                                    GL_UNSIGNED_BYTE,
+                                    ilGetData() );
+                }
+                else
+                {
+                    glTexImage2D(   GL_TEXTURE_2D,
+                                    0,
+                                    ilGetInteger( IL_IMAGE_BPP ),
+                                    mWidth,
+                                    mHeight,
+                                    0,
+                                    ilGetInteger( IL_IMAGE_FORMAT ),
+                                    GL_UNSIGNED_BYTE,
+                                    ilGetData() );
+                }
+
+                // Set the minification and magnification filters
+                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter );
+                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, maxFilter );
+                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP );
+                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP );
+
+                mIsLoaded = true;
             }
             else
             {
-                glTexImage2D(   GL_TEXTURE_2D,
-                                0,
-                                ilGetInteger( IL_IMAGE_BPP ),
-                                mWidth,
-                                mHeight,
-                                0,
-                                ilGetInteger( IL_IMAGE_FORMAT ),
-                                GL_UNSIGNED_BYTE,
-                                ilGetData() );
+                ILenum error;
+                error = ilGetError();
+                //std::string errString = iluErrorString( error );
             }
 
-            // Set the minification and magnification filters
-            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter );
-            glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, maxFilter );
+            ilDeleteImages( 1, &imageID );
 
-            mIsLoaded = true;
+            //***
+
+            // Free memory:
+            delete buf;
+            delete file;
         }
-
-        //ilDeleteImages( 1, &imageID );
-
-        //***
-
-        // Free memory:
-        delete buf;
+        else
+            return false;
 
         return true;
     }
@@ -134,6 +192,8 @@ namespace PGE
     //Unload--------------------------------------------------------------------
     bool TextureItem::Unload()
     {
+        glDeleteTextures( 1, &mTextureID );
+        mTextureID = 0;
         mIsLoaded = false;
 
         return false;
@@ -145,6 +205,7 @@ namespace PGE
 
     // Instantiate the singleton instance
     template<> TextureManager* Singleton< TextureManager >::mInstance = 0;
+
     TextureManager& TextureManager::GetSingleton()
     {
         assert( mInstance );
@@ -157,12 +218,6 @@ namespace PGE
 
     TextureManager::TextureManager()
     {
-        // Initialize the image loading library
-        // NOTE: The version checking seems to be broken with DevIL 1.6.8.  The
-        // value returned as current is 166, and IL_VERSION is 168.  I'm just
-        // guessing that something didn't get compiled correctly...
-        //assert( !( ilGetInteger( IL_VERSION_NUM ) < IL_VERSION ) );
-        ilInit();
     }
 
     TextureManager::~TextureManager()
@@ -187,8 +242,28 @@ namespace PGE
         return false;
     }
 
+    //RemoveImage---------------------------------------------------------------
+    bool TextureManager::RemoveImage( const String& imageFileName )
+    {
+        // Attempt to find the image in the map:
+        TextureIter iter = mTextureMap.find( imageFileName );
+
+        // Add the new item only if it is not found
+        if ( iter != mTextureMap.end() )
+        {
+            // Unload the image
+            if ( !iter->second->Unload() )
+                return false;
+
+            // Remove the image from the map
+            mTextureMap.erase( iter );
+        }
+
+        return true;
+    }
+
     //LoadImage-----------------------------------------------------------------
-    bool TextureManager::LoadImage( const String& imageFileName, GLuint minFilter, GLuint maxFilter, bool forceMipmap )
+    bool TextureManager::LoadImage( const String& imageFileName, GLuint minFilter, GLuint maxFilter, bool forceMipmap, bool resizeIfNeeded )
     {
         // Make sure the image is in the map:
         AddImage( imageFileName );
@@ -196,7 +271,7 @@ namespace PGE
         // Load the image:
         TextureIter iter = mTextureMap.find( imageFileName );
         if ( iter != mTextureMap.end() )
-            return iter->second->Load( minFilter, maxFilter, forceMipmap );
+            return iter->second->Load( minFilter, maxFilter, forceMipmap, resizeIfNeeded );
         return false;
     }
 

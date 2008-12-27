@@ -11,6 +11,12 @@
 #include "PgeBaseWindowSystem.h"
 #include "PgeBaseWindowListener.h"
 
+#if ( PGE_PLATFORM == PGE_PLATFORM_WIN32 )
+#   include <windows.h>
+#else
+
+#endif
+
 namespace PGE
 {
     //Constructor---------------------------------------------------------------

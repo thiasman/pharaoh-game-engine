@@ -12,13 +12,19 @@
 
 #include "PgePlatform.h"
 #include "PgeTypes.h"
-#include "PgeBaseGameState.h"
+#include "PgeTileGameState.h"
+#include "PgeTileMap.h"
+#include "PgeViewport.h"
+
+#if PGE_PLATFORM == PGE_PLATFORM_WIN32
+#   include <windows.h>
+#endif
 
 #include <gl/gl.h>
 
-#include "cmd/LogFileManager.h"
+//#include "PgeLogFileManager.h"
 
-class DemoGameState : public PGE::BaseGameState
+class DemoGameState : public PGE::TileGameState
 {
 public:
     DemoGameState();
@@ -75,15 +81,9 @@ public:
     bool ButtonReleased( const OIS::JoyStickEvent& e, int button );
 
     /** Set the position and size of the display */
-    void SetWindowSize( PGE::UInt32 w, PGE::UInt32 h );
+    //void SetWindowSize( PGE::UInt32 w, PGE::UInt32 h );
 
 protected:
-
-private:
-    PGE::String  mTextureName;
-    GLuint mTexID;
-
-    float   mAngle;
 };
 
 #endif // DEMOGAMESTATE_H

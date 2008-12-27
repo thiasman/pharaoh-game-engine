@@ -10,6 +10,10 @@
 #ifndef PGEINPUTMANAGER_H
 #define PGEINPUTMANAGER_H
 
+#if ( PGE_PLATFORM == PGE_PLATFORM_WIN32 )
+#   include <windows.h>
+#endif
+
 #include <map>
 
 #include "PgePlatform.h"
