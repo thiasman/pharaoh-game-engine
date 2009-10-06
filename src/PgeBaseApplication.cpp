@@ -15,9 +15,9 @@
 #include "PgeBaseWindowListener.h"
 #include "PgeArchiveManager.h"
 #include "PgeTextureManager.h"
-//#include "PgeFontManager.h"
+#include "PgeFontManager.h"
 //#include "PgeLogFileManager.h"
-#include "PgeTileMap.h"
+//#include "PgeTileMap.h"
 //#include "PgeStringUtil.h"
 
 #include "PgePoint2D.h"
@@ -32,8 +32,8 @@ namespace PGE
         : mPlatformFactory( factory ),
           mTextureManager( 0 ),
           mArchiveManager( 0 ),
-          mTileManager( 0 )
-          //mFontManager( 0 )
+          //mTileManager( 0 ),
+          mFontManager( 0 )
           //mLogFileManager( 0 )
     {
         //ctor
@@ -43,16 +43,10 @@ namespace PGE
     BaseApplication::~BaseApplication()
     {
         //dtor
-        delete mTextureManager;
-        mTextureManager = 0;
-        delete mArchiveManager;
-        mArchiveManager = 0;
-        delete mTileManager;
-        mTileManager = 0;
-        //delete mFontManager;
-        //mFontManager = 0;
-        //delete mLogFileManager;
-        //mLogFileManager = 0;
+        mTextureManager.SetNull();
+        mArchiveManager.SetNull();
+        mFontManager.SetNull();
+        mOverlayManager.SetNull();
     }
 
     //Init----------------------------------------------------------------------
@@ -79,10 +73,11 @@ namespace PGE
         inputMgr->Init( pl );
 
         // Initialize the managers:
-        mTileManager    = new TileManager();
-        mArchiveManager = new ArchiveManager();
-        mTextureManager = new TextureManager();
-        //mFontManager    = new FontManager();
+        //mTileManager    = new TileManager();
+        mArchiveManager = ArchiveManagerPtr( new ArchiveManager() );
+        mTextureManager = TextureManagerPtr( new TextureManager() );
+        mFontManager    = FontManagerPtr( new FontManager() );
+        mOverlayManager = OverlayManagerPtr( new OverlayManager() );
 
         // Perform additional initialization:
         AdditionalInit();
@@ -111,9 +106,6 @@ namespace PGE
 
     void BaseApplication::Run()
     {
-//        LogFileManager& lfm = LogFileManager::GetSingleton();
-//        LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::Run(...)" );
-
 /*
         try
         {
@@ -169,14 +161,9 @@ namespace PGE
     //WindowSizeChanged---------------------------------------------------------
     void BaseApplication::WindowSizeChanged( BaseWindowSystem* win )
     {
-//        LogFileManager& lfm = LogFileManager::GetSingleton();
-//        LogFileSection sect( lfm.GetDefaultLog(), "BaseApplication::WindowSizeChanged(...)" );
-
         // Get the window metrics:
         int x, y, z, width, height;
         win->GetMetrics( x, y, z, width, height );
-
-//        lfm << "Window position = ( " << x << ", " << y << ", " << z << " ), size = ( " << width << ", " << height << " )\n";
     }
 
     //WindowClosed--------------------------------------------------------------

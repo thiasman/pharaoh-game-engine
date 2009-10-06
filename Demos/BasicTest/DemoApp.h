@@ -13,6 +13,7 @@
 #include "PgeBaseApplication.h"
 #include "PgeSharedPtr.h"
 #include "PgeGameStateManager.h"
+#include "PgeOverlayManager.h"
 #include "PgePlatformFactory.h"
 #include "PgeBaseWindowSystem.h"
 #include "PgeArchiveManager.h"
@@ -37,6 +38,7 @@ public:
     DemoApp( PlatformFactory* factory )
         : BaseApplication( factory ),
           mStateManager( new PGE::GameStateManager( new DemoGameStateFactory() ) )
+          //mOverlayManager( new PGE::OverlayManager() )
     {
     }
 
@@ -128,6 +130,7 @@ protected:
             // Add the state manager as a listener to the window
             assert( !mWindow.IsNull() );
             mWindow->AddWindowListener( mStateManager.Get() );
+            mWindow->SetSize( 640, 480 );
 
             // Pass the window dimensions to the state manager
             mStateManager->WindowSizeChanged( mWindow.Get() );
@@ -135,6 +138,7 @@ protected:
             // Add the state manager as an input listener
             assert( !mStateManager.IsNull() );
             InputManager::getSingletonPtr()->AddInputListener( mStateManager.Get(), "State Manager" );
+            //InputManager::getSingletonPtr()->AddInputListener( mOverlayManager.Get(), "Overlay Manager" );
 
             // Initialize the audio manager:
             //BaseAudioSystem* audioSys = new AudiereAudioSystem();
@@ -154,7 +158,10 @@ protected:
 
 private:
     typedef SharedPtr< PGE::GameStateManager >  StateManagerPtr;
-    StateManagerPtr mStateManager;
+    StateManagerPtr     mStateManager;
+
+    //typedef SharedPtr< PGE::OverlayManager >    OverlayManagerPtr;
+    //OverlayManagerPtr   mOverlayManager;
 
 }; // class DemoApp
 

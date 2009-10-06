@@ -1,8 +1,8 @@
 
 /*! $
- *  @file
- *  @author
- *  @date
+ *  @file   PgeTileMap.cpp
+ *  @author Chad M. Draper
+ *  @date   August 13, 2008
  *
  */
 
@@ -22,24 +22,67 @@
 #include <gl/gl.h>
 #include <gl/glu.h>
 
-#include "cmd/LogFileManager.h"
-using cmd::LogFileManager;
-using cmd::LogFileSection;
-
 //#include "PgeLogFileManager.h"
 #include "cmd/StringUtil.h"
 using cmd::StringUtil;
 
 namespace PGE
 {
+    ////////////////////////////////////////////////////////////////////////////
+    // TileSequence
+    ////////////////////////////////////////////////////////////////////////////
+
+    //Constructor
+    TileSequence::TileSequence( Real frameRate )
+    {
+    }
+
+    //Destructor
+    TileSequence::~TileSequence()
+    {
+    }
+
+    //operator=
+    TileSequence& TileSequence::operator=( const TileSequence& src )
+    {
+        mName       = src.mName;
+        mFrameRate  = src.mFrameRate;
+        mCurrentFrame = src.mCurrentFrame;
+
+        mSequence.assign( src.mSequence.begin(), src.mSequence.end() );
+
+        return *this;
+    }
+
+    //ReadMap
+    void TileSequence::ReadSequence( TiXmlNode* mapNode, const String& setID, UInt32 setIndex )
+    {
+    }
+
+    //Prepare
+    void TileSequence::Prepare( Real elapsedMS )
+    {
+    }
+
+    //Render
+    void TileSequence::Render()
+    {
+        assert( mCurrentFrame >= 0 && mCurrentFrame < mSequence.size() );
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // TileMap
+    ////////////////////////////////////////////////////////////////////////////
+
     TileMap::TileMap()
-        : mIdentifier( "" ), mDepth( 0 )
+        : mIdentifier( "" ), mDepth( 0 ), mTilesetDepth( 0 )
     {
         //ctor
     }
 
     TileMap::TileMap( const Point2Df& tileSize )
-        : mIdentifier( "" ), mDepth( 0 )
+        : mIdentifier( "" ), mDepth( 0 ), mTilesetDepth( 0 )
     {
         SetTileSize( tileSize );
     }
@@ -55,10 +98,11 @@ namespace PGE
         mTileSize   = src.mTileSize;
         mTileCount  = src.mTileCount;
         mMapSize    = src.mMapSize;
+        mIdentifier = src.mIdentifier;
+        mTileSetID  = src.mTileSetID;
+        mDepth      = src.mDepth;
+        mTilesetDepth = src.mTilesetDepth;
 
-        mVertices.assign( src.mVertices.begin(), src.mVertices.end() );
-        mColors.assign( src.mColors.begin(), src.mColors.end() );
-        mTextureCoords.assign( src.mTextureCoords.begin(), src.mTextureCoords.end() );
         mTileMap.assign( src.mTileMap.begin(), src.mTileMap.end() );
 
         return *this;
@@ -67,13 +111,17 @@ namespace PGE
     //operator<-----------------------------------------------------------------
     bool TileMap::operator<( const TileMap& src ) const
     {
-        return mDepth < src.mDepth;
+        if ( mTilesetDepth == src.mTilesetDepth )
+            return mDepth < src.mDepth;
+        return mTilesetDepth < src.mTilesetDepth;
     }
 
     //operato><-----------------------------------------------------------------
     bool TileMap::operator>( const TileMap& src ) const
     {
-        return mDepth > src.mDepth;
+        if ( mTilesetDepth == src.mTilesetDepth )
+            return mDepth > src.mDepth;
+        return mTilesetDepth > src.mTilesetDepth;
     }
 
     //GenerateMap---------------------------------------------------------------
@@ -92,6 +140,7 @@ namespace PGE
 
         TileManager::GetSingleton().AddTileSet( setID, setData );
         mIdentifier = "debug";
+        mTileSetID  = setID;
 
         // Allocate the array for the tiles:
         mTileMap.resize( mTileCount.x * mTileCount.y );
@@ -101,7 +150,6 @@ namespace PGE
         Real hColorDiff = 1.0 / Real( mTileCount.x - 1 );
         Real vColorDiff = 1.0 / Real( mTileCount.y - 1 );
         Colorf leftColor, rightColor;
-        mColors.clear();
 
 
         // Ratios for the texture coordinates
@@ -128,8 +176,6 @@ namespace PGE
                     mTileMap.at( y * mTileCount.x + x ) = newTile;
 
                     Colorf color = leftColor.Lerp( rightColor, x / Real( mTileCount.x ) );
-                    //mColors.push_back( color );
-                    //Int colorIndex = mColors.size() - 1;
 
                     //glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
                     glColor4fv( &color.r );
@@ -175,16 +221,15 @@ namespace PGE
     }
 
     //ReadMap
-    void TileMap::ReadMap( TiXmlNode* mapNode )
+    void TileMap::ReadMap( TiXmlNode* mapNode, const String& setID, UInt32 setIndex )
     {
-//        LogFileManager& lfm = LogFileManager::GetSingleton();
-//        LogFileSection sect( lfm.GetDefaultLog(), "TileMap::ReadMap(...)" );
-
         if ( !mapNode )
             return;
 
+        mTilesetDepth = setIndex;
         mDepth       = StringUtil::ToInt( XmlArchiveFile::GetItemValue( mapNode->FirstChild( "index" ) ) );
         mIdentifier  = XmlArchiveFile::GetItemValue( mapNode->FirstChild( "identifier" ) );
+        mTileSetID   = setID;
         mTileCount.x = StringUtil::ToInt( XmlArchiveFile::GetItemValue( mapNode->FirstChild( "width" ) ) );
         mTileCount.y = StringUtil::ToInt( XmlArchiveFile::GetItemValue( mapNode->FirstChild( "height" ) ) );
 
@@ -192,8 +237,6 @@ namespace PGE
 
         // Allocate the array for the tiles:
         mTileMap.resize( mTileCount.x * mTileCount.y );
-
-        //lfm << "index = " << index << ", id = " << id << ", width = " << width << ", height = " << height << std::endl;
 
         TiXmlNode* cellNode = mapNode->FirstChild( "cellList" );
         if ( cellNode )
@@ -220,6 +263,18 @@ namespace PGE
         }
     }
 
+    //SetTilesetIndex-----------------------------------------------------------
+    void TileMap::SetTilesetIndex( UInt32 index )
+    {
+        mTilesetDepth = index;
+    }
+
+    //GetTilesetIndex-----------------------------------------------------------
+    UInt32 TileMap::GetTilesetIndex() const
+    {
+        return mTilesetDepth;
+    }
+
     //SetDepth------------------------------------------------------------------
     void TileMap::SetDepth( Real depth )
     {
@@ -227,7 +282,7 @@ namespace PGE
     }
 
     //GetDepth------------------------------------------------------------------
-    Real TileMap::GetDepth() const
+    UInt32 TileMap::GetDepth() const
     {
         return mDepth;
     }
@@ -235,14 +290,19 @@ namespace PGE
     //RenderTileSpan------------------------------------------------------------
     void TileMap::RenderTileSpan( TileArray::const_iterator& tileIter, const UInt32& displayListBase, UInt32 count ) const
     {
-//        LogFileManager& lfm = LogFileManager::GetSingleton();
-//        LogFileSection sect( lfm.GetDefaultLog(), "TileMap::Render(...)" );
-
         Int curTile = count;
         while ( tileIter != mTileMap.end() && curTile >= 0 )
         {
-//            lfm << "curTile = " << ( count - curTile ) << ", index = " << tileIter->tileIndex << std::endl;
-            glCallList( displayListBase + tileIter->tileIndex );
+            if ( tileIter->tileIndex < 0 )
+            {
+                // Negative values indicate a sequence...
+                Int seqIndex = Math::Abs( tileIter->tileIndex );
+                glCallList( displayListBase );
+            }
+            else
+                glCallList( displayListBase + tileIter->tileIndex );
+
+//            glCallList( displayListBase + tileIter->tileIndex );
 
             // Increment the tile iterator and decrement the count
             ++tileIter;
@@ -253,8 +313,12 @@ namespace PGE
     //Render--------------------------------------------------------------------
     void TileMap::Render( UInt32 displayListBase, const Point2Df& offset, const Viewport& viewport ) const
     {
-        LogFileManager& lfm = LogFileManager::getInstance();
-        LogFileSection sect( lfm.GetDefaultLog(), "TileMap::Render(...)" );
+        TextureItem* textureItem = TextureManager::GetSingleton().GetTextureItemPtr( mTileSetID );
+        if ( textureItem )
+        {
+            UInt32 texID = textureItem->GetID();
+            glBindTexture( GL_TEXTURE_2D, texID );
+        }
 
         Point2D displayTiles( Math::Ceil( viewport.GetSize().x / mTileSize.x ),
                               Math::Ceil( viewport.GetSize().y / mTileSize.y ) );
@@ -270,7 +334,6 @@ namespace PGE
         endTile.y = Math::Ceil( ( viewport.GetSize().y - offset.y ) / mTileSize.y );
         endTile.x = Math::Clamp( endTile.x, 0, mTileCount.x - 1 );
         endTile.y = Math::Clamp( endTile.y, 0, mTileCount.y - 1 );
-lfm << "start tile = " << startTile << ", end tile = " << endTile << std::endl;
 
         // Iterate over the tile rows and render spans of tiles
         UInt32 spanCount = ( endTile.x - startTile.x );
@@ -287,7 +350,66 @@ lfm << "start tile = " << startTile << ", end tile = " << endTile << std::endl;
         UInt32 startIndex = startTile.y * mTileCount.x + startTile.x;
         glPushMatrix();
         Point2D offsetInt( rowPosition.x + startTile.x * mTileSize.x, rowPosition.y + startTile.y * mTileSize.y );
-//lfm << "offset = " << offsetInt << std::endl;
+        //glTranslatef( rowPosition.x + startTile.x * mTileSize.x, rowPosition.y + startTile.y * mTileSize.y, 0 );
+        glTranslatef( offsetInt.x, offsetInt.y, 0 );
+        for ( int tileY = startTile.y; tileY <= endTile.y; tileY++ )
+        {
+            // Get the iterator:
+            TileArray::const_iterator tileIter = mTileMap.begin() + startIndex;
+
+            // Render the tile span:
+            glPushMatrix();
+                RenderTileSpan( tileIter, displayListBase, spanCount );
+            glPopMatrix();
+            glTranslatef( 0, mTileSize.y, 0 );
+
+            //rowPosition.y += mTileSize.y;
+            startIndex += mTileCount.x;
+        }
+        glPopMatrix();
+    }
+
+    //Render--------------------------------------------------------------------
+    void TileMap::Render( const Point2Df& offset, const Viewport& viewport ) const
+    {
+        TextureItem* textureItem = TextureManager::GetSingleton().GetTextureItemPtr( mTileSetID );
+        if ( textureItem )
+        {
+            UInt32 texID = textureItem->GetID();
+            glBindTexture( GL_TEXTURE_2D, texID );
+        }
+
+        UInt32 displayListBase = TileManager::GetSingleton().GetTileSetBase( mTileSetID );
+        Point2D displayTiles( Math::Ceil( viewport.GetSize().x / mTileSize.x ),
+                              Math::Ceil( viewport.GetSize().y / mTileSize.y ) );
+        displayTiles.x = Math::Clamp( displayTiles.x, 0, mTileCount.x );
+        displayTiles.y = Math::Clamp( displayTiles.y, 0, mTileCount.y );
+
+        // Find the first tile to render:
+        Point2D startTile = -offset / mTileSize;
+        startTile.x = Math::Clamp( startTile.x, 0, mTileCount.x - displayTiles.x );
+        startTile.y = Math::Clamp( startTile.y, 0, mTileCount.y - displayTiles.y );
+        Point2D endTile;
+        endTile.x = Math::Ceil( ( viewport.GetSize().x - offset.x ) / mTileSize.x );
+        endTile.y = Math::Ceil( ( viewport.GetSize().y - offset.y ) / mTileSize.y );
+        endTile.x = Math::Clamp( endTile.x, 0, mTileCount.x - 1 );
+        endTile.y = Math::Clamp( endTile.y, 0, mTileCount.y - 1 );
+
+        // Iterate over the tile rows and render spans of tiles
+        UInt32 spanCount = ( endTile.x - startTile.x );
+        //Point2Df rowPosition = offset + ( startTile * mTileSize );
+        Point2Df rowPosition = offset;
+        if ( mMapSize.x < viewport.GetSize().x )
+            rowPosition.x = ( viewport.GetSize().x - mMapSize.x ) / 2.0;
+        if ( mMapSize.y < viewport.GetSize().y )
+            rowPosition.y = ( viewport.GetSize().y - mMapSize.y ) / 2.0;
+
+        // Get the display list base containing the tiles for this map
+        //UInt32 displayListBase = TileManager::GetSingleton().GetTileSetBase( mTileMapSetName );
+
+        UInt32 startIndex = startTile.y * mTileCount.x + startTile.x;
+        glPushMatrix();
+        Point2D offsetInt( rowPosition.x + startTile.x * mTileSize.x, rowPosition.y + startTile.y * mTileSize.y );
         //glTranslatef( rowPosition.x + startTile.x * mTileSize.x, rowPosition.y + startTile.y * mTileSize.y, 0 );
         glTranslatef( offsetInt.x, offsetInt.y, 0 );
         for ( int tileY = startTile.y; tileY <= endTile.y; tileY++ )
@@ -528,185 +650,6 @@ lfm << "start tile = " << startTile << ", end tile = " << endTile << std::endl;
             return iter->second.mDisplayListBase;
         }
         return 0;
-    }
-
-
-    ////////////////////////////////////////////////////////////////////////////
-    // TileMapCollection
-    ////////////////////////////////////////////////////////////////////////////
-
-    //Constructor---------------------------------------------------------------
-    TileMapCollection::TileMapCollection()
-        : mPrimaryMap( 0 )
-    {
-    }
-
-    //Destructor----------------------------------------------------------------
-    TileMapCollection::~TileMapCollection()
-    {
-        delete mPrimaryMap;
-    }
-
-    //AddTileMap----------------------------------------------------------------
-    void TileMapCollection::AddTileMap( TileMap& map )
-    {
-        // Add the map to the set:
-        mTileMaps.insert( map );
-
-        if ( !mPrimaryMap )
-        {
-            mPrimaryMap = new TileMap();
-            *mPrimaryMap = map;
-        }
-        else if ( map.mDepth == 0 && mPrimaryMap->mDepth != 0 )
-            *mPrimaryMap = map;
-    }
-
-    //GetTileMap----------------------------------------------------------------
-    bool TileMapCollection::GetTileMap( Real depth, TileMap* map ) const
-    {
-        TileMapSet::const_iterator mapIter = mTileMaps.begin();
-        for ( mapIter; mapIter != mTileMaps.end(); mapIter++ )
-        {
-            if ( mapIter->mDepth == depth )
-            {
-                *map = *mapIter;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //Render--------------------------------------------------------------------
-    void TileMapCollection::Render( Point2Df& primaryOffset, const Viewport& viewport ) const
-    {
-        LogFileManager& lfm = LogFileManager::getInstance();
-        LogFileSection sect( lfm.GetDefaultLog(), "TileMapCollection::Render(...)" );
-
-        // If there is no map set, we can either assert, or we can ignore this
-        // and pretend the developer had other plans.  We'll give the developer
-        // the benefit of the doubt, and just return from this method without
-        // doing anything...
-        if ( mPrimaryMap == 0 )
-            return;
-        //assert( mPrimaryMap != 0 );
-
-        if ( mIsTextured )
-            glEnable( GL_TEXTURE_2D );
-
-        // Get the display list base for this tileset:
-        UInt32 displayListBase = TileManager::GetSingleton().GetTileSetBase( mIdentifier );
-
-        // Go over the tile maps and calculate their offsets, then render the map.
-        TileMapSet::const_iterator mapIter = mTileMaps.begin();
-        Point2D viewSize = viewport.GetSize();
-        primaryOffset.x = Math::Clamp( primaryOffset.x, viewSize.x - mPrimaryMap->mMapSize.x, 0 );
-        primaryOffset.y = Math::Clamp( primaryOffset.y, viewSize.y - mPrimaryMap->mMapSize.y, 0 );
-        for ( mapIter; mapIter != mTileMaps.end(); mapIter++ )
-        {
-            // Calculate the ratio between the current map and the primary map
-            Real ratioX = ( mPrimaryMap->mMapSize.x - viewSize.x ) / ( mapIter->mMapSize.x - viewSize.x );
-            Real ratioY = ( mPrimaryMap->mMapSize.y - viewSize.y ) / ( mapIter->mMapSize.y - viewSize.y );
-
-            // Calculate the offset of the current map using the offset for the
-            // primary map and the ratios
-            Point2Df curOffset( primaryOffset.x / ratioX, primaryOffset.y / ratioY );
-            curOffset.x = Math::Clamp( curOffset.x, viewSize.x - mapIter->mMapSize.x, 0 );
-            curOffset.y = Math::Clamp( curOffset.y, viewSize.y - mapIter->mMapSize.y, 0 );
-
-lfm << "map offset = " << curOffset << ", primary offset = " << primaryOffset << ", map size = " << mPrimaryMap->mMapSize << ", viewSize = " << viewSize << ", ratioX = " << ratioX << ", ratioY = " << ratioY << std::endl;
-//curOffset = Point2Df( 0, 0 );
-            mapIter->Render( displayListBase, curOffset, viewport );
-        }
-
-        if ( mIsTextured )
-            glDisable( GL_TEXTURE_2D );
-    }
-
-    //ReadTileset
-    void TileMapCollection::ReadTileset( TiXmlNode* tilesetNode, const String& baseDir )
-    {
-//        LogFileManager& lfm = LogFileManager::GetSingleton();
-//        LogFileSection sect( lfm.GetDefaultLog(), "TileMap::ReadTileset(...)" );
-
-        if ( !tilesetNode )
-            return;
-
-        // Read some configuration settings regarding the tileset
-
-        // Index and ID:
-        mIndex = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "index" ) ) );
-        mIdentifier = XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "identifier" ) );
-
-        // Tile information
-        mTileSize.x = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "tileWidth" ) ) );
-        mTileSize.y = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "tileHeight" ) ) );
-        mImageFile = baseDir + "/" + XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "tileBitmap" ) );
-        //mTileCount.x = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "tileSetBitmapWidth" ) ) );
-        //mTileCount.y = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "tileSetBitmapHeight" ) ) );
-        mTileCount.x = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "horizontalTileCount" ) ) );
-        mTileCount.y = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "verticalTileCount" ) ) );
-        int overlap = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "overlap" ) ) );
-        int tileCount = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "tileCount" ) ) );
-
-        // Create the source tiles:
-        mIsTextured = ArchiveManager::GetSingleton().Exists( mImageFile );
-        String tileName = ( mIsTextured ) ? mImageFile : mIdentifier;
-        //String tileID = mIdentifier;
-        TileManager::GetSingleton().GenerateTiles( tileName, mIdentifier, mTileSize, mTileCount, tileCount );
-
-        // Sequence data
-        int seqCount = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "sequenceCount" ) ) );
-
-        // Map data
-        int mapCount = StringUtil::ToInt( XmlArchiveFile::GetItemValue( tilesetNode->FirstChild( "mapCount" ) ) );
-        TiXmlNode* maplistNode = tilesetNode->FirstChild( "mapList" );
-        if ( maplistNode )
-        {
-            TiXmlNode* mapNode = maplistNode->FirstChild( "map" );
-            while ( mapNode )
-            {
-                TileMap tileMap( mTileSize );
-                tileMap.ReadMap( mapNode );
-                AddTileMap( tileMap );
-                mapNode = mapNode->NextSibling( "map" );
-            }
-        }
-    }
-
-    void TileMapCollection::GenerateDefaultTileset( const String& textureName, const Point2Df& tileSize, const Point2D& tileCount )
-    {
-        // Check if the tiles are textured.  This is a naive test, and
-        // isn't foolproof.
-        mImageFile  = textureName;
-        mIsTextured = ArchiveManager::GetSingleton().Exists( textureName );
-
-        mTileSize   = tileSize;
-        mTileCount  = tileCount;
-        mIndex      = 0;
-        mIdentifier = "default";
-
-        // Load the texture
-        if ( mIsTextured )
-            TextureManager::GetSingleton().LoadImage( mImageFile, GL_NEAREST, GL_NEAREST, false, true );
-
-/*
-        // Create the source tiles:
-        //String tileID = ( mIsTextured ) ? mImageFile : mIdentifier;
-        String tileID = mIdentifier;
-        TileManager::GetSingleton().GenerateTiles( tileID, mTileSize, mTileCount, mTileCount.x * mTileCount.y );
-
-        // Map data
-        TileMap tileMap( mTileSize );
-        tileMap.GenerateDefaultMap( mTileCount );
-        AddTileMap( tileMap );
-*/
-
-        // Generate the map:
-        TileMap tileMap;
-        tileMap.GenerateMap( mIdentifier, PGE::Point2Df( 32, 32 ), PGE::Point2D( 20, 20 ) );
-        tileMap.SetDepth( 0 );
-        AddTileMap( tileMap );
     }
 
 } // namespace PGE

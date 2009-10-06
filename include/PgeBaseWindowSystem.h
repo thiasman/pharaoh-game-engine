@@ -48,9 +48,6 @@ namespace PGE
         /** Update the display */
         //void Render();
 
-        /** Set the window size */
-        void SetSize( const unsigned long& w, const unsigned long& h );
-
         /** Handle user input */
         virtual void HandleInput()          = 0;
 
@@ -66,6 +63,9 @@ namespace PGE
 
         /** Add a window listener */
         void AddWindowListener( BaseWindowListener* listener );
+
+        /** Set the window size */
+        void SetSize( const unsigned long& w, const unsigned long& h );
 
         /** Initialize the window */
         virtual void Init();

@@ -26,20 +26,84 @@ namespace PGE
 {
     class Viewport;
 
+    /** @class TileSequence
+        A sequence is a group of tiles that are displayed as an animated sprite.
+        TileStudio apparently does not specify a frame rate for the speed of
+        displaying the sequence, so this class will allow a user-defined speed,
+        and have a default rate of 30 frames-per-second.
+
+        @note
+            In the data file, sequences will be defined with a positive index,
+            but when being referenced in the map, the index (tileNumber) will be
+            negative.  For instance, the first sequence (index=1) will be placed
+            in the map with tileNumber=-1.  When a negative tile is encountered,
+            it is assumed to be a sequence, so the absolute value is used to
+            index the sequence.
+    */
+    class _PgeExport TileSequence
+    {
+    protected:
+        struct FrameData
+        {
+            Int     tileIndex;              ///< Index of the tile used for the frame
+            UInt32  boundsCode;             ///< Boundary code for the sequence
+            Int     frameDelay;             ///< Indicates delay in animation speed.  Not sure how useful this is...
+        };
+
+        String      mName;                  ///< Name of the sprite
+        Real        mFrameRate;             ///< Animation speed of the sequence
+        Int         mCurrentFrame;          ///< Index of the current frame
+        typedef std::vector< FrameData > FrameType;
+        FrameType   mSequence;              ///< Collection of frames that make up the sequence
+
+    public:
+        /** Constructor */
+        TileSequence( Real frameRate = 30.0 );
+        /** Destructor */
+        ~TileSequence();
+
+        /** Assignment operator */
+        TileSequence& operator=( const TileSequence& src );
+
+        /** Read a sequence from a tile map file */
+        void ReadSequence( TiXmlNode* mapNode, const String& setID, UInt32 setIndex );
+
+        /** Prepare the sequence for rendering
+
+            This takes an elapsed time (milliseconds) parameter, which is used
+            to update the current frame in the sequence, based on the frame rate.
+        */
+        void Prepare( Real elapsedMS );
+
+        /** Render the current frame of the sequence.
+
+            Sequences should be rendered as part of a tile map.  As such,
+            the transformation should be ready for the sequence to simply be
+            rendered to the display.
+
+            @remarks
+                This simply renders the current frame in the sequence.  To
+                update the frame based on elapsed time, <pre>Prepare</pre>
+                must be called before rendering.
+        */
+        void Render();
+    };
+
     /** @class TileMap
         Maintains tiles in a grid, forming the tile map.
     */
     class _PgeExport TileMap
     {
     protected:
-        friend class TileMapCollection;
+        friend class TileMapGroup;
+        friend class TileMapScene;
 
         /** @struct Tile
             Store values pertaining to the tile.
         */
         struct Tile
         {
-            UInt32  tileIndex;              ///< Index to the tile in the display list
+            SInt32  tileIndex;              ///< Index to the tile in the display list
             UInt32  boundsCode;             ///< Code defining boundary of the cell
             UInt32  mapCode;                ///< Indicates special tiles in the map
             //UInt32  vertexIndices[ 4 ];     ///< Indices for the posiions of the tile corners
@@ -47,23 +111,21 @@ namespace PGE
             //UInt32  textureIndices[ 4 ];    ///< Indices for the texture coordinates of the tile corners
         };
 
-        std::vector< Point3Df >     mVertices;          ///< Vertex positions
-        std::vector< Colorf >       mColors;            ///< Colors for the vertices
-        std::vector< Point2Df >     mTextureCoords;     ///< Texture coordinates for the vertices
-
         /** @typedef TileArray
             An array of tiles
         */
         typedef std::vector< Tile > TileArray;
         std::vector< Tile >         mTileMap;           ///< Indices for the tiles
         String                      mIdentifier;        ///< Name of the tile set used for this map
+        String                      mTileSetID;         ///< Name of the tile set
 
         //UInt32                      mTileDispList;      ///< Display list for the tiles
 
-        Point2Df                    mTileSize;          ///< Dimensions of the tils
+        Point2Df                    mTileSize;          ///< Dimensions of the tiles
         Point2D                     mTileCount;         ///< Number of tiles in the map grid
         Point2Df                    mMapSize;           ///< Dimensions of the map (equal to mTileSize * mTileCount)
-        Real                        mDepth;             ///< Depth of the tilemap (indicates the render order)
+        UInt32                      mDepth;             ///< Depth of the tilemap (indicates the render order)
+        UInt32                      mTilesetDepth;      ///< Depth of the tileset containing this map (primary index for render order)
 
         /** Render a horizontal span of tiles */
         void RenderTileSpan( TileArray::const_iterator& tileIter, const UInt32& displayListBase, UInt32 count ) const;
@@ -90,22 +152,27 @@ namespace PGE
         void GenerateMap( const String& setID, const Point2Df& tileSize, const Point2D& tileCount );
 
         /** Read a tile map from a tile map file */
-        void ReadMap( TiXmlNode* mapNode );
+        void ReadMap( TiXmlNode* mapNode, const String& setID, UInt32 setIndex );
 
         /** Set the size of the tiles.  The map needs to know this in order to
             perform view clipping.
         */
         void SetTileSize( const Point2Df& tileSize );
 
+        /** The index of the containing tileset */
+        void SetTilesetIndex( UInt32 index );
+        /** Get the index of the containing tileset */
+        UInt32 GetTilesetIndex() const;
         /** The the depth of the tile map */
         void SetDepth( Real depth );
         /** Get the depth of the tile map */
-        Real GetDepth() const;
+        UInt32 GetDepth() const;
 
         /** Render the tile map */
         //void Render() const;
         /** Render the tile map */
         void Render( UInt32 displayListBase, const Point2Df& offset, const Viewport& viewport ) const;
+        void Render( const Point2Df& offset, const Viewport& viewport ) const;
 
     private:
     }; // class TileMap
@@ -180,84 +247,6 @@ namespace PGE
 
     }; // class TileManager
 
-    /** @class TileMapCollection
-        A collection of tile maps.
-
-        The tile map collection maintains all tiles in a set.  The tiles are sorted by
-        depth, with the primary map being 0.  Tiles in front of the primary map
-        will have a negative depth, and those behind it are positive.
-
-        @note
-            Scrolling is done by calculating a ratio of the current level's size
-            compared to the primary map.  The offset of the primary map is given
-            explicitly to the render method (the minimum offset being 0, and the
-            maximum offset being the map size minus the viewport size.  The
-            offset of a given map can be calculated as follows:
-
-                (For horizontal offset.  Vertical is similar.)
-                <code>
-                ratio = ( primary_width - viewport_width )/ ( cur_map_width - viewport_width );
-                map_offset = primary_offset / ratio;
-                </code>
-
-        @note
-            There is no requirement that there be a map with depth of 0.  In the
-            event that there is no map at depth = 0, the first map added to the
-            manager will be the primary map.
-
-        @note
-            There can be multiple tile map managers.  While it may be unusual to
-            have more than 1, there is no requirement that there be only 1.
-    */
-    class _PgeExport TileMapCollection
-    {
-    private:
-        typedef std::multiset< TileMap, std::less< TileMap > > TileMapSet;
-        TileMapSet  mTileMaps;
-        TileMap*    mPrimaryMap;
-
-        UInt32      mIndex;         ///<
-        String      mIdentifier;    ///<
-        Point2Df    mTileSize;      ///< Size of the source tiles
-        Point2D     mTileCount;     ///< Number of source tiles
-        String      mImageFile;     ///< Name of the texture file
-        bool        mIsTextured;    /**< Indicates if the tile set is textured
-                                         (it usually would be...)
-                                    */
-
-    public:
-        /** Constructor */
-        TileMapCollection();
-        /** Destructor */
-        ~TileMapCollection();
-
-        /** Add a tile map to the manager */
-        void AddTileMap( TileMap& map );
-
-        /** Get the first map at a given depth
-            @param  depth           Depth of the requested map
-            @param  map             TileMap found at the requested depth
-            @return true if tile map was found and map was set.  false otherwise.
-        */
-        bool GetTileMap( Real depth, TileMap* map ) const;
-
-        /** Render the tile maps, starting with the deepest map and moving
-            forward.
-
-            @note
-                primaryOffset will be clamped to the bounds of the tile.  This
-                prevents the offset from going beyond its allowable range.
-        */
-        void Render( Point2Df& primaryOffset, const Viewport& viewport ) const;
-
-        /** Read a tileset block from a tile map file */
-        void ReadTileset( TiXmlNode* tilesetNode, const String& baseDir );
-
-        /** Generate a default tile set for demo purposes.  This tileset may
-            or may not have a texture applied to it.
-        */
-        void GenerateDefaultTileset( const String& textureName, const Point2Df& tileSize, const Point2D& tileCount );
-    };
 } // namespace PGE
 
 #endif // PGETILEMAP_H

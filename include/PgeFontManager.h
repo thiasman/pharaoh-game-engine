@@ -12,12 +12,46 @@
 
 #include "PgeTypes.h"
 #include "PgeSharedPtr.h"
-#include "PgeTileMap.h"
+//#include "PgeTileMap.h"
+#include "PgeSingleton.h"
 
 //#include <map>
 
 namespace PGE
 {
+    /** @class Font
+        Stores information for a specific bitmap font.
+
+        @remarks
+            It is not possible to change attributes such as bold, italic, or
+            underline after a font is created.  Since the font is rendered as a
+            tile map, it could be scaled, but it is still ideal to create the
+            font as close to the desired size as possible.
+
+        @remarks
+            It is recommeded that the font's descriptive name include all
+            attributes defining the font, though this is not required.  It just
+            makes it more meaningful to users.  For example:
+
+                <pre>
+                    Arial 12pt bold underline italic
+                </pre>
+    */
+    class _PgeExport Font
+    {
+    public:
+        String      mDescription;
+        //typedef SharedPtr< TileMap > TileMapPtr;
+        //TileMapPtr  mTileMap;
+
+        /** Constructor */
+        Font();
+
+        /** Load the font from a data file */
+
+        /** Print a string using the font */
+    };
+
     /** @class FontManager
         Bitmap fonts are handled similarly to tile maps, but require some extra
         handling to print strings.  The FontManager class is sublclassed from
@@ -59,13 +93,11 @@ namespace PGE
             given, then the image is assumed to have all 256 ASCII characters,
             in a 16x16 grid.  This is equivalent to the LMNOpc.com's format.
     */
-    class _PgeExport FontManager //: public TileManager
+    class _PgeExport FontManager : public Singleton< FontManager >
     {
     public:
         /** Constructor */
         FontManager();
-
-static FontManager* mInstance;
 
         /** Override singleton retrieval to avoid link errors */
         static FontManager& GetSingleton();

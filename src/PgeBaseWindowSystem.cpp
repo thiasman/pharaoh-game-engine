@@ -21,8 +21,9 @@ namespace PGE
 {
     //Constructor---------------------------------------------------------------
     BaseWindowSystem::BaseWindowSystem()
-        : mWidth( 800 ),
-          mHeight( 600 ),
+        : //mWidth( 800 ),
+          //mHeight( 600 ),
+    mWidth( 640 ), mHeight( 480 ),
           mTitle( "" ),
           mIsMinimized( false ),
           mIsPaused( false ),
