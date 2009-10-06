@@ -55,9 +55,6 @@ namespace PGE
     //AddArchive
     Int ArchiveManager::AddArchive( const String& archiveLocation )
     {
-//        LogFileManager& lfm = LogFileManager::GetSingleton();
-//        LogFileSection sect( lfm.GetDefaultLog(), "ArchiveManager::AddArchive(...)" );
-
         PHYSFS_addToSearchPath( archiveLocation.c_str(), 1 );
         return 1;
     }

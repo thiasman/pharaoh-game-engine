@@ -11,6 +11,9 @@
 #include "PgeArchiveFile.h"
 #include "PgeArchiveManager.h"
 
+#include "PgeStringUtil.h"
+//using cmd::StringUtil;
+
 #if PGE_PLATFORM == PGE_PLATFORM_WIN32
 #   include <windows.h>
 #endif
@@ -48,9 +51,6 @@ namespace PGE
     //Load----------------------------------------------------------------------
     bool TextureItem::Load( GLuint minFilter, GLuint maxFilter, bool forceMipmap, bool resizeIfNeeded )
     {
-//        LogFileManager& lfm = LogFileManager::GetSingleton();
-//        LogFileSection sect( lfm.GetDefaultLog(), "TextureItem::Load(...)" );
-
         /** NOTE: This is a test of using an archive file.  This will need to
             be modified to allow direct file access, or archived file access.
         */
@@ -129,9 +129,6 @@ namespace PGE
                         iluEnlargeCanvas( newWidth, newHeight, ilGetInteger( IL_IMAGE_DEPTH ) );
                         mWidth  = ilGetInteger( IL_IMAGE_WIDTH );
                         mHeight = ilGetInteger( IL_IMAGE_HEIGHT );
-
-                        ilEnable(IL_FILE_OVERWRITE);
-                        ilSaveImage( TEXT("c:\downloads\resized.png") );
                     }
                 }
 
@@ -229,14 +226,15 @@ namespace PGE
     bool TextureManager::AddImage( const String& imageFileName )
     {
         // Attempt to find the image in the map:
-        TextureIter iter = mTextureMap.find( imageFileName );
+        String imageName = StringUtil::FixPath( imageFileName );
+        TextureIter iter = mTextureMap.find( imageName );
 
         // Add the new item only if it is not found
         if ( iter == mTextureMap.end() )
-            mTextureMap[ imageFileName ] = TextureItemPtr( new TextureItem( imageFileName ) );
+            mTextureMap[ imageName ] = TextureItemPtr( new TextureItem( imageName ) );
 
         // Check if the item is in the map now:
-        iter = mTextureMap.find( imageFileName );
+        iter = mTextureMap.find( imageName );
         if ( iter != mTextureMap.end() )
             return true;
         return false;

@@ -9,7 +9,7 @@
 #include "DemoGameState.h"
 #include "PgeAudioManager.h"
 #include "PgeTextureManager.h"
-//#include "PgeFontManager.h"
+#include "PgeFontManager.h"
 #include "PgeMath.h"
 #include "PgeColor.h"
 #include "PgePoint2D.h"
@@ -48,10 +48,11 @@ void DemoGameState::Init()
 
     TileGameState::Init();
 
-    LoadTileStudioXML( "test01/test01.xml" );
+    //LoadTileStudioXML( "test01/test01.xml" );
+    LoadTileStudioXML( "scroll/ScrollDemo.xml" );
     //mTileSet.GenerateDefaultTileset( mTextureName, PGE::Point2Df( 32, 32 ), PGE::Point2D( 20, 20 ) );
 
-    //PGE::FontManager::GetSingleton().LoadFont( "fonts/VectorSigmaNormal.fontdef" );
+    PGE::FontManager::GetSingleton().LoadFont( "fonts/VectorSigmaNormal.fontdef" );
 
 /*
     glEnable( GL_TEXTURE_2D );

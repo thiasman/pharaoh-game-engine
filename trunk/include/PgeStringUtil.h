@@ -22,8 +22,8 @@ namespace PGE
     class _PgeExport StringUtil
     {
     public:
-        //static const String WHITE_SPACE;    /** Defines the whitespace characters */
-        //static const String BLANK;          /** Empty string */
+        static const String WHITE_SPACE;    /** Defines the whitespace characters */
+        static const String BLANK;          /** Empty string */
 
         typedef std::vector< String > StringVector; /**< A vector of strings */
 
@@ -135,6 +135,7 @@ namespace PGE
         */
         static void BuildPath( const String& basePath, const String& dir, String& outPath );
         static void CleanPath( const String& inPath, String& outPath );
+        static String FixPath( const String& inPath );
 
         /** Method to search a String for a user-defined pattern.  The
             pattern may use the '*' wildcard.

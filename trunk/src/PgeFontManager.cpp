@@ -11,7 +11,11 @@
 #include "PgeArchiveManager.h"
 #include "PgeXmlArchiveFile.h"
 #include "PgeTextureManager.h"
+#include "PgeTypes.h"
+#include "PgePoint2D.h"
 //#include "PgeStringUtil.h"
+
+#include <vector>
 
 #if PGE_PLATFORM == PGE_PLATFORM_WIN32
 #   include <windows.h>
@@ -31,8 +35,8 @@ namespace PGE
     }
 
     // Instantiate the singleton instance
-    //template<> FontManager* Singleton< FontManager >::mInstance = 0;
-    FontManager* FontManager::mInstance = 0;
+    template<> FontManager* Singleton< FontManager >::mInstance = 0;
+    //FontManager* FontManager::mInstance = 0;
 
     //GetSingleton
     FontManager& FontManager::GetSingleton()
@@ -116,7 +120,10 @@ namespace PGE
                             glyphSizes[ curChar ] = Point2D( cellHeight, charWidth );
                         }
 
+                        //bool status = TileManager::GetSingleton().GenerateTiles( imageFile, fontName, glyphPositions, glyphSizes );
                         delete file;
+                        //return status;
+                        return true;
                     }
                 }
                 else if ( dataFileType == "cbfgbfffile" && ArchiveManager::GetSingleton().Exists( dataFile ) )
@@ -155,7 +162,10 @@ namespace PGE
                             glyphSizes[ curChar ] = Point2D( cellHeight, charWidth );
                         }
 
+                        //bool status = TileManager::GetSingleton().GenerateTiles( imageFile, fontName, glyphPositions, glyphSizes );
                         delete file;
+                        //return status;
+                        return true;
                     }
                 }
                 else
@@ -167,7 +177,8 @@ namespace PGE
                         return 0;
 
                     Point2D glyphSize( textureItem->GetOriginalWidth() / 16, textureItem->GetOriginalHeight() / 16 );
-//                    return GenerateTiles( imageFile, fontName, glyphSize, Point2D( 16, 16 ), 256 );
+                    //return TileManager::GetSingleton().GenerateTiles( imageFile, fontName, glyphSize, Point2D( 16, 16 ), 256 );
+
 return true;
                 }
             }
@@ -179,6 +190,14 @@ return true;
     //PrintString
     bool FontManager::PrintString( const String& fontName, const Real& posX, const Real& posY, const String& msg )
     {
+        // Get the tile map with this font's name
+        //UInt32 base = TileManager::GetSingleton().GetTileSetBase( fontName );
+        //if ( base )
+        //{
+        //    glPushAttrib( GL_LIST_BIT );
+
+        //    glPopAttrib();
+        //}
         return true;
     }
 

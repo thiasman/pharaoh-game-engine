@@ -13,7 +13,8 @@
 #include "PgePlatform.h"
 #include "PgeTypes.h"
 #include "PgeBaseGameState.h"
-#include "PgeTileMap.h"
+//#include "PgeTileMap.h"
+#include "PgeTileMapScene.h"
 #include "PgeViewport.h"
 
 #if PGE_PLATFORM == PGE_PLATFORM_WIN32
@@ -68,7 +69,7 @@ namespace PGE
         Real        mAngle;
         UInt32      mWidth, mHeight;
         Viewport    mViewport;
-        TileMapCollection mTileMapCollection;
+        TileMapScene mTileMapScene;
 
         /** Read a project block from a tile map file */
         void ReadProject( TiXmlNode* projNode, const String& baseDir );

@@ -13,7 +13,7 @@
 #include "PgePlatform.h"
 #include "PgeTypes.h"
 #include "PgeTileGameState.h"
-#include "PgeTileMap.h"
+//#include "PgeTileMap.h"
 #include "PgeViewport.h"
 
 #if PGE_PLATFORM == PGE_PLATFORM_WIN32

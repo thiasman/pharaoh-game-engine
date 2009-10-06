@@ -21,7 +21,7 @@
 			OutputDirectory="$(SolutionDir)..\..\"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="1"
+			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -309,6 +309,18 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\PgeOverlay.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\PgeOverlayElement.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\PgeOverlayManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\PgePlatformFactory.cpp"
 					>
 				</File>
@@ -321,7 +333,15 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\PgeRect.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\PgeSingleton.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\PgeStringUtil.cpp"
 					>
 				</File>
 				<File
@@ -338,6 +358,14 @@
 				</File>
 				<File
 					RelativePath="..\..\src\PgeTileMap.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\PgeTileMapScene.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\PgeTileSet.cpp"
 					>
 				</File>
 				<File
@@ -499,6 +527,18 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\PgeOverlay.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\PgeOverlayElement.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\PgeOverlayManager.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\include\PgePlatform.h"
 					>
 				</File>
@@ -515,11 +555,19 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\PgeRect.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\include\PgeSharedPtr.h"
 					>
 				</File>
 				<File
 					RelativePath="..\..\include\PgeSingleton.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\PgeStringUtil.h"
 					>
 				</File>
 				<File
@@ -536,6 +584,14 @@
 				</File>
 				<File
 					RelativePath="..\..\include\PgeTileMap.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\PgeTileMapScene.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\PgeTileSet.h"
 					>
 				</File>
 				<File

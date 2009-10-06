@@ -14,8 +14,8 @@
 
 namespace PGE
 {
-    //const String StringUtil::WHITE_SPACE = _T( " \t\n\r" );
-    //const String StringUtil::BLANK       = _T( "" );
+    const String StringUtil::WHITE_SPACE = _T( " \t\n\r" );
+    const String StringUtil::BLANK       = _T( "" );
 
     //Trim--------------------------------------------------------------------------
     void StringUtil::Trim( String& str, bool removeLeft, bool removeRight )
@@ -23,12 +23,10 @@ namespace PGE
         // Method (for trim start.  end is similar)
         // 1.) find the location of the first character that is not whitespace.
         // 2.) erase all characters up to that index.
-        /*
         if ( removeLeft )
             str.erase( 0, str.find_first_not_of( StringUtil::WHITE_SPACE ) );
         if ( removeRight )
             str.erase( str.find_last_not_of( StringUtil::WHITE_SPACE ) + 1 );
-        */
     }
 
     //Split---------------------------------------------------------------------
@@ -305,6 +303,14 @@ namespace PGE
         }
 
         outPath = fixedPath;
+    }
+
+    //FixPath-------------------------------------------------------------------
+    String StringUtil::FixPath( const String& inPath )
+    {
+        String fixedPath;
+        CleanPath( inPath, fixedPath );
+        return fixedPath;
     }
 
     //Match---------------------------------------------------------------------
