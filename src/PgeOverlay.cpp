@@ -11,6 +11,13 @@
 #include "PgeException.h"
 #include "PgeStringUtil.h"
 
+#if PGE_PLATFORM == PGE_PLATFORM_WIN32
+#   include <windows.h>
+#endif
+
+#include <gl/gl.h>
+#include <gl/glu.h>
+
 namespace PGE
 {
     //Constructor
@@ -95,7 +102,7 @@ namespace PGE
         }
 
         // Restore the depth buffer:
-        glPopAttrib( GL_DEPTH_BUFFER_BIT );
+        glPopAttrib(  );
     }
 
     //KeyPressed
