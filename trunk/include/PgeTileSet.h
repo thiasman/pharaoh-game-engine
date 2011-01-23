@@ -170,7 +170,7 @@ namespace PGE
         void Release();
 
         /** Update the scene based on elapsed time (prepare any sequences) */
-        void Update( PGE::Real32 elapsedMS );
+        void Update( PGE::Real32 elapsedMS ) const;
 
         /** Render the tileset.
 
