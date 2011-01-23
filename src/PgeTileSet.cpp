@@ -400,7 +400,7 @@ namespace PGE
     }
 
     //Update
-    void TileSet::Update( Real32 elapsedMS )
+    void TileSet::Update( Real32 elapsedMS ) const
     {
         // Prepare the sequences
         SequenceArray::iterator iter = mSequences.begin();

@@ -134,7 +134,7 @@ protected:
 
             // Pass the window dimensions to the state manager
             mStateManager->WindowSizeChanged( mWindow.Get() );
-
+            
             // Add the state manager as an input listener
             assert( !mStateManager.IsNull() );
             InputManager::getSingletonPtr()->AddInputListener( mStateManager.Get(), "State Manager" );
